@@ -52,6 +52,27 @@
             },
 
             {
+                "id": "CheckReviewApprove",
+                "label": "Check / Review / Approve",
+                "type": "process",
+                "description": "Transition process where the originating task team checks, reviews and approves information before sharing."
+            },
+
+            {
+                "id": "ReviewAuthorize",
+                "label": "Review / Authorize",
+                "type": "process",
+                "description": "Transition process where information is reviewed against requirements and authorized for use."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Event where information containers are delivered to satisfy information requirements."
+            },
+
+            {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
@@ -62,7 +83,21 @@
                 "id": "TaskTeam",
                 "label": "Task Team",
                 "type": "role",
-                "description": "Individuals assembled to perform a specific task, responsible for checking/reviewing their own information."
+                "description": "Individuals assembled to perform a specific task, responsible for developing and reviewing information."
+            },
+
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role",
+                "description": "Organization responsible for coordinating the delivery team and authorizing information before publication."
+            },
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "The party receiving information and responsible for reviewing and accepting information exchanges."
             }
 
         ],
@@ -98,11 +133,11 @@
             {
                 "id": "e3",
                 "source": "TaskTeam",
-                "target": "InformationContainer",
-                "relationship": "checks",
-                "label": "checks/reviews/approves",
+                "target": "CheckReviewApprove",
+                "relationship": "performs",
+                "label": "performs",
                 "evidence": {
-                    "quote": "The check/review/approve transition compares the information container against the information delivery plan and against the agreed standards, methods and procedures for producing information. The check/review/approve transition should be made by the originating task team.",
+                    "quote": "The check/review/approve transition should be made by the originating task team.",
                     "source": "ISO 19650-1:2018, 12.3",
                     "type": "definition"
                 }
@@ -111,9 +146,22 @@
             {
                 "id": "e4",
                 "source": "WorkInProgress",
+                "target": "CheckReviewApprove",
+                "relationship": "submitted_for",
+                "label": "submitted for",
+                "evidence": {
+                    "quote": "Information containers are checked, reviewed and approved before being shared.",
+                    "source": "ISO 19650-1:2018, 12.3",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "CheckReviewApprove",
                 "target": "Shared",
                 "relationship": "transitions_to",
-                "label": "transitions to (after check/review/approve)",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "Information is shared for coordination once it has been checked, reviewed and approved for sharing.",
                     "source": "ISO 19650-1:2018, 12.4",
@@ -122,78 +170,65 @@
             },
 
             {
-                "id": "e5",
+                "id": "e6",
                 "source": "Shared",
-                "target": "Published",
-                "relationship": "transitions_to",
-                "label": "transitions to (after review/authorize)",
+                "target": "ReviewAuthorize",
+                "relationship": "submitted_for",
+                "label": "submitted for",
                 "evidence": {
-                    "quote": "The review/authorize transition compares all the information containers at information exchange against the relevant information requirements for coordination, completeness and accuracy. If an information container meets the information requirements, its state is changed to published.",
+                    "quote": "The review/authorize transition compares information containers at information exchange against the relevant information requirements.",
                     "source": "ISO 19650-1:2018, 12.5",
                     "type": "definition"
                 }
             },
 
             {
-                "id": "e6",
-                "source": "Published",
-                "target": "Archived",
-                "relationship": "transitions_to",
-                "label": "transitions to",
-                "evidence": {
-                    "quote": "The archive state is used to hold a journal of all information containers that have been shared and published during the information management process as well as an audit trail of their development.",
-                    "source": "ISO 19650-1:2018, 12.7",
-                    "type": "definition"
-                }
-            },
-
-            {
                 "id": "e7",
-                "source": "CDE",
-                "target": "WorkInProgress",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "LeadAppointedParty",
+                "target": "ReviewAuthorize",
+                "relationship": "performs",
+                "label": "performs",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information for the project or asset.",
-                    "source": "ISO 19650-1:2018, 3.3.15",
+                    "quote": "Information containers are reviewed and authorized prior to being published.",
+                    "source": "ISO 19650-1:2018, 12.5",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "CDE",
-                "target": "Shared",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "AppointingParty",
+                "target": "ReviewAuthorize",
+                "relationship": "may_perform",
+                "label": "may perform",
                 "evidence": {
-                    "quote": "The common data environment manages information through defined states.",
-                    "source": "ISO 19650-1:2018, 12.1",
+                    "quote": "The appointing party reviews and accepts information models at information exchanges.",
+                    "source": "ISO 19650-2",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e9",
-                "source": "CDE",
+                "source": "ReviewAuthorize",
                 "target": "Published",
-                "relationship": "contains",
-                "label": "contains",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "Authorized information is made available through the common data environment.",
-                    "source": "ISO 19650-1:2018, 12.6",
+                    "quote": "If an information container meets the information requirements, its state is changed to published.",
+                    "source": "ISO 19650-1:2018, 12.5",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e10",
-                "source": "CDE",
+                "source": "Published",
                 "target": "Archived",
-                "relationship": "contains",
-                "label": "contains",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "The archive state provides a journal of all information container transactions and an audit trail of their development.",
+                    "quote": "The archive state is used to hold a journal of all information containers that have been shared and published.",
                     "source": "ISO 19650-1:2018, 12.7",
                     "type": "definition"
                 }
@@ -204,9 +239,9 @@
                 "source": "Shared",
                 "target": "WorkInProgress",
                 "relationship": "can_return_to",
-                "label": "can return to (if editing required)",
+                "label": "can return to",
                 "evidence": {
-                    "quote": "If editing is required, an information container should be returned to the work in progress state for amendment and resubmission by its author.",
+                    "quote": "If editing is required, an information container should be returned to the work in progress state.",
                     "source": "ISO 19650-1:2018, 12.4",
                     "type": "definition"
                 }
@@ -214,13 +249,65 @@
 
             {
                 "id": "e12",
-                "source": "Published",
-                "target": "Archived",
-                "relationship": "also_retained_in",
-                "label": "also retained in",
+                "source": "InformationExchange",
+                "target": "ReviewAuthorize",
+                "relationship": "occurs_during",
+                "label": "occurs during",
                 "evidence": {
-                    "quote": "An information container referenced in the archive state that was previously in the published state represents information that potentially has been used for more detailed design work, for construction or for asset management.",
-                    "source": "ISO 19650-1:2018, 12.7",
+                    "quote": "The review/authorize transition compares information containers at information exchange.",
+                    "source": "ISO 19650-1:2018, 12.5",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e13",
+                "source": "CDE",
+                "target": "WorkInProgress",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information for the project.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e14",
+                "source": "CDE",
+                "target": "Shared",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment manages information through defined states.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e15",
+                "source": "CDE",
+                "target": "Published",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "Authorized information is made available through the common data environment.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e16",
+                "source": "CDE",
+                "target": "Archived",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The archive state provides a journal of information container transactions.",
+                    "source": "ISO 19650-1:2018",
                     "type": "definition"
                 }
             }
