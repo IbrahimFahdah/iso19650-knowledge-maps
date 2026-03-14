@@ -15,6 +15,7 @@
     "graph": {
 
         "nodes": [
+
             {
                 "id": "AppointingParty",
                 "label": "Appointing Party",
@@ -139,6 +140,7 @@
                 "type": "information",
                 "description": "Library of available methods and procedures to support information production."
             }
+
         ],
 
         "edges": [
@@ -287,7 +289,176 @@
             },
 
             {
-                "id": "e30",
+                "id": "e12",
+                "source": "AppointedParty",
+                "target": "InformationReviewAndApprove",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Each appointed party shall review and approve information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.4",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e13",
+                "source": "LeadAppointedParty",
+                "target": "InformationReviewAndAuthorize",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party shall review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e14",
+                "source": "AppointingParty",
+                "target": "InformationReviewAndAccept",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The appointing party shall undertake a review of the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e15",
+                "source": "InformationReviewAndApprove",
+                "target": "InformationContainer",
+                "relationship": "approves",
+                "label": "approves",
+                "evidence": {
+                    "quote": "Appointed parties approve information containers for a specified use.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.21",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e16",
+                "source": "InformationReviewAndAuthorize",
+                "target": "InformationModel",
+                "relationship": "authorizes",
+                "label": "authorizes",
+                "evidence": {
+                    "quote": "Lead appointed parties authorize information models.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.22",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e17",
+                "source": "InformationReviewAndAccept",
+                "target": "InformationModel",
+                "relationship": "accepts",
+                "label": "accepts",
+                "evidence": {
+                    "quote": "Appointing parties accept information models.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.23",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e18",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e19",
+                "source": "InformationModel",
+                "target": "PIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Project information models support delivery activities.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e20",
+                "source": "InformationModel",
+                "target": "AIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information models support asset management during operation.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e21",
+                "source": "PIM",
+                "target": "AIM",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Information produced during delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e22",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e23",
+                "source": "CDE",
+                "target": "InformationProduction",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "All information production is undertaken via the common data environment.",
+                    "source": "ISO 19650-1",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e24",
+                "source": "CDE",
+                "target": "InformationExchange",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "The common data environment facilitates collaborative production and exchange of information.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e25",
                 "source": "InformationProduction",
                 "target": "InformationContainer",
                 "relationship": "produces",
@@ -300,15 +471,28 @@
             },
 
             {
-                "id": "e31",
-                "source": "CDE",
-                "target": "InformationExchange",
-                "relationship": "supports",
-                "label": "supports",
+                "id": "e26",
+                "source": "AppointedParty",
+                "target": "InformationChecking",
+                "relationship": "performs",
+                "label": "performs",
                 "evidence": {
-                    "quote": "The common data environment facilitates collaborative production and exchange of information.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "Each appointed party shall undertake a quality assurance check of each information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.3",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e27",
+                "source": "InformationChecking",
+                "target": "InformationContainer",
+                "relationship": "checks",
+                "label": "checks",
+                "evidence": {
+                    "quote": "Each appointed party shall check the information container against the information production standard.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.3",
+                    "type": "direct_quote"
                 }
             }
 
