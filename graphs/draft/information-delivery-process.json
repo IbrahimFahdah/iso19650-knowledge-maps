@@ -172,7 +172,7 @@
                 "relationship": "refines",
                 "label": "refines",
                 "evidence": {
-                    "quote": "Information production requirements are defined by the appointing party and can also be defined by a lead appointed party. Information production requirements should be expressed in such a way that they can be incorporated into appointments.",
+                    "quote": "Information production requirements are defined by the appointing party and can also be defined by a lead appointed party.",
                     "source": "ISO 19650-1:2026 Draft, Clause 7.2.4",
                     "type": "direct_quote"
                 }
@@ -185,7 +185,7 @@
                 "relationship": "drives",
                 "label": "drives",
                 "evidence": {
-                    "quote": "Planning for information production is the responsibility of each lead appointed party and their appointed parties after information production requirements and information constraints have been established and notified to them.",
+                    "quote": "Planning for information production is the responsibility of each lead appointed party and their appointed parties.",
                     "source": "ISO 19650-1:2026 Draft, Clause 9.1",
                     "type": "direct_quote"
                 }
@@ -198,7 +198,7 @@
                 "relationship": "produces",
                 "label": "produces",
                 "evidence": {
-                    "quote": "A range of resources should be developed during this process to describe information production in the necessary detail... an information production plan to explain the overall approach that an information production team is going to take.",
+                    "quote": "An information production plan explains the overall approach that an information production team will take.",
                     "source": "ISO 19650-1:2026 Draft, Clause 9.1",
                     "type": "direct_quote"
                 }
@@ -211,7 +211,7 @@
                 "relationship": "produces",
                 "label": "produces",
                 "evidence": {
-                    "quote": "A range of resources should be developed during this process to describe information production in the necessary detail... an information production schedule to show detailed timings of production of information containers by each appointed party in an information production team.",
+                    "quote": "An information production schedule shows detailed timings of production of information containers.",
                     "source": "ISO 19650-1:2026 Draft, Clause 9.1",
                     "type": "direct_quote"
                 }
@@ -233,70 +233,83 @@
             {
                 "id": "e8",
                 "source": "InformationProduction",
+                "target": "InformationContainer",
+                "relationship": "produces",
+                "label": "produces",
+                "evidence": {
+                    "quote": "Information production includes generation and aggregation of information containers.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationProduction",
                 "target": "InformationChecking",
                 "relationship": "includes",
                 "label": "includes",
                 "evidence": {
-                    "quote": "Information production includes generation, coordination, checking, reviewing, approval, authorization, acceptance and aggregation of information containers.",
+                    "quote": "Information production includes generation, coordination, checking, reviewing, approval, authorization, acceptance and aggregation.",
                     "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
                     "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e9",
+                "id": "e10",
                 "source": "InformationChecking",
                 "target": "InformationReviewAndApprove",
                 "relationship": "followed_by",
                 "label": "followed by",
                 "evidence": {
-                    "quote": "Each appointed party shall undertake a quality assurance check of each information container... Once the check is complete, each appointed party shall... review and approve information container.",
-                    "source": "ISO 19650-2:2026 Draft, Clauses 5.8.3 and 5.8.4",
+                    "quote": "Each appointed party shall undertake a quality assurance check and then review and approve the information container.",
+                    "source": "ISO 19650-2:2026 Draft",
                     "type": "inferred_relationship"
                 }
             },
 
             {
-                "id": "e10",
+                "id": "e11",
                 "source": "InformationReviewAndApprove",
                 "target": "InformationReviewAndAuthorize",
                 "relationship": "followed_by",
                 "label": "followed by",
                 "evidence": {
-                    "quote": "The lead appointed party shall... review and authorize the information model.",
-                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
-                    "type": "direct_quote"
-                }
-            },
-
-            {
-                "id": "e11",
-                "source": "InformationReviewAndAuthorize",
-                "target": "InformationReviewAndAccept",
-                "relationship": "followed_by",
-                "label": "followed by",
-                "evidence": {
-                    "quote": "The appointing party shall undertake a review of the information model... and accept the information container(s).",
-                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "quote": "The lead appointed party shall review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft",
                     "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e12",
-                "source": "InformationReviewAndAccept",
-                "target": "InformationExchange",
-                "relationship": "enables",
-                "label": "enables",
+                "source": "InformationReviewAndAuthorize",
+                "target": "InformationReviewAndAccept",
+                "relationship": "followed_by",
+                "label": "followed by",
                 "evidence": {
-                    "quote": "Once accepted, the appointing party aggregates the information models into the asset information model(s).",
-                    "source": "ISO 19650-2:2026 Draft, Introduction 0.4",
-                    "type": "inferred_relationship"
+                    "quote": "The appointing party shall review the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e13",
+                "source": "InformationReviewAndAccept",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Once accepted, the appointing party aggregates the information models.",
+                    "source": "ISO 19650-2",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e14",
                 "source": "InformationExchange",
                 "target": "InformationContainer",
                 "relationship": "delivers",
@@ -309,26 +322,13 @@
             },
 
             {
-                "id": "e14",
+                "id": "e15",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
                 "label": "forms",
                 "evidence": {
                     "quote": "Information models are collections of information containers.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e15",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "contains",
-                "label": "contains",
-                "evidence": {
-                    "quote": "The common data environment is the agreed source of information containers.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
@@ -349,25 +349,64 @@
 
             {
                 "id": "e17",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e18",
+                "source": "CDE",
+                "target": "InformationProduction",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "All information production is undertaken via the common data environment.",
+                    "source": "ISO 19650-1",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e19",
+                "source": "CDE",
+                "target": "InformationExchange",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "The common data environment facilitates collaborative production and exchange of information.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e20",
                 "source": "InformationProductionMilestone",
                 "target": "InformationProductionSchedule",
-                "relationship": "defines",
-                "label": "defines",
+                "relationship": "drives",
+                "label": "drives",
                 "evidence": {
-                    "quote": "Information production milestones define the events or dates when information is required by the organization(s) receiving it.",
+                    "quote": "Information production milestones define the events or dates when information is required.",
                     "source": "ISO 19650-1:2026 Draft, Clause 7.2.3",
                     "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e18",
+                "id": "e21",
                 "source": "InformationProductionRequirements",
                 "target": "InformationProductionMilestone",
                 "relationship": "establishes",
                 "label": "establishes",
                 "evidence": {
-                    "quote": "The appointing party shall establish the information production milestones to be met by the selected lead appointed party during the appointment.",
+                    "quote": "The appointing party shall establish the information production milestones.",
                     "source": "ISO 19650-2:2026 Draft, Clause 5.4.1",
                     "type": "direct_quote"
                 }
