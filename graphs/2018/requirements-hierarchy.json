@@ -6,69 +6,66 @@
         "type": "hierarchy-map",
         "standard": "ISO 19650",
         "version": "2018",
-        "part": "Part 1",
+        "part": "Part 1 / Part 2",
         "created": "2018",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "EIR" ]
+        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "EIR", "LOIN" ]
     },
 
     "graph": {
 
         "nodes": [
-
             {
                 "id": "Organization",
                 "label": "Organization",
                 "type": "role",
                 "description": "Organization responsible for defining objectives and information requirements."
             },
-
             {
                 "id": "OrganizationalObjectives",
                 "label": "Organizational Objectives",
                 "type": "concept",
                 "description": "Strategic objectives of the organization."
             },
-
             {
                 "id": "OIR",
                 "label": "Organizational Information Requirements",
                 "type": "information",
                 "description": "Information required to support organizational objectives."
             },
-
             {
                 "id": "AIR",
                 "label": "Asset Information Requirements",
                 "type": "information",
                 "description": "Information required to support asset management decisions."
             },
-
             {
                 "id": "PIR",
                 "label": "Project Information Requirements",
                 "type": "information",
                 "description": "Information required to support project delivery decisions."
             },
-
             {
                 "id": "EIR",
                 "label": "Exchange Information Requirements",
                 "type": "information",
                 "description": "Information required at defined information exchange points."
             },
-
+            {
+                "id": "LOIN",
+                "label": "Level of Information Need",
+                "type": "framework",
+                "description": "Framework for specifying the granularity and extent of information to be provided to meet each information requirement."
+            },
             {
                 "id": "InformationProduction",
                 "label": "Information Production",
                 "type": "process",
                 "description": "Activity of producing information required for project delivery."
             }
-
         ],
 
         "edges": [
-
             {
                 "id": "e1",
                 "source": "Organization",
@@ -81,7 +78,6 @@
                     "type": "inferred_relationship"
                 }
             },
-
             {
                 "id": "e2",
                 "source": "OrganizationalObjectives",
@@ -94,7 +90,6 @@
                     "type": "definition"
                 }
             },
-
             {
                 "id": "e3",
                 "source": "OIR",
@@ -107,7 +102,6 @@
                     "type": "inferred_relationship"
                 }
             },
-
             {
                 "id": "e4",
                 "source": "AIR",
@@ -120,7 +114,6 @@
                     "type": "definition"
                 }
             },
-
             {
                 "id": "e5",
                 "source": "PIR",
@@ -133,20 +126,30 @@
                     "type": "definition"
                 }
             },
-
             {
                 "id": "e6",
                 "source": "EIR",
-                "target": "InformationProduction",
+                "target": "LOIN",
                 "relationship": "specifies",
                 "label": "specifies",
                 "evidence": {
-                    "quote": "Exchange information requirements define the information to be produced and delivered.",
-                    "source": "ISO 19650-2",
+                    "quote": "The appointing party shall specify the level of information need for each information requirement.",
+                    "source": "ISO 19650-2, 5.1.2",
+                    "type": "definition"
+                }
+            },
+            {
+                "id": "e7",
+                "source": "LOIN",
+                "target": "InformationProduction",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "The level of information need of each information container should be determined according to its purpose.",
+                    "source": "ISO 19650-1, 11.2",
                     "type": "definition"
                 }
             }
-
         ]
     }
 }
