@@ -63,6 +63,13 @@
                 "label": "Information Production",
                 "type": "process",
                 "description": "Creation and coordination of information to meet defined requirements."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared information environment used to manage information containers."
             }
 
         ],
@@ -115,7 +122,7 @@
                 "relationship": "transitions_to",
                 "label": "transitions to",
                 "evidence": {
-                    "quote": "The information models produced by all information production teams working on a project should together fulfil the information requirements... Aggregation of information to the asset information model(s) should be informed by those information requirements and should occur once that information has been accepted by the appointing party.",
+                    "quote": "Aggregation of information to the asset information model(s) should occur once that information has been accepted by the appointing party.",
                     "source": "ISO 19650-1:2026 Draft, Clause 12.2.2",
                     "type": "direct_quote"
                 }
@@ -175,27 +182,14 @@
 
             {
                 "id": "e9",
-                "source": "InformationContainer",
-                "target": "ProjectInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Project information models are collections of information containers.",
-                    "source": "ISO 19650-1:2026 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e10",
-                "source": "InformationContainer",
-                "target": "AssetInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
-                "evidence": {
-                    "quote": "Asset information models are collections of information containers.",
-                    "source": "ISO 19650-1:2026 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
                 }
             }
 
