@@ -205,9 +205,10 @@ function toCytoscapeElements(graph) {
       source: edge.source,
       target: edge.target,
       relationship: edge.relationship,
-      evidenceQuote: edge.evidenceQuote,
-      sourceReference: edge.sourceReference,
-      evidenceType: edge.evidenceType
+      label: edge.label,
+      evidenceQuote: edge.evidence?.quote || edge.evidenceQuote,
+      sourceReference: edge.evidence?.source || edge.sourceReference,
+      evidenceType: edge.evidence?.type || edge.evidenceType
     }
   }));
 
