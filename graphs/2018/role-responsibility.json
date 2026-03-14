@@ -20,126 +20,126 @@
                 "id": "AppointingParty",
                 "label": "Appointing Party",
                 "type": "role",
-                "description": "Organization appointing parties and defining information requirements. Accountable for overall information management and acceptance of deliverables."
+                "description": "Organization appointing parties and defining information requirements."
             },
 
             {
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role",
-                "description": "Party responsible for coordinating the appointed parties, authorizing information before delivery, and ensuring compliance with requirements."
+                "description": "Party responsible for coordinating the appointed parties and authorizing information before delivery."
             },
 
             {
                 "id": "AppointedParty",
                 "label": "Appointed Party",
                 "type": "role",
-                "description": "Organization producing information to meet requirements, responsible for information quality and timely delivery."
+                "description": "Organization producing information to meet requirements."
             },
 
             {
                 "id": "TaskTeam",
                 "label": "Task Team",
                 "type": "role",
-                "description": "Individuals assembled to perform a specific task, responsible for developing, checking and approving information containers."
+                "description": "Individuals assembled to perform a specific task responsible for producing information containers."
             },
 
             {
                 "id": "InformationManager",
                 "label": "Information Management Function",
                 "type": "role",
-                "description": "Function responsible for managing the information management process, which can be assigned to the appointing party, lead appointed party, or a third party."
+                "description": "Function responsible for managing the information management process."
             },
 
             {
                 "id": "InformationUser",
                 "label": "Information User",
                 "type": "role",
-                "description": "Stakeholder using information for decision-making, including asset owners, operators, regulators, and other interested parties."
+                "description": "Stakeholder using information for decision-making."
             },
 
             {
                 "id": "InformationRequirements",
                 "label": "Information Requirements",
                 "type": "information",
-                "description": "Specification of what, when, how and for whom information is to be produced, including OIR, AIR, PIR, and EIR."
+                "description": "Specification of what, when, how and for whom information is to be produced."
             },
 
             {
                 "id": "ExchangeInformationRequirements",
                 "label": "Exchange Information Requirements (EIR)",
                 "type": "information",
-                "description": "Information requirements defined for appointments, specifying what must be delivered at information exchanges."
+                "description": "Information requirements specifying what must be delivered at exchanges."
             },
 
             {
                 "id": "BIMExecutionPlan",
                 "label": "BIM Execution Plan (BEP)",
                 "type": "information",
-                "description": "Plan explaining how the information management aspects of the appointment will be carried out by the delivery team."
+                "description": "Plan explaining how information management will be carried out by the delivery team."
             },
 
             {
                 "id": "InformationProduction",
                 "label": "Information Production",
                 "type": "process",
-                "description": "Creation of information by appointed parties, including generating and coordinating information containers."
+                "description": "Creation and coordination of information containers."
             },
 
             {
                 "id": "InformationVerification",
                 "label": "Information Verification",
                 "type": "process",
-                "description": "Checking information before it is shared, including quality assurance checks and reviews."
+                "description": "Checking and reviewing information before sharing."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Delivery of information between parties at defined milestones to satisfy information requirements."
+                "description": "Delivery of information between parties."
             },
 
             {
                 "id": "InformationAcceptance",
                 "label": "Information Acceptance",
                 "type": "process",
-                "description": "Review and acceptance of delivered information by the appointing party against requirements."
+                "description": "Review and acceptance of delivered information."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Shared environment for collecting, managing and disseminating information containers through a managed process."
+                "description": "Shared environment for collecting, managing and disseminating information."
             },
 
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
+                "description": "Named persistent set of information retrievable from a file or system."
             },
 
             {
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Collection of structured and unstructured information containers forming the project or asset information model."
+                "description": "Collection of structured and unstructured information containers."
             },
 
             {
                 "id": "ProjectInformationModel",
                 "label": "Project Information Model (PIM)",
                 "type": "information",
-                "description": "Information model used during project delivery, delivered to the appointing party at information exchanges."
+                "description": "Information model used during project delivery."
             },
 
             {
                 "id": "AssetInformationModel",
                 "label": "Asset Information Model (AIM)",
                 "type": "information",
-                "description": "Information model used during asset operation, receiving information from PIM at project closeout."
+                "description": "Information model used during asset operation."
             }
 
         ],
@@ -205,7 +205,7 @@
                 "relationship": "organizes",
                 "label": "organizes into",
                 "evidence": {
-                    "quote": "A delivery team can consist of multiple task teams from within the lead appointed party's organization and any appointed parties.",
+                    "quote": "A delivery team can consist of multiple task teams.",
                     "source": "ISO 19650-1:2018, 3.2.6",
                     "type": "definition"
                 }
@@ -231,7 +231,7 @@
                 "relationship": "comprises",
                 "label": "comprises",
                 "evidence": {
-                    "quote": "Where delivery teams are sub-divided into task teams, information management functions should be assigned for each task team.",
+                    "quote": "Delivery teams may be subdivided into task teams responsible for producing information.",
                     "source": "ISO 19650-1:2018, 7.4",
                     "type": "definition"
                 }
@@ -331,9 +331,9 @@
             {
                 "id": "e15",
                 "source": "InformationAcceptance",
-                "target": "InformationExchange",
-                "relationship": "follows",
-                "label": "follows",
+                "target": "InformationModel",
+                "relationship": "validates",
+                "label": "validates",
                 "evidence": {
                     "quote": "Following submission, the appointing party reviews and accepts the information model.",
                     "source": "ISO 19650-2:2018, 5.7",
@@ -348,7 +348,7 @@
                 "relationship": "occurs_in",
                 "label": "occurs in",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information for collecting, managing and disseminating each information container.",
+                    "quote": "The common data environment is the agreed source of information for collecting, managing and disseminating information containers.",
                     "source": "ISO 19650-1:2018, 3.3.15",
                     "type": "definition"
                 }
@@ -421,12 +421,12 @@
 
             {
                 "id": "e22",
-                "source": "InformationUser",
-                "target": "InformationExchange",
-                "relationship": "receives",
-                "label": "receives",
+                "source": "InformationModel",
+                "target": "InformationUser",
+                "relationship": "used_by",
+                "label": "used by",
                 "evidence": {
-                    "quote": "Information exchanges provide information to stakeholders to support decisions.",
+                    "quote": "Information models provide information to stakeholders to support decisions.",
                     "source": "ISO 19650-1:2018, 4.1",
                     "type": "definition"
                 }
@@ -439,7 +439,7 @@
                 "relationship": "may_assign",
                 "label": "may assign",
                 "evidence": {
-                    "quote": "The appointing party can appoint a prospective lead appointed party or a third-party to undertake all or part of the information management function.",
+                    "quote": "The appointing party can appoint a party to undertake information management functions.",
                     "source": "ISO 19650-2:2018, 5.1.1",
                     "type": "definition"
                 }
@@ -452,7 +452,7 @@
                 "relationship": "may_assign",
                 "label": "may assign",
                 "evidence": {
-                    "quote": "The prospective lead appointed party can appoint a prospective appointed party or third party to undertake all or part of the information management function.",
+                    "quote": "The prospective lead appointed party can appoint a party to undertake information management functions.",
                     "source": "ISO 19650-2:2018, 5.3.1",
                     "type": "definition"
                 }
@@ -465,7 +465,7 @@
                 "relationship": "manages",
                 "label": "manages",
                 "evidence": {
-                    "quote": "Information management functions should be assigned to the most appropriate organizations and should not necessarily require appointment of new organizations.",
+                    "quote": "Information management functions oversee the information management process.",
                     "source": "ISO 19650-1:2018, Clause 13",
                     "type": "definition"
                 }
