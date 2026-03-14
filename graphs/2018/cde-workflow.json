@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-cde-workflow",
         "name": "CDE Workflow",
-        "description": "Information container states within the Common Data Environment defined in ISO 19650.",
+        "description": "Information container states and transitions within the Common Data Environment as defined in ISO 19650-1 Clause 12.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "2018",
-        "part": "Part 1 / Part 2",
+        "part": "Part 1",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "workflow", "information-state" ]
+        "tags": [ "CDE", "workflow", "information-state", "container" ]
     },
 
     "graph": {
@@ -20,42 +20,49 @@
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "A container of information managed within the Common Data Environment."
+                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
             },
 
             {
                 "id": "WorkInProgress",
                 "label": "Work In Progress",
-                "type": "process",
-                "description": "State where information is being developed by its authoring team."
+                "type": "state",
+                "description": "State where information is being developed by its originating task team and is not visible or accessible to other teams."
             },
 
             {
                 "id": "Shared",
                 "label": "Shared",
-                "type": "process",
-                "description": "State where information is shared with other teams for coordination."
+                "type": "state",
+                "description": "State where information is shared with other teams for coordination and collaborative development."
             },
 
             {
                 "id": "Published",
                 "label": "Published",
-                "type": "process",
-                "description": "State where information is authorized for use."
+                "type": "state",
+                "description": "State where information has been authorized for use in subsequent stages, construction, or asset operation."
             },
 
             {
                 "id": "Archived",
                 "label": "Archived",
-                "type": "process",
-                "description": "State where historical information is retained but no longer actively used."
+                "type": "state",
+                "description": "State providing a journal of all information container transactions and an audit trail of their development."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Shared information environment used to manage and control information."
+                "description": "Agreed source of information for collecting, managing and disseminating each information container through a managed process."
+            },
+
+            {
+                "id": "TaskTeam",
+                "label": "Task Team",
+                "type": "role",
+                "description": "Individuals assembled to perform a specific task, responsible for checking/reviewing their own information."
             }
 
         ],
@@ -77,78 +84,78 @@
 
             {
                 "id": "e2",
-                "source": "WorkInProgress",
-                "target": "Shared",
-                "relationship": "transitions_to",
-                "label": "transitions to",
+                "source": "TaskTeam",
+                "target": "WorkInProgress",
+                "relationship": "develops",
+                "label": "develops",
                 "evidence": {
-                    "quote": "Information is shared for coordination once it has been prepared for sharing.",
-                    "source": "ISO 19650-2",
+                    "quote": "The work in progress state is used for information while it is being developed by its task team.",
+                    "source": "ISO 19650-1:2018, 12.2",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "Shared",
-                "target": "Published",
-                "relationship": "approved_as",
-                "label": "approved as",
+                "source": "TaskTeam",
+                "target": "InformationContainer",
+                "relationship": "checks",
+                "label": "checks/reviews/approves",
                 "evidence": {
-                    "quote": "Information containers are authorized for use once approved.",
-                    "source": "ISO 19650-2",
+                    "quote": "The check/review/approve transition compares the information container against the information delivery plan and against the agreed standards, methods and procedures for producing information. The check/review/approve transition should be made by the originating task team.",
+                    "source": "ISO 19650-1:2018, 12.3",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e4",
-                "source": "Published",
-                "target": "Archived",
-                "relationship": "retained_as",
-                "label": "retained as",
+                "source": "WorkInProgress",
+                "target": "Shared",
+                "relationship": "transitions_to",
+                "label": "transitions to (after check/review/approve)",
                 "evidence": {
-                    "quote": "Information containers may be archived once superseded or no longer required.",
-                    "source": "ISO 19650-1",
+                    "quote": "Information is shared for coordination once it has been checked, reviewed and approved for sharing.",
+                    "source": "ISO 19650-1:2018, 12.4",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e5",
-                "source": "CDE",
-                "target": "WorkInProgress",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "Shared",
+                "target": "Published",
+                "relationship": "transitions_to",
+                "label": "transitions to (after review/authorize)",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information for the project.",
-                    "source": "ISO 19650-1",
+                    "quote": "The review/authorize transition compares all the information containers at information exchange against the relevant information requirements for coordination, completeness and accuracy. If an information container meets the information requirements, its state is changed to published.",
+                    "source": "ISO 19650-1:2018, 12.5",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "CDE",
-                "target": "Shared",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "Published",
+                "target": "Archived",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "The common data environment manages information through defined states.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "The archive state is used to hold a journal of all information containers that have been shared and published during the information management process as well as an audit trail of their development.",
+                    "source": "ISO 19650-1:2018, 12.7",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e7",
                 "source": "CDE",
-                "target": "Published",
+                "target": "WorkInProgress",
                 "relationship": "contains",
                 "label": "contains",
                 "evidence": {
-                    "quote": "Authorized information is made available through the common data environment.",
-                    "source": "ISO 19650-1",
+                    "quote": "The common data environment is the agreed source of information for the project or asset.",
+                    "source": "ISO 19650-1:2018, 3.3.15",
                     "type": "definition"
                 }
             },
@@ -156,38 +163,64 @@
             {
                 "id": "e8",
                 "source": "CDE",
-                "target": "Archived",
+                "target": "Shared",
                 "relationship": "contains",
                 "label": "contains",
                 "evidence": {
-                    "quote": "Archived information remains accessible within the common data environment.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "The common data environment manages information through defined states.",
+                    "source": "ISO 19650-1:2018, 12.1",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e9",
-                "source": "InformationContainer",
-                "target": "Shared",
-                "relationship": "shared_as",
-                "label": "shared as",
+                "source": "CDE",
+                "target": "Published",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Information containers are shared to enable coordination between delivery teams.",
-                    "source": "ISO 19650-2",
-                    "type": "inferred_relationship"
+                    "quote": "Authorized information is made available through the common data environment.",
+                    "source": "ISO 19650-1:2018, 12.6",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e10",
-                "source": "InformationContainer",
-                "target": "Published",
-                "relationship": "authorized_as",
-                "label": "authorized as",
+                "source": "CDE",
+                "target": "Archived",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Information containers are authorized for use once approved.",
-                    "source": "ISO 19650-2",
+                    "quote": "The archive state provides a journal of all information container transactions and an audit trail of their development.",
+                    "source": "ISO 19650-1:2018, 12.7",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "Shared",
+                "target": "WorkInProgress",
+                "relationship": "can_return_to",
+                "label": "can return to (if editing required)",
+                "evidence": {
+                    "quote": "If editing is required, an information container should be returned to the work in progress state for amendment and resubmission by its author.",
+                    "source": "ISO 19650-1:2018, 12.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "Published",
+                "target": "Archived",
+                "relationship": "also_retained_in",
+                "label": "also retained in",
+                "evidence": {
+                    "quote": "An information container referenced in the archive state that was previously in the published state represents information that potentially has been used for more detailed design work, for construction or for asset management.",
+                    "source": "ISO 19650-1:2018, 12.7",
                     "type": "definition"
                 }
             }
