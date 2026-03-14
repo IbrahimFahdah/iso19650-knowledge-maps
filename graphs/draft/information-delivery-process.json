@@ -2,7 +2,7 @@
     "metadata": {
         "id": "iso19650-information-delivery-process",
         "name": "Information Delivery Process",
-        "description": "Lifecycle-oriented information delivery workflow in the ISO 19650 draft, emphasizing information purposes, requirements, production and exchange to support decisions.",
+        "description": "Lifecycle-oriented information delivery workflow in the ISO 19650 draft, emphasizing information purposes, requirements, production planning, and exchange to support decisions.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "draft",
@@ -38,6 +38,13 @@
             },
 
             {
+                "id": "InformationProductionRequirements",
+                "label": "Information Production Requirements",
+                "type": "information",
+                "description": "Information requirements relating to an appointment. (DEPRECATED: Exchange Information Requirements)"
+            },
+
+            {
                 "id": "InformationProductionPlanning",
                 "label": "Information Production Planning",
                 "type": "process",
@@ -45,17 +52,52 @@
             },
 
             {
-                "id": "InformationProduction",
-                "label": "Information Production",
-                "type": "process",
-                "description": "Creation and coordination of information to meet defined requirements."
+                "id": "InformationProductionPlan",
+                "label": "Information Production Plan",
+                "type": "information",
+                "description": "Document explaining the overall approach that an information production team will take. (DEPRECATED: BIM Execution Plan)"
             },
 
             {
-                "id": "InformationVerification",
-                "label": "Information Verification",
+                "id": "InformationProductionSchedule",
+                "label": "Information Production Schedule",
+                "type": "information",
+                "description": "Details of information containers to be produced during an appointment. (DEPRECATED: task information delivery plan, master information delivery plan)"
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
                 "type": "process",
-                "description": "Checking and validating information before exchange."
+                "description": "Creation and coordination of information to meet defined requirements, including generation, checking, review, approval, authorization and acceptance."
+            },
+
+            {
+                "id": "InformationChecking",
+                "label": "Information Checking",
+                "type": "process",
+                "description": "Quality assurance check of information containers against the information production standard."
+            },
+
+            {
+                "id": "InformationReviewAndApprove",
+                "label": "Review and Approve",
+                "type": "process",
+                "description": "Technical review of information container by appointed party and approval for a specified use."
+            },
+
+            {
+                "id": "InformationReviewAndAuthorize",
+                "label": "Review and Authorize",
+                "type": "process",
+                "description": "Review of information model by lead appointed party and authorization of its approved use."
+            },
+
+            {
+                "id": "InformationReviewAndAccept",
+                "label": "Review and Accept",
+                "type": "process",
+                "description": "Review of information model by appointing party and acceptance of its approved use."
             },
 
             {
@@ -84,6 +126,13 @@
                 "label": "Common Data Environment",
                 "type": "system",
                 "description": "Shared information environment used to manage and exchange information."
+            },
+
+            {
+                "id": "InformationProductionMilestone",
+                "label": "Information Production Milestone",
+                "type": "process",
+                "description": "Defined milestone where information must be delivered. (DEPRECATED: information delivery milestone)"
             }
 
         ],
@@ -119,57 +168,135 @@
             {
                 "id": "e3",
                 "source": "InformationRequirement",
-                "target": "InformationProductionPlanning",
-                "relationship": "drives",
-                "label": "drives",
+                "target": "InformationProductionRequirements",
+                "relationship": "refines",
+                "label": "refines",
                 "evidence": {
-                    "quote": "Information production should be planned to meet defined information requirements.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "Information production requirements are defined by the appointing party and can also be defined by a lead appointed party. Information production requirements should be expressed in such a way that they can be incorporated into appointments.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 7.2.4",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e4",
-                "source": "InformationProductionPlanning",
-                "target": "InformationProduction",
-                "relationship": "enables",
-                "label": "enables",
+                "source": "InformationProductionRequirements",
+                "target": "InformationProductionPlanning",
+                "relationship": "drives",
+                "label": "drives",
                 "evidence": {
-                    "quote": "Information production is planned and carried out by information production teams.",
-                    "source": "ISO 19650 Draft",
+                    "quote": "Planning for information production is the responsibility of each lead appointed party and their appointed parties after information production requirements and information constraints have been established and notified to them.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 9.1",
                     "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e5",
-                "source": "InformationProduction",
-                "target": "InformationVerification",
-                "relationship": "followed_by",
-                "label": "followed by",
+                "source": "InformationProductionPlanning",
+                "target": "InformationProductionPlan",
+                "relationship": "produces",
+                "label": "produces",
                 "evidence": {
-                    "quote": "Information should be checked and validated prior to being exchanged.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "A range of resources should be developed during this process to describe information production in the necessary detail... an information production plan to explain the overall approach that an information production team is going to take.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 9.1",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "InformationVerification",
-                "target": "InformationExchange",
-                "relationship": "enables",
-                "label": "enables",
+                "source": "InformationProductionPlanning",
+                "target": "InformationProductionSchedule",
+                "relationship": "produces",
+                "label": "produces",
                 "evidence": {
-                    "quote": "Verified information is exchanged between stakeholders to support decisions.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "A range of resources should be developed during this process to describe information production in the necessary detail... an information production schedule to show detailed timings of production of information containers by each appointed party in an information production team.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 9.1",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e7",
+                "source": "InformationProductionPlanning",
+                "target": "InformationProduction",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Information production is planned and carried out by each information production team.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationProduction",
+                "target": "InformationChecking",
+                "relationship": "includes",
+                "label": "includes",
+                "evidence": {
+                    "quote": "Information production includes generation, coordination, checking, reviewing, approval, authorization, acceptance and aggregation of information containers.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationChecking",
+                "target": "InformationReviewAndApprove",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "Each appointed party shall undertake a quality assurance check of each information container... Once the check is complete, each appointed party shall... review and approve information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clauses 5.8.3 and 5.8.4",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationReviewAndApprove",
+                "target": "InformationReviewAndAuthorize",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "The lead appointed party shall... review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationReviewAndAuthorize",
+                "target": "InformationReviewAndAccept",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "The appointing party shall undertake a review of the information model... and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "InformationReviewAndAccept",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Once accepted, the appointing party aggregates the information models into the asset information model(s).",
+                    "source": "ISO 19650-2:2026 Draft, Introduction 0.4",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e13",
                 "source": "InformationExchange",
                 "target": "InformationContainer",
                 "relationship": "delivers",
@@ -182,7 +309,7 @@
             },
 
             {
-                "id": "e8",
+                "id": "e14",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
@@ -195,7 +322,7 @@
             },
 
             {
-                "id": "e9",
+                "id": "e15",
                 "source": "CDE",
                 "target": "InformationContainer",
                 "relationship": "contains",
@@ -208,7 +335,7 @@
             },
 
             {
-                "id": "e10",
+                "id": "e16",
                 "source": "InformationModel",
                 "target": "Decision",
                 "relationship": "supports",
@@ -217,6 +344,32 @@
                     "quote": "Information models support decision-making throughout the lifecycle of assets.",
                     "source": "ISO 19650-1",
                     "type": "definition"
+                }
+            },
+
+            {
+                "id": "e17",
+                "source": "InformationProductionMilestone",
+                "target": "InformationProductionSchedule",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information production milestones define the events or dates when information is required by the organization(s) receiving it.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 7.2.3",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e18",
+                "source": "InformationProductionRequirements",
+                "target": "InformationProductionMilestone",
+                "relationship": "establishes",
+                "label": "establishes",
+                "evidence": {
+                    "quote": "The appointing party shall establish the information production milestones to be met by the selected lead appointed party during the appointment.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.4.1",
+                    "type": "direct_quote"
                 }
             }
 
