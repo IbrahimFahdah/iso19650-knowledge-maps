@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "id": "iso19650-information-model-structure",
+    "name": "Information Model Structure",
+    "description": "Structure of information containers and lifecycle information models in the ISO 19650 draft.",
+    "type": "structure-map",
+    "standard": "ISO 19650",
+    "version": "draft",
+    "part": "Part 1",
+    "created": "2026-03-14",
+    "author": "ISO19650 Knowledge Maps",
+    "tags": ["information-model", "PIM", "AIM", "structure", "draft"]
+  },
+
+  "graph": {
+
+    "nodes": [
+
+      {
+        "id": "InformationContainer",
+        "label": "Information Container",
+        "type": "information",
+        "description": "Unit of information managed within the common data environment."
+      },
+
+      {
+        "id": "InformationModel",
+        "label": "Information Model",
+        "type": "information",
+        "description": "Structured set of information containers supporting lifecycle decisions."
+      },
+
+      {
+        "id": "ProjectInformationModel",
+        "label": "Project Information Model (PIM)",
+        "type": "information",
+        "description": "Information model used during project delivery."
+      },
+
+      {
+        "id": "AssetInformationModel",
+        "label": "Asset Information Model (AIM)",
+        "type": "information",
+        "description": "Information model used during asset operation."
+      },
+
+      {
+        "id": "InformationExchange",
+        "label": "Information Exchange",
+        "type": "process",
+        "description": "Exchange of verified information between stakeholders."
+      },
+
+      {
+        "id": "LifecycleDecision",
+        "label": "Lifecycle Decision",
+        "type": "concept",
+        "description": "Decision made during the lifecycle of the asset."
+      }
+
+    ],
+
+    "edges": [
+
+      {
+        "id": "e1",
+        "source": "InformationContainer",
+        "target": "InformationModel",
+        "relationship": "forms",
+        "label": "forms",
+        "evidence": {
+          "quote": "Information models are collections of information containers supporting lifecycle decisions.",
+          "source": "ISO 19650 Draft",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e2",
+        "source": "InformationModel",
+        "target": "ProjectInformationModel",
+        "relationship": "type",
+        "label": "type",
+        "evidence": {
+          "quote": "Project information models are used during delivery phases.",
+          "source": "ISO 19650 Draft",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e3",
+        "source": "InformationModel",
+        "target": "AssetInformationModel",
+        "relationship": "type",
+        "label": "type",
+        "evidence": {
+          "quote": "Asset information models support operation and asset management.",
+          "source": "ISO 19650 Draft",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e4",
+        "source": "ProjectInformationModel",
+        "target": "AssetInformationModel",
+        "relationship": "transitions_to",
+        "label": "transitions to",
+        "evidence": {
+          "quote": "Information produced during delivery contributes to the asset information model.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      },
+
+      {
+        "id": "e5",
+        "source": "InformationExchange",
+        "target": "InformationContainer",
+        "relationship": "delivers",
+        "label": "delivers",
+        "evidence": {
+          "quote": "Information exchanges provide verified information containers.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      },
+
+      {
+        "id": "e6",
+        "source": "AssetInformationModel",
+        "target": "LifecycleDecision",
+        "relationship": "supports",
+        "label": "supports",
+        "evidence": {
+          "quote": "Information models support decision-making during the lifecycle of assets.",
+          "source": "ISO 19650 Draft",
+          "type": "direct_quote"
+        }
+      }
+
+    ]
+  }
+}

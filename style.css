@@ -181,6 +181,10 @@ body {
   font-weight: 600;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .secondary-button:hover {
   background: rgba(15, 23, 42, 0.12);
 }

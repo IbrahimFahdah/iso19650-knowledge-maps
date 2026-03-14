@@ -1,0 +1,205 @@
+{
+  "metadata": {
+    "id": "iso19650-information-delivery-process",
+    "name": "Information Delivery Process",
+    "description": "Lifecycle-oriented information delivery workflow in the ISO 19650 draft, emphasizing information purposes, requirements, production and exchange to support decisions.",
+    "type": "process-map",
+    "standard": "ISO 19650",
+    "version": "draft",
+    "part": "Part 1 / Part 2",
+    "created": "2026-03-14",
+    "author": "ISO19650 Knowledge Maps",
+    "tags": ["process", "lifecycle", "information-management", "draft"]
+  },
+
+  "graph": {
+
+    "nodes": [
+
+      {
+        "id": "Decision",
+        "label": "Lifecycle Decision",
+        "type": "concept",
+        "description": "Decision taken during the lifecycle of an asset which requires supporting information."
+      },
+
+      {
+        "id": "InformationPurpose",
+        "label": "Information Purpose",
+        "type": "concept",
+        "description": "Reason why information is required to support a lifecycle decision."
+      },
+
+      {
+        "id": "InformationRequirement",
+        "label": "Information Requirement",
+        "type": "information",
+        "description": "Specification of information needed to fulfill an information purpose."
+      },
+
+      {
+        "id": "InformationProductionPlanning",
+        "label": "Information Production Planning",
+        "type": "process",
+        "description": "Planning how information will be produced by information production teams."
+      },
+
+      {
+        "id": "InformationProduction",
+        "label": "Information Production",
+        "type": "process",
+        "description": "Creation and coordination of information to meet defined requirements."
+      },
+
+      {
+        "id": "InformationVerification",
+        "label": "Information Verification",
+        "type": "process",
+        "description": "Checking and validating information before exchange."
+      },
+
+      {
+        "id": "InformationExchange",
+        "label": "Information Exchange",
+        "type": "process",
+        "description": "Transfer of verified information between stakeholders."
+      },
+
+      {
+        "id": "InformationModel",
+        "label": "Information Model",
+        "type": "information",
+        "description": "Structured collection of information containers used to support decisions."
+      },
+
+      {
+        "id": "CDE",
+        "label": "Common Data Environment",
+        "type": "system",
+        "description": "Shared information environment used to manage and exchange information."
+      }
+
+    ],
+
+    "edges": [
+
+      {
+        "id": "e1",
+        "source": "Decision",
+        "target": "InformationPurpose",
+        "relationship": "drives",
+        "label": "drives",
+        "evidence": {
+          "quote": "Information is required to support decision-making during the lifecycle of assets.",
+          "source": "ISO 19650 Draft",
+          "type": "direct_quote"
+        }
+      },
+
+      {
+        "id": "e2",
+        "source": "InformationPurpose",
+        "target": "InformationRequirement",
+        "relationship": "defines",
+        "label": "defines",
+        "evidence": {
+          "quote": "Information is only specified and produced in response to one or more clear information purposes.",
+          "source": "ISO 19650 Draft",
+          "type": "direct_quote"
+        }
+      },
+
+      {
+        "id": "e3",
+        "source": "InformationRequirement",
+        "target": "InformationProductionPlanning",
+        "relationship": "drives",
+        "label": "drives",
+        "evidence": {
+          "quote": "Information production should be planned to meet defined information requirements.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      },
+
+      {
+        "id": "e4",
+        "source": "InformationProductionPlanning",
+        "target": "InformationProduction",
+        "relationship": "enables",
+        "label": "enables",
+        "evidence": {
+          "quote": "Information production is planned and carried out by information production teams.",
+          "source": "ISO 19650 Draft",
+          "type": "direct_quote"
+        }
+      },
+
+      {
+        "id": "e5",
+        "source": "InformationProduction",
+        "target": "InformationVerification",
+        "relationship": "followed_by",
+        "label": "followed by",
+        "evidence": {
+          "quote": "Information should be checked and validated prior to being exchanged.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      },
+
+      {
+        "id": "e6",
+        "source": "InformationVerification",
+        "target": "InformationExchange",
+        "relationship": "enables",
+        "label": "enables",
+        "evidence": {
+          "quote": "Verified information is exchanged between stakeholders to support decisions.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      },
+
+      {
+        "id": "e7",
+        "source": "InformationExchange",
+        "target": "InformationModel",
+        "relationship": "forms",
+        "label": "forms",
+        "evidence": {
+          "quote": "Information models are collections of information containers supporting decision-making.",
+          "source": "ISO 19650 Draft",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e8",
+        "source": "InformationModel",
+        "target": "CDE",
+        "relationship": "managed_in",
+        "label": "managed in",
+        "evidence": {
+          "quote": "The common data environment is the agreed source of information for the asset or project.",
+          "source": "ISO 19650",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e9",
+        "source": "InformationExchange",
+        "target": "Decision",
+        "relationship": "supports",
+        "label": "supports",
+        "evidence": {
+          "quote": "Information exchanges provide the information required for lifecycle decision-making.",
+          "source": "ISO 19650 Draft",
+          "type": "inferred_relationship"
+        }
+      }
+
+    ]
+  }
+}

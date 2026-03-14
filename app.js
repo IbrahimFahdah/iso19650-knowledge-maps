@@ -2,18 +2,12 @@ const STANDARD_OPTIONS = [
   {
     id: "2018",
     label: "ISO 19650 (2018)",
-    graphFiles: [
-      "graphs/2018/core-system.json",
-      "graphs/2018/requirements-hierarchy.json"
-    ]
+    manifest: "graphs/2018/index.json"
   },
   {
     id: "draft",
     label: "ISO 19650 (Draft)",
-    graphFiles: [
-      "graphs/draft/core-system.json",
-      "graphs/draft/requirements-hierarchy.json"
-    ]
+    manifest: "graphs/draft/index.json"
   }
 ];
 
@@ -36,6 +30,7 @@ let dragDepth = 0;
 let activeStandardId = DEFAULT_STANDARD_ID;
 let activeGraphFile = "";
 const metadataCache = new Map();
+const manifestCache = new Map();
 
 function setStatus(message, isError = false) {
   graphStatusEl.textContent = message;
@@ -258,6 +253,25 @@ async function fetchGraphMetadata(file) {
   return entry;
 }
 
+async function fetchManifest(manifestFile) {
+  if (manifestCache.has(manifestFile)) {
+    return manifestCache.get(manifestFile);
+  }
+
+  const response = await fetch(manifestFile);
+  if (!response.ok) {
+    throw new Error(`Unable to load graph manifest: ${manifestFile}`);
+  }
+
+  const manifest = await response.json();
+  if (!Array.isArray(manifest.graphs)) {
+    throw new Error(`Graph manifest must contain a 'graphs' array: ${manifestFile}`);
+  }
+
+  manifestCache.set(manifestFile, manifest);
+  return manifest;
+}
+
 function loadStandards() {
   standardSelectEl.innerHTML = "";
 
@@ -282,7 +296,8 @@ async function loadGraphList(standardId) {
 
   setStatus(`Loading graphs for ${standard.label}...`);
 
-  const entries = await Promise.all(standard.graphFiles.map(fetchGraphMetadata));
+  const manifest = await fetchManifest(standard.manifest);
+  const entries = await Promise.all(manifest.graphs.map(fetchGraphMetadata));
 
   entries.forEach(entry => {
     const option = document.createElement("option");
@@ -363,8 +378,7 @@ function setupDragAndDrop() {
     }
 
     try {
-      const text = await file.text();
-      const payload = JSON.parse(text);
+      const payload = JSON.parse(await file.text());
       loadGraph(payload, file.name);
     } catch (error) {
       handleLoadError(error);

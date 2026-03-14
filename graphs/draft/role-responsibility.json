@@ -1,0 +1,245 @@
+{
+    "metadata": {
+        "id": "iso19650-role-responsibility",
+        "name": "Role Responsibility Map",
+        "description": "Roles and responsibilities in the ISO 19650 draft, emphasizing information production teams and lifecycle information management.",
+        "type": "role-map",
+        "standard": "ISO 19650",
+        "version": "draft",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "roles", "responsibilities", "information-production", "draft" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "Organization responsible for defining information purposes and requirements."
+            },
+
+            {
+                "id": "InformationManager",
+                "label": "Information Manager",
+                "type": "role",
+                "description": "Role responsible for implementing and overseeing the information management process."
+            },
+
+            {
+                "id": "InformationProductionTeam",
+                "label": "Information Production Team",
+                "type": "role",
+                "description": "Team responsible for producing information to meet defined information requirements."
+            },
+
+            {
+                "id": "InformationUser",
+                "label": "Information User",
+                "type": "role",
+                "description": "Stakeholder using information to support lifecycle decisions."
+            },
+
+            {
+                "id": "InformationPurpose",
+                "label": "Information Purpose",
+                "type": "concept",
+                "description": "Reason why information is required to support decision-making."
+            },
+
+            {
+                "id": "InformationRequirement",
+                "label": "Information Requirement",
+                "type": "information",
+                "description": "Specification of information required to fulfill an information purpose."
+            },
+
+            {
+                "id": "InformationManagementProcess",
+                "label": "Information Management Process",
+                "type": "process",
+                "description": "Process governing how information is specified, produced, verified and exchanged."
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
+                "type": "process",
+                "description": "Activity of creating information to satisfy information requirements."
+            },
+
+            {
+                "id": "InformationVerification",
+                "label": "Information Verification",
+                "type": "process",
+                "description": "Checking information before exchange."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Transfer of verified information between stakeholders."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared environment used to manage and exchange information."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "AppointingParty",
+                "target": "InformationPurpose",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information is only specified and produced in response to one or more clear information purposes.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "InformationPurpose",
+                "target": "InformationRequirement",
+                "relationship": "drives",
+                "label": "drives",
+                "evidence": {
+                    "quote": "Information purposes lead to the specification of information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "AppointingParty",
+                "target": "InformationRequirement",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "The appointing party determines the information requirements needed to support decision-making.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationManager",
+                "target": "InformationManagementProcess",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "Information management roles oversee the information management process.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationManagementProcess",
+                "target": "InformationProduction",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "Information production occurs according to the defined information management process.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationRequirement",
+                "target": "InformationProductionTeam",
+                "relationship": "assigned_to",
+                "label": "assigned to",
+                "evidence": {
+                    "quote": "Information production is planned and carried out by each information production team.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationProductionTeam",
+                "target": "InformationProduction",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Information production is planned and carried out by each information production team.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationProduction",
+                "target": "InformationVerification",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "Information should be checked before being shared with other parties.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Verified information is shared with other parties through defined exchanges.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationExchange",
+                "target": "CDE",
+                "relationship": "occurs_in",
+                "label": "occurs in",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information for the asset or project.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationUser",
+                "target": "InformationExchange",
+                "relationship": "receives",
+                "label": "receives",
+                "evidence": {
+                    "quote": "Information exchanges provide information to stakeholders to support lifecycle decisions.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            }
+
+        ]
+    }
+}

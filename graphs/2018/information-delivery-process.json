@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "id": "iso19650-information-delivery-process",
+    "name": "Information Delivery Process",
+    "description": "Delivery-phase information management workflow defined in ISO 19650-2:2018.",
+    "type": "process-map",
+    "standard": "ISO 19650",
+    "version": "2018",
+    "part": "Part 2",
+    "created": "2026-03-14",
+    "author": "ISO19650 Knowledge Maps",
+    "tags": ["process", "delivery", "information-management"]
+  },
+
+  "graph": {
+
+    "nodes": [
+
+      {
+        "id": "AssessmentOfNeed",
+        "label": "Assessment of Need",
+        "type": "process",
+        "description": "Initial stage where the appointing party assesses project or asset needs and defines information requirements."
+      },
+
+      {
+        "id": "InvitationToTender",
+        "label": "Invitation to Tender",
+        "type": "process",
+        "description": "Stage where information requirements are issued to potential suppliers."
+      },
+
+      {
+        "id": "TenderResponse",
+        "label": "Tender Response",
+        "type": "process",
+        "description": "Suppliers respond with proposed information delivery capabilities and plans."
+      },
+
+      {
+        "id": "Appointment",
+        "label": "Appointment",
+        "type": "process",
+        "description": "The appointing party appoints the delivery team."
+      },
+
+      {
+        "id": "Mobilization",
+        "label": "Mobilization",
+        "type": "process",
+        "description": "Teams prepare systems, resources, and the common data environment."
+      },
+
+      {
+        "id": "InformationProduction",
+        "label": "Collaborative Production of Information",
+        "type": "process",
+        "description": "Delivery teams produce and coordinate information during the project."
+      },
+
+      {
+        "id": "InformationModelDelivery",
+        "label": "Information Model Delivery",
+        "type": "process",
+        "description": "Delivery of the project information model at defined exchange milestones."
+      },
+
+      {
+        "id": "ProjectCloseout",
+        "label": "Project Closeout",
+        "type": "process",
+        "description": "Completion of delivery and transition of information to asset management."
+      },
+
+      {
+        "id": "InformationModel",
+        "label": "Information Model",
+        "type": "information",
+        "description": "Structured collection of information containers used to support decisions."
+      },
+
+      {
+        "id": "CDE",
+        "label": "Common Data Environment",
+        "type": "system",
+        "description": "Shared information environment used to manage and exchange information."
+      }
+
+    ],
+
+    "edges": [
+
+      {
+        "id": "e1",
+        "source": "AssessmentOfNeed",
+        "target": "InvitationToTender",
+        "relationship": "initiates",
+        "label": "initiates",
+        "evidence": {
+          "quote": "The appointing party assesses the need and defines information requirements prior to inviting tenders.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e2",
+        "source": "InvitationToTender",
+        "target": "TenderResponse",
+        "relationship": "requests",
+        "label": "requests",
+        "evidence": {
+          "quote": "Potential suppliers respond to the invitation to tender with proposals for information delivery.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e3",
+        "source": "TenderResponse",
+        "target": "Appointment",
+        "relationship": "leads_to",
+        "label": "leads to",
+        "evidence": {
+          "quote": "Following evaluation of tender responses, the appointing party appoints the selected suppliers.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e4",
+        "source": "Appointment",
+        "target": "Mobilization",
+        "relationship": "precedes",
+        "label": "precedes",
+        "evidence": {
+          "quote": "Following appointment, teams mobilize to prepare for information production.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e5",
+        "source": "Mobilization",
+        "target": "InformationProduction",
+        "relationship": "enables",
+        "label": "enables",
+        "evidence": {
+          "quote": "Mobilization establishes the systems and resources required for collaborative production of information.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e6",
+        "source": "InformationProduction",
+        "target": "InformationModelDelivery",
+        "relationship": "produces",
+        "label": "produces",
+        "evidence": {
+          "quote": "Information models are progressively developed and delivered at defined information exchange milestones.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e7",
+        "source": "InformationModelDelivery",
+        "target": "ProjectCloseout",
+        "relationship": "finalizes",
+        "label": "finalizes",
+        "evidence": {
+          "quote": "Information is delivered at project closeout to support asset management.",
+          "source": "ISO 19650-2",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e8",
+        "source": "InformationProduction",
+        "target": "InformationModel",
+        "relationship": "creates",
+        "label": "creates",
+        "evidence": {
+          "quote": "Information containers collectively form the project information model.",
+          "source": "ISO 19650-1",
+          "type": "definition"
+        }
+      },
+
+      {
+        "id": "e9",
+        "source": "InformationModel",
+        "target": "CDE",
+        "relationship": "managed_in",
+        "label": "managed in",
+        "evidence": {
+          "quote": "The common data environment is the agreed source of information for the project.",
+          "source": "ISO 19650-1",
+          "type": "definition"
+        }
+      }
+
+    ]
+  }
+}
