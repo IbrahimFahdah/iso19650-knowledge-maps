@@ -122,6 +122,13 @@
             },
 
             {
+                "id": "InformationVerification",
+                "label": "Information Verification",
+                "type": "process",
+                "description": "Verification activities ensuring information quality prior to exchange."
+            },
+
+            {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
@@ -389,18 +396,31 @@
             {
                 "id": "e20",
                 "source": "InformationReviewAndAccept",
-                "target": "InformationExchange",
-                "relationship": "enables",
-                "label": "enables",
+                "target": "InformationVerification",
+                "relationship": "precedes",
+                "label": "precedes",
                 "evidence": {
-                    "quote": "Once accepted, information may be exchanged or aggregated into the asset information model.",
-                    "source": "ISO 19650-2:2026 Draft, Introduction 0.4",
+                    "quote": "Information is verified before being exchanged between parties.",
+                    "source": "ISO 19650 Draft",
                     "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e21",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Verified information may be exchanged between stakeholders.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e22",
                 "source": "InformationExchange",
                 "target": "CDE",
                 "relationship": "occurs_in",
@@ -413,7 +433,7 @@
             },
 
             {
-                "id": "e22",
+                "id": "e23",
                 "source": "CDE",
                 "target": "InformationProduction",
                 "relationship": "supports",
@@ -426,7 +446,7 @@
             },
 
             {
-                "id": "e23",
+                "id": "e24",
                 "source": "InformationUser",
                 "target": "InformationExchange",
                 "relationship": "receives",
