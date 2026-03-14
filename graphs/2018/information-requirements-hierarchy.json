@@ -224,7 +224,7 @@
                 "source": "AssetInformationRequirements",
                 "target": "ExchangeInformationRequirements",
                 "relationship": "may_refine_to",
-                "label": "may refine to (via PIR)",
+                "label": "may refine to",
                 "evidence": {
                     "quote": "AIR received by a lead appointed party can be sub-divided and passed on in any of its own appointments, augmented with its own information requirements.",
                     "source": "ISO 19650-1:2018, 5.3",
@@ -291,7 +291,7 @@
                 "relationship": "drives",
                 "label": "drives",
                 "evidence": {
-                    "quote": "Information requirements guide the planning and production of information delivery.",
+                    "quote": "Information requirements guide the planning of information delivery.",
                     "source": "ISO 19650-1:2018, 6.3",
                     "type": "definition"
                 }
@@ -382,7 +382,7 @@
                 "relationship": "delivers",
                 "label": "delivers",
                 "evidence": {
-                    "quote": "Information exchange is the act of satisfying an information requirement through delivery of information containers.",
+                    "quote": "Information exchange is the act of satisfying an information requirement.",
                     "source": "ISO 19650-1:2018, 3.3.7",
                     "type": "definition"
                 }
