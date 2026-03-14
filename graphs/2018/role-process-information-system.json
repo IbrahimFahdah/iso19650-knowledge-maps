@@ -1,0 +1,252 @@
+{
+    "metadata": {
+        "id": "iso19650-role-process-information-system",
+        "name": "Role–Process–Information System",
+        "description": "Tri-layer architecture of the ISO 19650 information management system linking roles, processes and information.",
+        "type": "system-map",
+        "standard": "ISO 19650",
+        "version": "draft",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "architecture", "roles", "process", "information" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "Organization defining information requirements and appointing delivery teams."
+            },
+
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role",
+                "description": "Organization coordinating appointed parties."
+            },
+
+            {
+                "id": "AppointedParty",
+                "label": "Appointed Party",
+                "type": "role",
+                "description": "Organization responsible for producing information."
+            },
+
+            {
+                "id": "InformationManager",
+                "label": "Information Manager",
+                "type": "role",
+                "description": "Role responsible for managing the information management process."
+            },
+
+            {
+                "id": "InformationManagementProcess",
+                "label": "Information Management Process",
+                "type": "process",
+                "description": "Process governing how information is planned, produced and exchanged."
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
+                "type": "process",
+                "description": "Creation and coordination of information."
+            },
+
+            {
+                "id": "InformationVerification",
+                "label": "Information Verification",
+                "type": "process",
+                "description": "Checking information before exchange."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Transfer of information between stakeholders."
+            },
+
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Unit of information managed within the CDE."
+            },
+
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "information",
+                "description": "Structured collection of information containers."
+            },
+
+            {
+                "id": "ProjectInformationModel",
+                "label": "Project Information Model (PIM)",
+                "type": "information",
+                "description": "Information model used during project delivery."
+            },
+
+            {
+                "id": "AssetInformationModel",
+                "label": "Asset Information Model (AIM)",
+                "type": "information",
+                "description": "Information model used during asset operation."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "AppointingParty",
+                "target": "LeadAppointedParty",
+                "relationship": "appoints",
+                "label": "appoints",
+                "evidence": {
+                    "quote": "The appointing party appoints the lead appointed party responsible for coordinating delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "LeadAppointedParty",
+                "target": "AppointedParty",
+                "relationship": "coordinates",
+                "label": "coordinates",
+                "evidence": {
+                    "quote": "The lead appointed party coordinates appointed parties.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "InformationManager",
+                "target": "InformationManagementProcess",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "Information management roles oversee the information management process.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationManagementProcess",
+                "target": "InformationProduction",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "Information production occurs according to the defined information management process.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationProduction",
+                "target": "InformationVerification",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "Information should be checked and validated before exchange.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Verified information is exchanged between stakeholders.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver verified information containers.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationModel",
+                "target": "ProjectInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Project information models support project delivery.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information models support asset operation and management.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "ProjectInformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Information produced during delivery contributes to the asset information model.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            }
+
+        ]
+    }
+}

@@ -1,0 +1,258 @@
+{
+    "metadata": {
+        "id": "iso19650-information-management-system",
+        "name": "Information Management System",
+        "description": "Master knowledge graph linking the major information management concepts defined in ISO 19650.",
+        "type": "system-map",
+        "standard": "ISO 19650",
+        "version": "draft",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "system", "knowledge-graph", "information-management" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "LifecycleDecision",
+                "label": "Lifecycle Decision",
+                "type": "concept",
+                "description": "Decision taken during the lifecycle of an asset."
+            },
+
+            {
+                "id": "InformationPurpose",
+                "label": "Information Purpose",
+                "type": "concept",
+                "description": "Reason why information is required to support decisions."
+            },
+
+            {
+                "id": "InformationRequirement",
+                "label": "Information Requirement",
+                "type": "information",
+                "description": "Specification of information required to satisfy an information purpose."
+            },
+
+            {
+                "id": "InformationDeliveryProcess",
+                "label": "Information Delivery Process",
+                "type": "process",
+                "description": "Lifecycle workflow governing how information is planned, produced and exchanged."
+            },
+
+            {
+                "id": "InformationExchangeMilestone",
+                "label": "Information Exchange Milestone",
+                "type": "process",
+                "description": "Defined milestone where information must be delivered."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Transfer of verified information between stakeholders."
+            },
+
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Unit of information delivered and managed within the CDE."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared information environment governing information containers."
+            },
+
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "information",
+                "description": "Structured collection of information containers."
+            },
+
+            {
+                "id": "ProjectInformationModel",
+                "label": "Project Information Model",
+                "type": "information",
+                "description": "Information model used during project delivery."
+            },
+
+            {
+                "id": "AssetInformationModel",
+                "label": "Asset Information Model",
+                "type": "information",
+                "description": "Information model used during asset operation."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "LifecycleDecision",
+                "target": "InformationPurpose",
+                "relationship": "drives",
+                "label": "drives",
+                "evidence": {
+                    "quote": "Information is required to support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "InformationPurpose",
+                "target": "InformationRequirement",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information should only be specified and produced in response to a defined purpose.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "InformationRequirement",
+                "target": "InformationDeliveryProcess",
+                "relationship": "drives",
+                "label": "drives",
+                "evidence": {
+                    "quote": "Information delivery processes are established to satisfy information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationDeliveryProcess",
+                "target": "InformationExchangeMilestone",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information exchanges occur at defined milestones during project delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationExchangeMilestone",
+                "target": "InformationExchange",
+                "relationship": "triggers",
+                "label": "triggers",
+                "evidence": {
+                    "quote": "Information exchanges deliver information required to support decisions.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver verified information containers.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationModel",
+                "target": "ProjectInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Project information models are used during project delivery.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information models support asset operation and management.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "ProjectInformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Information produced during delivery contributes to the asset information model.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "InformationModel",
+                "target": "LifecycleDecision",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "Information models support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            }
+
+        ]
+    }
+}

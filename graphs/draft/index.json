@@ -1,5 +1,7 @@
 ﻿{
     "graphs": [
+        "graphs/draft/information-management-system.json",
+        "graphs/draft/role-process-information-system.json",
         "graphs/draft/core-system.json",
         "graphs/draft/information-requirements-hierarchy.json",
         "graphs/draft/information-model-governance.json",
