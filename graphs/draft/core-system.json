@@ -188,9 +188,9 @@
                 "relationship": "has",
                 "label": "has lifecycle",
                 "evidence": {
-                    "quote": "Information models are used during the asset life cycle for making asset-related decisions.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information management supports decision-making throughout the lifecycle of assets.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
@@ -198,12 +198,12 @@
                 "id": "e2",
                 "source": "AssetLifecycle",
                 "target": "Decision",
-                "relationship": "drives",
-                "label": "drives decisions",
+                "relationship": "requires",
+                "label": "requires",
                 "evidence": {
-                    "quote": "Information is needed for decision-making during all parts of the asset life cycle.",
+                    "quote": "Decisions are made throughout the lifecycle of assets and require supporting information.",
                     "source": "ISO 19650 Draft",
-                    "type": "direct_quote"
+                    "type": "inferred_relationship"
                 }
             },
 
@@ -211,10 +211,10 @@
                 "id": "e3",
                 "source": "Decision",
                 "target": "InformationPurpose",
-                "relationship": "defines",
-                "label": "defines",
+                "relationship": "drives",
+                "label": "drives",
                 "evidence": {
-                    "quote": "Information is only specified and produced in response to one or more clear information purposes.",
+                    "quote": "Information is specified and produced to satisfy defined information purposes supporting decisions.",
                     "source": "ISO 19650 Draft",
                     "type": "direct_quote"
                 }
@@ -224,251 +224,160 @@
                 "id": "e4",
                 "source": "InformationPurpose",
                 "target": "InformationRequirement",
-                "relationship": "drives",
-                "label": "drives",
+                "relationship": "defines",
+                "label": "defines",
                 "evidence": {
                     "quote": "Information purposes lead to the specification of information requirements.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e5",
-                "source": "InformationRequirement",
-                "target": "OIR",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Organizational information requirements define the information needed to support organizational objectives.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e6",
-                "source": "InformationRequirement",
-                "target": "AIR",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Asset information requirements define information needed for asset management.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e7",
-                "source": "InformationRequirement",
-                "target": "PIR",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Project information requirements define information required to support project delivery.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e8",
-                "source": "InformationRequirement",
-                "target": "EIR",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Exchange information requirements specify information required at exchange points.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e9",
-                "source": "InformationRequirement",
-                "target": "InformationProductionTeam",
-                "relationship": "assigned_to",
-                "label": "assigned to",
-                "evidence": {
-                    "quote": "Delivery teams produce information to meet the information requirements defined by the appointing party.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e10",
-                "source": "InformationProductionTeam",
-                "target": "InformationProduction",
-                "relationship": "performs",
-                "label": "performs",
-                "evidence": {
-                    "quote": "Information production is planned and carried out by each information production team.",
                     "source": "ISO 19650 Draft",
                     "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e11",
-                "source": "InformationProduction",
-                "target": "InformationContainer",
-                "relationship": "produces",
-                "label": "produces",
+                "id": "e5",
+                "source": "InformationRequirement",
+                "target": "InformationProduction",
+                "relationship": "drives",
+                "label": "drives",
                 "evidence": {
-                    "quote": "Information containers are created as part of the information production process.",
-                    "source": "ISO 19650-1",
+                    "quote": "Information production is undertaken to meet defined information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationProduction",
+                "target": "InformationVerification",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "Information should be checked and validated before being exchanged.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Verified information is exchanged between stakeholders.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver verified information containers.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationModel",
+                "target": "PIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Project information models are used during project delivery.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationModel",
+                "target": "AIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information models support asset management during operation.",
+                    "source": "ISO 19650 Draft",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e12",
-                "source": "InformationContainer",
-                "target": "InformationVerification",
-                "relationship": "checked_by",
-                "label": "checked by",
+                "source": "PIM",
+                "target": "AIM",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "Information containers are subject to checking and review prior to exchange.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "Information developed during project delivery contributes to the asset information model.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e13",
-                "source": "InformationVerification",
-                "target": "InformationExchange",
-                "relationship": "enables",
-                "label": "enables",
+                "source": "InformationModel",
+                "target": "InformationUse",
+                "relationship": "used_in",
+                "label": "used in",
                 "evidence": {
-                    "quote": "Information shall be verified and validated before being shared with other parties.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "Information is used to support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e14",
-                "source": "InformationExchange",
-                "target": "InformationModel",
-                "relationship": "forms",
-                "label": "forms",
+                "source": "InformationUse",
+                "target": "Decision",
+                "relationship": "supports",
+                "label": "supports",
                 "evidence": {
-                    "quote": "Project and asset information models are collections of information containers.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information models support decisions throughout the lifecycle of assets.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e15",
-                "source": "InformationModel",
-                "target": "PIM",
-                "relationship": "type",
-                "label": "type",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "The project information model supports project delivery activities.",
-                    "source": "ISO 19650-1",
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650 Draft",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e16",
-                "source": "InformationModel",
-                "target": "AIM",
-                "relationship": "type",
-                "label": "type",
-                "evidence": {
-                    "quote": "The asset information model supports asset operation.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e17",
-                "source": "InformationExchange",
-                "target": "CDE",
-                "relationship": "occurs_in",
-                "label": "occurs in",
-                "evidence": {
-                    "quote": "The common data environment is the agreed source of information for a project or asset.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e18",
-                "source": "InformationUser",
-                "target": "InformationUse",
-                "relationship": "performs",
-                "label": "performs",
-                "evidence": {
-                    "quote": "Information is used by multiple stakeholders including asset owners and delivery teams.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e19",
-                "source": "InformationUse",
-                "target": "Decision",
-                "relationship": "supports",
-                "label": "supports",
-                "evidence": {
-                    "quote": "Information models support decision-making across the lifecycle of assets.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e20",
-                "source": "InformationManagementProcess",
-                "target": "InformationProductionTeam",
-                "relationship": "governs",
-                "label": "governs",
-                "evidence": {
-                    "quote": "Information management establishes the process by which information is produced and shared.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e21",
-                "source": "InformationManagementProcess",
-                "target": "InformationExchange",
-                "relationship": "governs",
-                "label": "governs",
-                "evidence": {
-                    "quote": "Information exchanges occur according to the defined information management process.",
-                    "source": "ISO 19650-2",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e22",
-                "source": "AppointingParty",
-                "target": "InformationRequirement",
-                "relationship": "defines",
-                "label": "defines",
-                "evidence": {
-                    "quote": "The appointing party determines the information required to support decision-making.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e23",
                 "source": "InformationManager",
                 "target": "InformationManagementProcess",
                 "relationship": "manages",
@@ -476,6 +385,45 @@
                 "evidence": {
                     "quote": "Information management roles oversee the information management process.",
                     "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e17",
+                "source": "InformationManagementProcess",
+                "target": "InformationProduction",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "Information production occurs according to the defined information management process.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e18",
+                "source": "InformationProductionTeam",
+                "target": "InformationProduction",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Information production teams create information to satisfy requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e19",
+                "source": "InformationUser",
+                "target": "InformationUse",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Stakeholders use information to support lifecycle decisions.",
+                    "source": "ISO 19650 Draft",
                     "type": "inferred_relationship"
                 }
             }

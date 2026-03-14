@@ -1,11 +1,12 @@
 ﻿{
     "graphs": [
         "graphs/draft/core-system.json",
-        "graphs/draft/requirements-hierarchy.json",
+        "graphs/draft/information-requirements-hierarchy.json",
+        "graphs/draft/information-model-governance.json",
         "graphs/draft/role-responsibility.json",
         "graphs/draft/information-delivery-process.json",
         "graphs/draft/cde-workflow.json",
-        "graphs/draft/information-model-structure.json"
-
+        "graphs/draft/information-model-structure.json",
+        "graphs/draft/information-exchange-milestones.json"
     ]
 }
