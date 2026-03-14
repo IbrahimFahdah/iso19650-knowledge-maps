@@ -20,7 +20,7 @@ const graphDescriptionEl = document.getElementById("graphDescription");
 const graphVersionEl = document.getElementById("graphVersion");
 const graphStandardEl = document.getElementById("graphStandard");
 const graphTagsEl = document.getElementById("graphTags");
-const graphStatusEl = document.getElementById("graphStatus");
+const activeGraphBadgeEl = document.getElementById("activeGraphBadge");
 const selectionTypeEl = document.getElementById("selectionType");
 const detailsListEl = document.getElementById("detailsList");
 const reloadDefaultBtn = document.getElementById("reloadDefaultBtn");
@@ -32,10 +32,28 @@ let activeGraphFile = "";
 const metadataCache = new Map();
 const manifestCache = new Map();
 
+function formatLabel(value, fallback = "-") {
+  if (!value) {
+    return fallback;
+  }
+
+  if (typeof value !== "string") {
+    return String(value);
+  }
+
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 function setStatus(message, isError = false) {
-  graphStatusEl.textContent = message;
-  graphStatusEl.style.color = isError ? "#b91c1c" : "";
-  graphStatusEl.style.background = isError ? "rgba(185, 28, 28, 0.10)" : "rgba(15, 23, 42, 0.06)";
+  if (isError) {
+    activeGraphBadgeEl.textContent = message;
+    activeGraphBadgeEl.style.color = "#b91c1c";
+    activeGraphBadgeEl.style.background = "rgba(185, 28, 28, 0.10)";
+    return;
+  }
+
+  activeGraphBadgeEl.style.color = "";
+  activeGraphBadgeEl.style.background = "";
 }
 
 function validateGraphPayload(payload) {
@@ -55,11 +73,20 @@ function validateGraphPayload(payload) {
 function renderMetadata(metadata = {}) {
   graphNameEl.textContent = metadata.name || "Untitled Graph";
   graphDescriptionEl.textContent = metadata.description || "-";
-  graphVersionEl.textContent = metadata.version || "-";
-  graphStandardEl.textContent = metadata.standard || "-";
+  graphVersionEl.textContent = formatLabel(metadata.version);
+  graphStandardEl.textContent = formatLabel(metadata.standard);
   graphTagsEl.textContent = Array.isArray(metadata.tags) && metadata.tags.length > 0
     ? metadata.tags.join(", ")
     : "-";
+}
+
+function renderActiveGraphBadge(metadata = {}) {
+  activeGraphBadgeEl.style.color = "";
+  activeGraphBadgeEl.style.background = "";
+
+  const version = formatLabel(metadata.version, "Custom");
+  const name = metadata.name || "Untitled Graph";
+  activeGraphBadgeEl.textContent = `${version}.${name}`;
 }
 
 function renderDetails(title, fields) {
@@ -327,6 +354,7 @@ function renderGraph(graphData) {
 function loadGraph(graphData, sourceLabel = "custom file") {
   validateGraphPayload(graphData);
   renderMetadata(graphData.metadata);
+  renderActiveGraphBadge(graphData.metadata);
   renderGraph(graphData.graph);
   setStatus(`Loaded ${sourceLabel}`);
 }
