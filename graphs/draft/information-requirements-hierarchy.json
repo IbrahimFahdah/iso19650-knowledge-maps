@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-information-requirement-hierarchy",
         "name": "Information Requirement Hierarchy",
-        "description": "Hierarchy of information requirements defined in ISO 19650 showing how organizational objectives translate into project information exchanges.",
+        "description": "Hierarchy of information requirements defined in ISO 19650 showing how organizational objectives translate into project information exchanges, updated for 2026 draft terminology.",
         "type": "hierarchy-map",
         "standard": "ISO 19650",
         "version": "Draft",
         "part": "Part 1",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "EIR" ]
+        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "InformationProductionRequirements", "draft" ]
     },
 
     "graph": {
@@ -59,10 +59,10 @@
             },
 
             {
-                "id": "EIR",
-                "label": "Exchange Information Requirements",
+                "id": "InformationProductionRequirements",
+                "label": "Information Production Requirements",
                 "type": "information",
-                "description": "Information required at defined information exchange points."
+                "description": "Information requirements relating to an appointment. (DEPRECATED: Exchange Information Requirements / EIR)"
             },
 
             {
@@ -144,25 +144,25 @@
             {
                 "id": "e6",
                 "source": "PIR",
-                "target": "EIR",
+                "target": "InformationProductionRequirements",
                 "relationship": "refines",
                 "label": "refines",
                 "evidence": {
-                    "quote": "Exchange information requirements specify the information required at exchange points.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information production requirements specify the information required at appointment level.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 7.2.4",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e7",
-                "source": "EIR",
+                "source": "InformationProductionRequirements",
                 "target": "InformationProduction",
                 "relationship": "specifies",
                 "label": "specifies",
                 "evidence": {
-                    "quote": "Exchange information requirements define the information to be produced and delivered.",
-                    "source": "ISO 19650-2",
+                    "quote": "Information production requirements define the information to be produced and delivered.",
+                    "source": "ISO 19650-2:2026 Draft",
                     "type": "definition"
                 }
             }
