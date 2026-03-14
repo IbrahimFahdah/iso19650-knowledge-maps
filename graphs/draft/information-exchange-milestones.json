@@ -1,0 +1,132 @@
+{
+    "metadata": {
+        "id": "iso19650-information-exchange-milestones",
+        "name": "Information Exchange Milestones",
+        "description": "Milestones governing when information must be exchanged to support decisions during project delivery.",
+        "type": "process-map",
+        "standard": "ISO 19650",
+        "version": "2018",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "information-exchange", "milestones", "delivery", "decision-support" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "InformationRequirement",
+                "label": "Information Requirement",
+                "type": "information",
+                "description": "Specification of information needed to support decision-making."
+            },
+
+            {
+                "id": "InformationExchangeMilestone",
+                "label": "Information Exchange Milestone",
+                "type": "process",
+                "description": "Defined milestone where information must be exchanged to support project decisions."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Delivery of information containers between stakeholders."
+            },
+
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Unit of information delivered and managed within the common data environment."
+            },
+
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "information",
+                "description": "Structured set of information containers supporting project decisions."
+            },
+
+            {
+                "id": "Decision",
+                "label": "Decision",
+                "type": "concept",
+                "description": "Decision made during the lifecycle of the project or asset."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "InformationRequirement",
+                "target": "InformationExchangeMilestone",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information requirements determine the information to be delivered at information exchanges.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "InformationExchangeMilestone",
+                "target": "InformationExchange",
+                "relationship": "triggers",
+                "label": "triggers",
+                "evidence": {
+                    "quote": "Information exchanges occur at defined points in time to support project decision-making.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver information containers between parties.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationModel",
+                "target": "Decision",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "Information models support decision-making throughout the lifecycle of an asset.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            }
+
+        ]
+    }
+}
