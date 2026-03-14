@@ -41,35 +41,35 @@
                 "id": "ExchangeInformationRequirements",
                 "label": "Exchange Information Requirements (EIR)",
                 "type": "information",
-                "description": "Information requirements defined for appointments."
+                "description": "Information requirements defined for appointments, specifying what must be delivered at information exchanges."
             },
 
             {
                 "id": "InformationDeliveryCycle",
                 "label": "Information Delivery Cycle",
                 "type": "process",
-                "description": "Cycle of planning, producing and delivering information."
+                "description": "Cycle of planning, producing and delivering information through the eight activities defined in ISO 19650-2."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Act of satisfying an information requirement."
+                "description": "Act of satisfying an information requirement through delivery of information containers."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Shared environment used to manage and control information containers."
+                "description": "Agreed source of information for collecting, managing and disseminating information containers through a managed process."
             },
 
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "Named persistent set of information stored within a file, system or application."
+                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
             },
 
             {
@@ -91,6 +91,41 @@
                 "label": "Asset Information Model (AIM)",
                 "type": "information",
                 "description": "Information model relating to the operational phase."
+            },
+
+            {
+                "id": "LevelOfInformationNeed",
+                "label": "Level of Information Need",
+                "type": "concept",
+                "description": "Framework which defines the extent and granularity of information to prevent delivery of too much information."
+            },
+
+            {
+                "id": "InformationStandard",
+                "label": "Information Standard",
+                "type": "concept",
+                "description": "Specification defining how information should be structured, classified and named."
+            },
+
+            {
+                "id": "TriggerEvent",
+                "label": "Trigger Event",
+                "type": "concept",
+                "description": "Planned or unplanned event that changes an asset or its status during its life cycle, which results in information exchange."
+            },
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "The party receiving information and responsible for defining requirements and accepting information exchanges."
+            },
+
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role",
+                "description": "Party responsible for coordinating the delivery team and authorizing information before delivery."
             }
 
         ],
@@ -104,112 +139,112 @@
                 "relationship": "informs",
                 "label": "informs",
                 "evidence": {
-                    "quote": "Organizational information requirements lead to the definition of asset information requirements.",
-                    "source": "ISO 19650-1",
+                    "quote": "Asset information requirements derive from organizational information requirements.",
+                    "source": "ISO 19650-1:2018, 5.2-5.3",
                     "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e2",
-                "source": "AssetInformationRequirements",
+                "source": "OrganizationalInformationRequirements",
                 "target": "ProjectInformationRequirements",
                 "relationship": "informs",
                 "label": "informs",
                 "evidence": {
-                    "quote": "Asset information requirements inform project information requirements.",
-                    "source": "ISO 19650-1",
+                    "quote": "Project information requirements derive from organizational information requirements.",
+                    "source": "ISO 19650-1:2018, 5.2-5.4",
                     "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "ProjectInformationRequirements",
-                "target": "ExchangeInformationRequirements",
-                "relationship": "defines",
-                "label": "defines",
+                "source": "AssetInformationRequirements",
+                "target": "AssetInformationModel",
+                "relationship": "specifies",
+                "label": "specifies",
                 "evidence": {
-                    "quote": "Exchange information requirements communicate project information requirements to delivery teams.",
-                    "source": "ISO 19650-2",
+                    "quote": "Asset information requirements set out managerial, commercial and technical aspects of producing asset information.",
+                    "source": "ISO 19650-1:2018, 5.3",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e4",
+                "source": "ProjectInformationRequirements",
+                "target": "ExchangeInformationRequirements",
+                "relationship": "refines_to",
+                "label": "refines to",
+                "evidence": {
+                    "quote": "Exchange information requirements specify those detailed pieces of information needed to answer the project information requirements.",
+                    "source": "ISO 19650-1:2018, 5.5",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
                 "source": "ExchangeInformationRequirements",
                 "target": "InformationDeliveryCycle",
                 "relationship": "drives",
                 "label": "drives",
                 "evidence": {
                     "quote": "Information requirements guide the planning of information delivery.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e5",
-                "source": "InformationDeliveryCycle",
-                "target": "InformationExchange",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Information exchange satisfies an information requirement.",
-                    "source": "ISO 19650-1",
+                    "source": "ISO 19650-1:2018, 6.3",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "InformationExchange",
-                "target": "CDE",
-                "relationship": "occurs_in",
-                "label": "occurs in",
+                "source": "InformationDeliveryCycle",
+                "target": "InformationExchange",
+                "relationship": "includes",
+                "label": "includes",
                 "evidence": {
-                    "quote": "Information exchange is facilitated through the common data environment.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "Information exchange satisfies an information requirement.",
+                    "source": "ISO 19650-1:2018, 3.3.7",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e7",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "InformationExchange",
+                "target": "CDE",
+                "relationship": "occurs_in",
+                "label": "occurs in",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "Common data environment: agreed source of information for collecting, managing and disseminating each information container.",
+                    "source": "ISO 19650-1:2018, 3.3.15",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "InformationContainer",
-                "target": "InformationModel",
-                "relationship": "forms",
-                "label": "forms",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Information models are sets of structured and unstructured information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "The common data environment is used for collecting, managing and disseminating each information container.",
+                    "source": "ISO 19650-1:2018, 3.3.15",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e9",
-                "source": "InformationModel",
-                "target": "ProjectInformationModel",
-                "relationship": "type",
-                "label": "type",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
                 "evidence": {
-                    "quote": "Project information model relates to the delivery phase.",
-                    "source": "ISO 19650-1",
+                    "quote": "An information model is a set of structured and unstructured information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.8",
                     "type": "definition"
                 }
             },
@@ -217,26 +252,143 @@
             {
                 "id": "e10",
                 "source": "InformationModel",
-                "target": "AssetInformationModel",
+                "target": "ProjectInformationModel",
                 "relationship": "type",
                 "label": "type",
                 "evidence": {
-                    "quote": "Asset information model relates to the operational phase.",
-                    "source": "ISO 19650-1",
+                    "quote": "Project information model relates to the delivery phase.",
+                    "source": "ISO 19650-1:2018, 3.3.10",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e11",
+                "source": "InformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information model relates to the operational phase.",
+                    "source": "ISO 19650-1:2018, 3.3.9",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
                 "source": "ProjectInformationModel",
                 "target": "AssetInformationModel",
-                "relationship": "transitions_to",
-                "label": "transitions to",
+                "relationship": "contributes_to",
+                "label": "contributes to",
                 "evidence": {
-                    "quote": "Information produced during delivery contributes to the asset information model.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "Information developed during project delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1:2018, 4.1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e13",
+                "source": "LevelOfInformationNeed",
+                "target": "InformationContainer",
+                "relationship": "defines_extent",
+                "label": "defines extent",
+                "evidence": {
+                    "quote": "The level of information need defines the extent and granularity of information required.",
+                    "source": "ISO 19650-1:2018, 11.2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e14",
+                "source": "InformationStandard",
+                "target": "InformationContainer",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "Naming of an information container should be according to an agreed naming convention.",
+                    "source": "ISO 19650-1:2018, 3.3.12",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e15",
+                "source": "InformationStandard",
+                "target": "InformationRequirement",
+                "relationship": "specifies_how",
+                "label": "specifies how",
+                "evidence": {
+                    "quote": "The project's information standard specifies the means of structuring and classifying information.",
+                    "source": "ISO 19650-2:2018, 5.1.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e16",
+                "source": "TriggerEvent",
+                "target": "InformationExchange",
+                "relationship": "initiates",
+                "label": "initiates",
+                "evidence": {
+                    "quote": "Trigger event: planned or unplanned event that changes an asset or its status during its life cycle, which results in information exchange.",
+                    "source": "ISO 19650-1:2018, 3.2.13",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e17",
+                "source": "AppointingParty",
+                "target": "OrganizationalInformationRequirements",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "The appointing party establishes its organizational information requirements.",
+                    "source": "ISO 19650-3:2020, 5.1.2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e18",
+                "source": "AppointingParty",
+                "target": "ExchangeInformationRequirements",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "The appointing party establishes their exchange information requirements.",
+                    "source": "ISO 19650-2:2018, 5.2.1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e19",
+                "source": "LeadAppointedParty",
+                "target": "InformationDeliveryCycle",
+                "relationship": "executes",
+                "label": "executes",
+                "evidence": {
+                    "quote": "The lead appointed party coordinates the delivery team in producing information.",
+                    "source": "ISO 19650-2:2018, 5.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e20",
+                "source": "AssetInformationModel",
+                "target": "OrganizationalInformationRequirements",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "The asset information model provides information to support organizational objectives.",
+                    "source": "ISO 19650-1:2018, 5.6",
+                    "type": "definition"
                 }
             }
 
