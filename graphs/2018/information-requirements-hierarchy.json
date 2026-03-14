@@ -6,66 +6,106 @@
         "type": "hierarchy-map",
         "standard": "ISO 19650",
         "version": "2018",
-        "part": "Part 1 / Part 2",
+        "part": "Part 1 & Part 2",
         "created": "2018",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "EIR", "LOIN" ]
+        "tags": [
+            "requirements",
+            "hierarchy",
+            "OIR",
+            "AIR",
+            "PIR",
+            "EIR",
+            "LOIN",
+            "information-exchange"
+        ]
     },
 
     "graph": {
 
         "nodes": [
+
             {
                 "id": "Organization",
                 "label": "Organization",
                 "type": "role",
                 "description": "Organization responsible for defining objectives and information requirements."
             },
+
             {
                 "id": "OrganizationalObjectives",
                 "label": "Organizational Objectives",
                 "type": "concept",
                 "description": "Strategic objectives of the organization."
             },
+
             {
                 "id": "OIR",
                 "label": "Organizational Information Requirements",
                 "type": "information",
                 "description": "Information required to support organizational objectives."
             },
+
             {
                 "id": "AIR",
                 "label": "Asset Information Requirements",
                 "type": "information",
                 "description": "Information required to support asset management decisions."
             },
+
             {
                 "id": "PIR",
                 "label": "Project Information Requirements",
                 "type": "information",
                 "description": "Information required to support project delivery decisions."
             },
+
             {
                 "id": "EIR",
                 "label": "Exchange Information Requirements",
                 "type": "information",
                 "description": "Information required at defined information exchange points."
             },
+
             {
-                "id": "LOIN",
-                "label": "Level of Information Need",
-                "type": "framework",
-                "description": "Framework for specifying the granularity and extent of information to be provided to meet each information requirement."
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Defined event where information is delivered to satisfy exchange information requirements."
             },
+
             {
                 "id": "InformationProduction",
                 "label": "Information Production",
                 "type": "process",
-                "description": "Activity of producing information required for project delivery."
+                "description": "Activity of producing project information."
+            },
+
+            {
+                "id": "LOIN",
+                "label": "Level of Information Need",
+                "type": "concept",
+                "description": "Specification of the level of detail and content required for information."
+            },
+
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Persistent container of information such as models, documents, or datasets."
+            },
+
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "concept",
+                "description": "Structured set of information containers forming the project or asset information model."
             }
+
         ],
 
         "edges": [
+
             {
                 "id": "e1",
                 "source": "Organization",
@@ -73,11 +113,12 @@
                 "relationship": "defines",
                 "label": "defines",
                 "evidence": {
-                    "quote": "Organizational objectives drive the identification of the information needed by the organization.",
+                    "quote": "Organizational objectives drive the definition of organizational information requirements.",
                     "source": "ISO 19650-1",
                     "type": "inferred_relationship"
                 }
             },
+
             {
                 "id": "e2",
                 "source": "OrganizationalObjectives",
@@ -85,11 +126,12 @@
                 "relationship": "drives",
                 "label": "drives",
                 "evidence": {
-                    "quote": "Organizational information requirements define the information needed to support organizational objectives.",
+                    "quote": "Organizational information requirements are derived from organizational objectives.",
                     "source": "ISO 19650-1",
-                    "type": "definition"
+                    "type": "inferred_relationship"
                 }
             },
+
             {
                 "id": "e3",
                 "source": "OIR",
@@ -97,11 +139,12 @@
                 "relationship": "informs",
                 "label": "informs",
                 "evidence": {
-                    "quote": "Asset information requirements are derived from organizational information requirements.",
+                    "quote": "Organizational information requirements inform the definition of asset information requirements.",
                     "source": "ISO 19650-1",
                     "type": "inferred_relationship"
                 }
             },
+
             {
                 "id": "e4",
                 "source": "AIR",
@@ -109,11 +152,12 @@
                 "relationship": "informs",
                 "label": "informs",
                 "evidence": {
-                    "quote": "Project information requirements define the information needed to support project delivery decisions.",
+                    "quote": "Asset information requirements inform project information requirements when projects are undertaken to deliver or modify assets.",
                     "source": "ISO 19650-1",
-                    "type": "definition"
+                    "type": "inferred_relationship"
                 }
             },
+
             {
                 "id": "e5",
                 "source": "PIR",
@@ -121,35 +165,77 @@
                 "relationship": "refines",
                 "label": "refines",
                 "evidence": {
-                    "quote": "Exchange information requirements specify the information required at exchange points.",
+                    "quote": "Exchange information requirements specify the information to be delivered at information exchanges.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
             },
+
             {
                 "id": "e6",
                 "source": "EIR",
-                "target": "LOIN",
-                "relationship": "specifies",
-                "label": "specifies",
+                "target": "InformationExchange",
+                "relationship": "defines",
+                "label": "defines",
                 "evidence": {
-                    "quote": "The appointing party shall specify the level of information need for each information requirement.",
-                    "source": "ISO 19650-2, 5.1.2",
+                    "quote": "Information exchanges occur when information is delivered to satisfy exchange information requirements.",
+                    "source": "ISO 19650-2",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationExchange",
+                "target": "InformationProduction",
+                "relationship": "triggers",
+                "label": "triggers",
+                "evidence": {
+                    "quote": "Delivery teams collaboratively produce information in order to meet exchange information requirements.",
+                    "source": "ISO 19650-2",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationProduction",
+                "target": "InformationContainer",
+                "relationship": "produces",
+                "label": "produces",
+                "evidence": {
+                    "quote": "Information is stored and managed within information containers.",
+                    "source": "ISO 19650-1",
                     "type": "definition"
                 }
             },
+
             {
-                "id": "e7",
+                "id": "e9",
                 "source": "LOIN",
-                "target": "InformationProduction",
-                "relationship": "governs",
-                "label": "governs",
+                "target": "InformationContainer",
+                "relationship": "defines_level",
+                "label": "defines level of",
                 "evidence": {
-                    "quote": "The level of information need of each information container should be determined according to its purpose.",
-                    "source": "ISO 19650-1, 11.2",
+                    "quote": "Level of information need defines the extent and detail of information required.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "An information model is a structured set of information containers.",
+                    "source": "ISO 19650-1",
                     "type": "definition"
                 }
             }
+
         ]
     }
 }
