@@ -68,6 +68,6 @@ The purpose of the maps is not to replace the standard, but to support learning,
 
 ## Important Note
 
-This website is an educational and interpretive visualization tool.
+This website is an educational and interpretive visualization tool and may not fully capture the complete detail of the official ISO 19650 documentation.
 
 For formal, contractual, or authoritative use, always refer to the official ISO 19650 publications and related guidance documents.
