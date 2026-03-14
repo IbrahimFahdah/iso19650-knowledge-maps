@@ -48,7 +48,7 @@
                 "id": "InformationDeliveryCycle",
                 "label": "Information Delivery Cycle",
                 "type": "process",
-                "description": "Cycle of planning, producing and delivering information through the eight activities defined in ISO 19650-2."
+                "description": "Cycle of planning, producing and delivering information through ISO 19650 delivery activities."
             },
 
             {
@@ -62,7 +62,7 @@
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Agreed source of information for collecting, managing and disseminating information containers through a managed process."
+                "description": "Agreed source of information for collecting, managing and disseminating information containers."
             },
 
             {
@@ -97,21 +97,21 @@
                 "id": "LevelOfInformationNeed",
                 "label": "Level of Information Need",
                 "type": "concept",
-                "description": "Framework which defines the extent and granularity of information to prevent delivery of too much information."
+                "description": "Framework defining the extent and granularity of information required."
             },
 
             {
                 "id": "InformationStandard",
                 "label": "Information Standard",
                 "type": "concept",
-                "description": "Specification defining how information should be structured, classified and named."
+                "description": "Specification defining naming, structuring and classification of information."
             },
 
             {
                 "id": "TriggerEvent",
                 "label": "Trigger Event",
                 "type": "concept",
-                "description": "Planned or unplanned event that changes an asset or its status during its life cycle, which results in information exchange."
+                "description": "Planned or unplanned event that changes an asset or its status during its lifecycle resulting in information exchange."
             },
 
             {
@@ -125,7 +125,7 @@
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role",
-                "description": "Party responsible for coordinating the delivery team and authorizing information before delivery."
+                "description": "Party responsible for coordinating the delivery team and producing information."
             }
 
         ],
@@ -140,52 +140,39 @@
                 "label": "informs",
                 "evidence": {
                     "quote": "Asset information requirements derive from organizational information requirements.",
-                    "source": "ISO 19650-1:2018, 5.2-5.3",
+                    "source": "ISO 19650-1:2018, 5.2–5.3",
                     "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e2",
-                "source": "OrganizationalInformationRequirements",
+                "source": "AssetInformationRequirements",
                 "target": "ProjectInformationRequirements",
                 "relationship": "informs",
                 "label": "informs",
                 "evidence": {
-                    "quote": "Project information requirements derive from organizational information requirements.",
-                    "source": "ISO 19650-1:2018, 5.2-5.4",
+                    "quote": "Project information requirements derive from asset information requirements.",
+                    "source": "ISO 19650-1:2018, 5.3–5.4",
                     "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "AssetInformationRequirements",
-                "target": "AssetInformationModel",
-                "relationship": "specifies",
-                "label": "specifies",
-                "evidence": {
-                    "quote": "Asset information requirements set out managerial, commercial and technical aspects of producing asset information.",
-                    "source": "ISO 19650-1:2018, 5.3",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e4",
                 "source": "ProjectInformationRequirements",
                 "target": "ExchangeInformationRequirements",
                 "relationship": "refines_to",
                 "label": "refines to",
                 "evidence": {
-                    "quote": "Exchange information requirements specify those detailed pieces of information needed to answer the project information requirements.",
+                    "quote": "Exchange information requirements specify the information to be delivered.",
                     "source": "ISO 19650-1:2018, 5.5",
                     "type": "definition"
                 }
             },
 
             {
-                "id": "e5",
+                "id": "e4",
                 "source": "ExchangeInformationRequirements",
                 "target": "InformationDeliveryCycle",
                 "relationship": "drives",
@@ -198,7 +185,7 @@
             },
 
             {
-                "id": "e6",
+                "id": "e5",
                 "source": "InformationDeliveryCycle",
                 "target": "InformationExchange",
                 "relationship": "includes",
@@ -211,7 +198,7 @@
             },
 
             {
-                "id": "e7",
+                "id": "e6",
                 "source": "InformationExchange",
                 "target": "CDE",
                 "relationship": "occurs_in",
@@ -224,7 +211,7 @@
             },
 
             {
-                "id": "e8",
+                "id": "e7",
                 "source": "CDE",
                 "target": "InformationContainer",
                 "relationship": "contains",
@@ -237,7 +224,7 @@
             },
 
             {
-                "id": "e9",
+                "id": "e8",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
@@ -250,7 +237,7 @@
             },
 
             {
-                "id": "e10",
+                "id": "e9",
                 "source": "InformationModel",
                 "target": "ProjectInformationModel",
                 "relationship": "type",
@@ -263,7 +250,7 @@
             },
 
             {
-                "id": "e11",
+                "id": "e10",
                 "source": "InformationModel",
                 "target": "AssetInformationModel",
                 "relationship": "type",
@@ -276,7 +263,7 @@
             },
 
             {
-                "id": "e12",
+                "id": "e11",
                 "source": "ProjectInformationModel",
                 "target": "AssetInformationModel",
                 "relationship": "contributes_to",
@@ -289,7 +276,7 @@
             },
 
             {
-                "id": "e13",
+                "id": "e12",
                 "source": "LevelOfInformationNeed",
                 "target": "InformationContainer",
                 "relationship": "defines_extent",
@@ -302,7 +289,7 @@
             },
 
             {
-                "id": "e14",
+                "id": "e13",
                 "source": "InformationStandard",
                 "target": "InformationContainer",
                 "relationship": "governs",
@@ -315,46 +302,20 @@
             },
 
             {
-                "id": "e15",
-                "source": "InformationStandard",
-                "target": "InformationRequirement",
-                "relationship": "specifies_how",
-                "label": "specifies how",
-                "evidence": {
-                    "quote": "The project's information standard specifies the means of structuring and classifying information.",
-                    "source": "ISO 19650-2:2018, 5.1.4",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e16",
+                "id": "e14",
                 "source": "TriggerEvent",
                 "target": "InformationExchange",
                 "relationship": "initiates",
                 "label": "initiates",
                 "evidence": {
-                    "quote": "Trigger event: planned or unplanned event that changes an asset or its status during its life cycle, which results in information exchange.",
+                    "quote": "Trigger event: planned or unplanned event that changes an asset or its status during its life cycle which results in information exchange.",
                     "source": "ISO 19650-1:2018, 3.2.13",
                     "type": "definition"
                 }
             },
 
             {
-                "id": "e17",
-                "source": "AppointingParty",
-                "target": "OrganizationalInformationRequirements",
-                "relationship": "defines",
-                "label": "defines",
-                "evidence": {
-                    "quote": "The appointing party establishes its organizational information requirements.",
-                    "source": "ISO 19650-3:2020, 5.1.2",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e18",
+                "id": "e15",
                 "source": "AppointingParty",
                 "target": "ExchangeInformationRequirements",
                 "relationship": "defines",
@@ -367,7 +328,7 @@
             },
 
             {
-                "id": "e19",
+                "id": "e16",
                 "source": "LeadAppointedParty",
                 "target": "InformationDeliveryCycle",
                 "relationship": "executes",
@@ -380,7 +341,7 @@
             },
 
             {
-                "id": "e20",
+                "id": "e17",
                 "source": "AssetInformationModel",
                 "target": "OrganizationalInformationRequirements",
                 "relationship": "supports",
