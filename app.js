@@ -25,14 +25,104 @@ const activeGraphBadgeEl = document.getElementById("activeGraphBadge");
 const selectionHeadingEl = document.getElementById("selectionHeading");
 const selectionTypeEl = document.getElementById("selectionType");
 const detailsListEl = document.getElementById("detailsList");
-const reloadDefaultBtn = document.getElementById("reloadDefaultBtn");
+const resetViewBtn = document.getElementById("resetViewBtn");
 
 let cy;
 let dragDepth = 0;
 let activeStandardId = DEFAULT_STANDARD_ID;
 let activeGraphFile = "";
+let suppressViewStateSave = false;
 const metadataCache = new Map();
 const manifestCache = new Map();
+const STORAGE_PREFIX = "iso19650:view:";
+
+function getGraphStorageKey() {
+  if (!activeGraphFile) {
+    return null;
+  }
+
+  return `${STORAGE_PREFIX}${activeGraphFile}`;
+}
+
+function saveGraphViewState() {
+  if (!cy || suppressViewStateSave) {
+    return;
+  }
+
+  const storageKey = getGraphStorageKey();
+  if (!storageKey) {
+    return;
+  }
+
+  const nodePositions = {};
+  cy.nodes().forEach(node => {
+    nodePositions[node.id()] = node.position();
+  });
+
+  const state = {
+    zoom: cy.zoom(),
+    pan: cy.pan(),
+    nodePositions
+  };
+
+  localStorage.setItem(storageKey, JSON.stringify(state));
+}
+
+function loadGraphViewState() {
+  const storageKey = getGraphStorageKey();
+  if (!storageKey) {
+    return null;
+  }
+
+  const rawState = localStorage.getItem(storageKey);
+  if (!rawState) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(rawState);
+  } catch {
+    localStorage.removeItem(storageKey);
+    return null;
+  }
+}
+
+function clearGraphViewState() {
+  const storageKey = getGraphStorageKey();
+  if (!storageKey) {
+    return;
+  }
+
+  localStorage.removeItem(storageKey);
+}
+
+function restoreGraphViewState() {
+  if (!cy) {
+    return;
+  }
+
+  const savedState = loadGraphViewState();
+  if (!savedState) {
+    return;
+  }
+
+  if (savedState.nodePositions && typeof savedState.nodePositions === "object") {
+    cy.nodes().forEach(node => {
+      const savedPosition = savedState.nodePositions[node.id()];
+      if (savedPosition && typeof savedPosition.x === "number" && typeof savedPosition.y === "number") {
+        node.position(savedPosition);
+      }
+    });
+  }
+
+  if (savedState.pan && typeof savedState.pan.x === "number" && typeof savedState.pan.y === "number") {
+    cy.pan(savedState.pan);
+  }
+
+  if (typeof savedState.zoom === "number") {
+    cy.zoom(savedState.zoom);
+  }
+}
 
 function formatLabel(value, fallback = "-") {
   if (!value) {
@@ -137,7 +227,7 @@ function getNodeColor(type) {
   return colorMap[type] || "#0f172a";
 }
 
-function initializeCytoscape(elements) {
+function initializeCytoscape(elements, usePresetLayout = false) {
   if (cy) {
     cy.destroy();
   }
@@ -145,7 +235,9 @@ function initializeCytoscape(elements) {
   cy = cytoscape({
     container: document.getElementById("cy"),
     elements,
-    layout: { name: "cose", animate: true, fit: true, padding: 24 },
+    layout: usePresetLayout
+      ? { name: "preset", fit: true, padding: 24 }
+      : { name: "cose", animate: true, fit: true, padding: 24 },
     style: [
       {
         selector: "node",
@@ -236,16 +328,25 @@ function initializeCytoscape(elements) {
       resetDetails();
     }
   });
+
+  cy.on("dragfreeon", "node", () => {
+    saveGraphViewState();
+  });
+
+  cy.on("zoom pan", () => {
+    saveGraphViewState();
+  });
 }
 
-function toCytoscapeElements(graph) {
+function toCytoscapeElements(graph, savedState = null) {
   const nodes = graph.nodes.map(node => ({
     data: {
       id: node.id,
       label: node.label,
       type: node.type,
       description: node.description
-    }
+    },
+    position: savedState?.nodePositions?.[node.id]
   }));
 
   const edges = graph.edges.map((edge, index) => ({
@@ -351,13 +452,24 @@ async function loadGraphList(standardId) {
     return;
   }
 
-  graphSelectEl.value = entries[0].file;
-  activeGraphFile = entries[0].file;
+  const selectedIndex = Math.min(loadGraphList.preferredIndex ?? 0, entries.length - 1);
+  const selectedEntry = entries[selectedIndex];
+
+  graphSelectEl.value = selectedEntry.file;
+  activeGraphFile = selectedEntry.file;
   await loadGraphFromFile(activeGraphFile);
 }
 
 function renderGraph(graphData) {
-  initializeCytoscape(toCytoscapeElements(graphData));
+  const savedState = loadGraphViewState();
+  suppressViewStateSave = true;
+  initializeCytoscape(toCytoscapeElements(graphData, savedState), Boolean(savedState?.nodePositions));
+
+  if (savedState) {
+    restoreGraphViewState();
+  }
+
+  suppressViewStateSave = false;
   resetDetails();
 }
 
@@ -430,6 +542,7 @@ function setupDragAndDrop() {
 function setupActions() {
   standardSelectEl.addEventListener("change", async event => {
     try {
+      loadGraphList.preferredIndex = Math.max(graphSelectEl.selectedIndex, 0);
       await loadGraphList(event.target.value);
     } catch (error) {
       handleLoadError(error);
@@ -444,15 +557,14 @@ function setupActions() {
     }
   });
 
-  reloadDefaultBtn.addEventListener("click", () => {
-    const file = activeGraphFile;
+  resetViewBtn.addEventListener("click", () => {
+    clearGraphViewState();
 
-    if (!file) {
-      loadGraphList(activeStandardId).catch(handleLoadError);
+    if (!activeGraphFile) {
       return;
     }
 
-    loadGraphFromFile(file).catch(handleLoadError);
+    loadGraphFromFile(activeGraphFile).catch(handleLoadError);
   });
 }
 
