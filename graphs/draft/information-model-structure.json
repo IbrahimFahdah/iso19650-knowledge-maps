@@ -2,7 +2,7 @@
     "metadata": {
         "id": "iso19650-information-model-structure",
         "name": "Information Model Structure",
-        "description": "Structure of information containers and lifecycle information models in the ISO 19650 draft.",
+        "description": "Structure of information containers and lifecycle information models in the ISO 19650 draft, showing the hierarchical relationships between containers, project models, and asset models.",
         "type": "structure-map",
         "standard": "ISO 19650",
         "version": "draft",
@@ -55,7 +55,14 @@
                 "id": "LifecycleDecision",
                 "label": "Lifecycle Decision",
                 "type": "concept",
-                "description": "Decision made during the lifecycle of the asset."
+                "description": "Decision made during the lifecycle of the asset which information models support."
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
+                "type": "process",
+                "description": "Creation and coordination of information to meet defined requirements."
             }
 
         ],
@@ -69,8 +76,8 @@
                 "relationship": "forms",
                 "label": "forms",
                 "evidence": {
-                    "quote": "Information models are collections of information containers supporting lifecycle decisions.",
-                    "source": "ISO 19650 Draft",
+                    "quote": "An information model is a set of interrelated structured information containers or unstructured information containers or both.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.11",
                     "type": "definition"
                 }
             },
@@ -82,9 +89,9 @@
                 "relationship": "type",
                 "label": "type",
                 "evidence": {
-                    "quote": "Project information models are used during delivery phases.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "quote": "Information models produced by information production teams contribute to the AIM in response to trigger events.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 12.2.2",
+                    "type": "inferred_relationship"
                 }
             },
 
@@ -95,8 +102,8 @@
                 "relationship": "type",
                 "label": "type",
                 "evidence": {
-                    "quote": "Asset information models support operation and asset management.",
-                    "source": "ISO 19650 Draft",
+                    "quote": "An asset information model (AIM) is the current virtual representation of a specific asset or a specific asset system.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 12.2.1",
                     "type": "definition"
                 }
             },
@@ -108,9 +115,9 @@
                 "relationship": "transitions_to",
                 "label": "transitions to",
                 "evidence": {
-                    "quote": "Information produced during delivery contributes to the asset information model.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "The information models produced by all information production teams working on a project should together fulfil the information requirements... Aggregation of information to the asset information model(s) should be informed by those information requirements and should occur once that information has been accepted by the appointing party.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 12.2.2",
+                    "type": "direct_quote"
                 }
             },
 
@@ -121,61 +128,74 @@
                 "relationship": "delivers",
                 "label": "delivers",
                 "evidence": {
-                    "quote": "Information exchanges provide verified information containers.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "Information exchanges deliver verified information containers between parties.",
+                    "source": "ISO 19650-2:2026 Draft",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "AssetInformationModel",
-                "target": "LifecycleDecision",
-                "relationship": "supports",
-                "label": "supports",
+                "source": "InformationProduction",
+                "target": "InformationContainer",
+                "relationship": "produces",
+                "label": "produces",
                 "evidence": {
-                    "quote": "Information models support decision-making during the lifecycle of assets.",
-                    "source": "ISO 19650 Draft",
+                    "quote": "Information production includes generation and aggregation of information containers.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
                     "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e7",
-                "source": "InformationContainer",
-                "target": "ProjectInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
+                "source": "AssetInformationModel",
+                "target": "LifecycleDecision",
+                "relationship": "supports",
+                "label": "supports",
                 "evidence": {
-                    "quote": "Project information models are collections of information containers.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "Information models support decision-making throughout the lifecycle of assets.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "InformationContainer",
-                "target": "AssetInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
-                "evidence": {
-                    "quote": "Asset information models are collections of information containers.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e9",
                 "source": "ProjectInformationModel",
                 "target": "LifecycleDecision",
                 "relationship": "supports",
                 "label": "supports",
                 "evidence": {
                     "quote": "Information models support decision-making throughout the lifecycle of assets.",
-                    "source": "ISO 19650 Draft",
-                    "type": "direct_quote"
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationContainer",
+                "target": "ProjectInformationModel",
+                "relationship": "forms_part_of",
+                "label": "forms part of",
+                "evidence": {
+                    "quote": "Project information models are collections of information containers.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationContainer",
+                "target": "AssetInformationModel",
+                "relationship": "forms_part_of",
+                "label": "forms part of",
+                "evidence": {
+                    "quote": "Asset information models are collections of information containers.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "inferred_relationship"
                 }
             }
 
