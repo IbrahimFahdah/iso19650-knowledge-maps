@@ -20,7 +20,9 @@ const graphDescriptionEl = document.getElementById("graphDescription");
 const graphVersionEl = document.getElementById("graphVersion");
 const graphStandardEl = document.getElementById("graphStandard");
 const graphTagsEl = document.getElementById("graphTags");
+const graphStatsEl = document.getElementById("graphStats");
 const activeGraphBadgeEl = document.getElementById("activeGraphBadge");
+const selectionHeadingEl = document.getElementById("selectionHeading");
 const selectionTypeEl = document.getElementById("selectionType");
 const detailsListEl = document.getElementById("detailsList");
 const reloadDefaultBtn = document.getElementById("reloadDefaultBtn");
@@ -78,6 +80,7 @@ function renderMetadata(metadata = {}) {
   graphTagsEl.textContent = Array.isArray(metadata.tags) && metadata.tags.length > 0
     ? metadata.tags.join(", ")
     : "-";
+  graphStatsEl.textContent = metadata.graphStats || "-";
 }
 
 function renderActiveGraphBadge(metadata = {}) {
@@ -90,6 +93,7 @@ function renderActiveGraphBadge(metadata = {}) {
 }
 
 function renderDetails(title, fields) {
+  selectionHeadingEl.textContent = title;
   selectionTypeEl.textContent = title;
   detailsListEl.innerHTML = "";
 
@@ -107,12 +111,17 @@ function renderDetails(title, fields) {
 }
 
 function resetDetails() {
-  renderDetails("Nothing selected", [
+  renderDetails("Selection Details", [
     {
-      label: "Hint",
-      value: "Click a node or edge to inspect its details."
+      label: "Node Hint",
+      value: "Click a node to inspect concept details, role definitions, or process context."
+    },
+    {
+      label: "Edge Hint",
+      value: "Click an edge to inspect relationship evidence, source reference, and evidence type."
     }
   ]);
+  selectionTypeEl.textContent = "Nothing selected";
 }
 
 function getNodeColor(type) {
@@ -198,7 +207,7 @@ function initializeCytoscape(elements) {
     cy.elements().addClass("faded").removeClass("highlighted");
     neighborhood.removeClass("faded").addClass("highlighted");
 
-    renderDetails("Node", [
+    renderDetails(`Node: ${node.data("label") || node.id()}`, [
       { label: "Label", value: node.data("label") },
       { label: "Type", value: node.data("type") },
       { label: "Description", value: node.data("description") }
@@ -212,7 +221,7 @@ function initializeCytoscape(elements) {
     edge.connectedNodes().removeClass("faded").addClass("highlighted");
     edge.removeClass("faded").addClass("highlighted");
 
-    renderDetails("Edge", [
+    renderDetails(`Edge: ${edge.data("label") || edge.data("relationship") || edge.id()}`, [
       { label: "Relationship", value: edge.data("relationship") },
       { label: "Evidence Quote", value: edge.data("evidenceQuote") },
       { label: "Source Reference", value: edge.data("sourceReference") },
@@ -353,7 +362,10 @@ function renderGraph(graphData) {
 
 function loadGraph(graphData, sourceLabel = "custom file") {
   validateGraphPayload(graphData);
-  renderMetadata(graphData.metadata);
+  renderMetadata({
+    ...graphData.metadata,
+    graphStats: `${graphData.graph.nodes.length} nodes, ${graphData.graph.edges.length} edges`
+  });
   renderActiveGraphBadge(graphData.metadata);
   renderGraph(graphData.graph);
   setStatus(`Loaded ${sourceLabel}`);

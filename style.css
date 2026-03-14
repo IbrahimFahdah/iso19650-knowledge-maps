@@ -252,13 +252,19 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
+  gap: 3px;
+  min-width: 28px;
   height: 18px;
+  padding: 0 6px;
   border-radius: 999px;
   background: rgba(29, 78, 216, 0.12);
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 700;
+}
+
+.legend-icon-swatch {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  display: inline-block;
 }
 
 .legend-list {
@@ -312,6 +318,7 @@ body {
   background: rgba(29, 78, 216, 0.10);
   color: var(--accent);
   font-weight: 600;
+  line-height: 1.4;
 }
 
 body.drag-active::after {

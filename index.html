@@ -54,11 +54,19 @@
               <dt>Tags</dt>
               <dd id="graphTags">-</dd>
             </div>
+            <div>
+              <dt>Graph Stats</dt>
+              <dd id="graphStats">-</dd>
+            </div>
           </dl>
 
           <details class="legend-block">
             <summary class="legend-toggle">
-              <span class="legend-icon" aria-hidden="true">i</span>
+              <span class="legend-icon" aria-hidden="true">
+                <span class="legend-icon-swatch concept-swatch"></span>
+                <span class="legend-icon-swatch role-swatch"></span>
+                <span class="legend-icon-swatch process-swatch"></span>
+              </span>
               <span>Legend</span>
             </summary>
             <ul class="legend-list">
@@ -81,12 +89,16 @@
 
       <aside class="details-panel">
         <section class="panel">
-          <h2>Selection Details</h2>
+          <h2 id="selectionHeading">Selection Details</h2>
           <div id="selectionType" class="selection-type">Nothing selected</div>
           <dl class="details-list" id="detailsList">
             <div>
-              <dt>Hint</dt>
-              <dd>Click a node or edge to inspect its details.</dd>
+              <dt>Node Hint</dt>
+              <dd>Click a node to inspect concept details, role definitions, or process context.</dd>
+            </div>
+            <div>
+              <dt>Edge Hint</dt>
+              <dd>Click an edge to inspect relationship evidence, source reference, and evidence type.</dd>
             </div>
           </dl>
         </section>
