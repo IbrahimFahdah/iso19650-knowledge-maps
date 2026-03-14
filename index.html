@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISO19650 Knowledge Maps</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <h1>ISO19650 Knowledge Maps</h1>
+        <p>Interactive knowledge maps for understanding ISO 19650 revision concepts.</p>
+      </div>
+      <div class="drop-hint" id="dropHint">Drop a graph JSON file anywhere to load it</div>
+    </header>
+
+    <main class="app-layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <h2>Graph Details</h2>
+          <dl class="metadata-list">
+            <div>
+              <dt>Name</dt>
+              <dd id="graphName">Loading...</dd>
+            </div>
+            <div>
+              <dt>Description</dt>
+              <dd id="graphDescription">-</dd>
+            </div>
+            <div>
+              <dt>Version</dt>
+              <dd id="graphVersion">-</dd>
+            </div>
+            <div>
+              <dt>Tags</dt>
+              <dd id="graphTags">-</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Available Graphs</h2>
+            <button type="button" id="reloadDefaultBtn" class="secondary-button">Reload Default</button>
+          </div>
+          <ul class="graph-list" id="graphList"></ul>
+        </section>
+      </aside>
+
+      <section class="viewer-panel panel">
+        <div class="viewer-toolbar">
+          <span class="status-pill" id="graphStatus">Ready</span>
+        </div>
+        <div id="cy" class="graph-canvas" aria-label="Graph viewer"></div>
+      </section>
+
+      <aside class="details-panel">
+        <section class="panel">
+          <h2>Selection Details</h2>
+          <div id="selectionType" class="selection-type">Nothing selected</div>
+          <dl class="details-list" id="detailsList">
+            <div>
+              <dt>Hint</dt>
+              <dd>Click a node or edge to inspect its details.</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="app.js"></script>
+</body>
+</html>

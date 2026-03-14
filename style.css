@@ -1,0 +1,271 @@
+:root {
+  --bg: #f4f7fb;
+  --panel: rgba(255, 255, 255, 0.88);
+  --panel-border: rgba(15, 23, 42, 0.08);
+  --text: #162033;
+  --muted: #5c6b82;
+  --accent: #1d4ed8;
+  --accent-soft: rgba(29, 78, 216, 0.12);
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(29, 78, 216, 0.10), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.10), transparent 24%),
+    var(--bg);
+}
+
+body {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.88));
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.app-header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.drop-hint {
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.app-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 320px;
+  gap: 20px;
+  min-height: 0;
+}
+
+.panel {
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.sidebar,
+.details-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar .panel,
+.details-panel .panel {
+  padding: 20px;
+}
+
+.viewer-panel {
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.viewer-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 16px 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.graph-canvas {
+  flex: 1;
+  min-height: 560px;
+}
+
+.panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.secondary-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondary-button:hover {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.metadata-list,
+.details-list {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.metadata-list div,
+.details-list div {
+  display: grid;
+  gap: 4px;
+}
+
+.metadata-list dt,
+.details-list dt {
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.metadata-list dd,
+.details-list dd {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.graph-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.graph-list button {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.graph-list button:hover,
+.graph-list button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(29, 78, 216, 0.35);
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.12);
+  outline: none;
+}
+
+.graph-list strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.graph-list span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.selection-type {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(29, 78, 216, 0.10);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+body.drag-active::after {
+  content: "Drop JSON graph file to load";
+  position: fixed;
+  inset: 16px;
+  display: grid;
+  place-items: center;
+  border: 3px dashed rgba(29, 78, 216, 0.45);
+  border-radius: 24px;
+  background: rgba(244, 247, 251, 0.86);
+  color: var(--accent);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 700;
+  z-index: 20;
+  pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+  .app-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+
+  .details-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    padding: 14px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer-panel {
+    min-height: 520px;
+  }
+}
