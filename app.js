@@ -116,7 +116,7 @@ function initializeCytoscape(elements) {
           "background-color": ele => getNodeColor(ele.data("type")),
           label: "data(label)",
           color: "#10203a",
-          "font-size": 12,
+          "font-size": 10,
           "font-weight": 600,
           "text-valign": "bottom",
           "text-margin-y": 8,

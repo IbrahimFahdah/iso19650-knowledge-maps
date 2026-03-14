@@ -14,7 +14,6 @@
         <h1>ISO19650 Knowledge Maps</h1>
         <p>Interactive knowledge maps for understanding ISO 19650 revision concepts.</p>
       </div>
-      <div class="drop-hint" id="dropHint">Drop a graph JSON file anywhere to load it</div>
     </header>
 
     <main class="app-layout">
@@ -56,6 +55,20 @@
               <dd id="graphTags">-</dd>
             </div>
           </dl>
+
+          <details class="legend-block">
+            <summary class="legend-toggle">
+              <span class="legend-icon" aria-hidden="true">i</span>
+              <span>Legend</span>
+            </summary>
+            <ul class="legend-list">
+              <li><span class="legend-swatch concept-swatch"></span><span>Concept</span></li>
+              <li><span class="legend-swatch role-swatch"></span><span>Role</span></li>
+              <li><span class="legend-swatch process-swatch"></span><span>Process</span></li>
+              <li><span class="legend-swatch information-swatch"></span><span>Information</span></li>
+              <li><span class="legend-swatch system-swatch"></span><span>System</span></li>
+            </ul>
+          </details>
         </section>
       </aside>
 
