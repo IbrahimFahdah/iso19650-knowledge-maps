@@ -9,7 +9,7 @@
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "workflow", "information-state" ]
+        "tags": [ "CDE", "workflow", "information-state", "draft" ]
     },
 
     "graph": {
@@ -27,35 +27,42 @@
                 "id": "WorkInProgress",
                 "label": "Work In Progress",
                 "type": "process",
-                "description": "State where information is being developed by its authoring team."
+                "description": "State where information is being developed by its authoring team. Information can only be generated or amended in this state."
             },
 
             {
                 "id": "Shared",
                 "label": "Shared",
                 "type": "process",
-                "description": "State where information is shared with other teams for coordination."
+                "description": "State where information is shared with other teams for coordination after being checked, reviewed, and approved."
             },
 
             {
                 "id": "Published",
                 "label": "Published",
                 "type": "process",
-                "description": "State where information is authorized for use."
+                "description": "State where information has been authorized for use and is the most current revision."
             },
 
             {
                 "id": "Archived",
                 "label": "Archived",
                 "type": "process",
-                "description": "State where historical information is retained but no longer actively used."
+                "description": "State where superseded information is retained for audit and historical reference but is no longer approved for use."
+            },
+
+            {
+                "id": "StatusCode",
+                "label": "Status Code",
+                "type": "information",
+                "description": "Property signifying the permitted use of the content of an information container, assigned based on workflow state."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Shared information environment used to manage and control information."
+                "description": "Operational framework combining information production workflow and enabling technologies to facilitate collaborative production of information."
             }
 
         ],
@@ -66,12 +73,12 @@
                 "id": "e1",
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
-                "relationship": "created_in",
-                "label": "created in",
+                "relationship": "developed_in",
+                "label": "developed in",
                 "evidence": {
-                    "quote": "Information containers are developed within the work in progress state of the common data environment.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information containers start the information production workflow in the WORK IN PROGRESS state. This is the only state where information within an information container can be generated or amended by its appointed party.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.2",
+                    "type": "direct_quote"
                 }
             },
 
@@ -82,9 +89,9 @@
                 "relationship": "transitions_to",
                 "label": "transitions to",
                 "evidence": {
-                    "quote": "Information is shared for coordination once it has been prepared for sharing.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "When an information container is ready to be shared with the lead appointed party and other parties within the information production team, it transitions from the WORK IN PROGRESS state to the SHARED state.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.3",
+                    "type": "direct_quote"
                 }
             },
 
@@ -92,12 +99,12 @@
                 "id": "e3",
                 "source": "Shared",
                 "target": "Published",
-                "relationship": "approved_as",
-                "label": "approved as",
+                "relationship": "authorized_as",
+                "label": "authorized as",
                 "evidence": {
-                    "quote": "Information containers are authorized for use once approved.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "Information containers that have been accepted by the appointing party, transition to the PUBLISHED state. This workflow state indicates that the information container is the most current revision.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.5",
+                    "type": "direct_quote"
                 }
             },
 
@@ -108,86 +115,86 @@
                 "relationship": "retained_as",
                 "label": "retained as",
                 "evidence": {
-                    "quote": "Information containers may be archived once superseded or no longer required.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information containers that are superseded transition to the ARCHIVED state. This workflow state indicates that the information container has reached the end of the information production workflow, is no longer approved for its previously intended use.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.6",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e5",
-                "source": "CDE",
-                "target": "WorkInProgress",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "Shared",
+                "target": "Archived",
+                "relationship": "may_transition_to",
+                "label": "may transition to",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information for the project.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information containers may be archived without being published if they are superseded or no longer required before authorization.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "CDE",
-                "target": "Shared",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "InformationContainer",
+                "target": "StatusCode",
+                "relationship": "assigned",
+                "label": "assigned",
                 "evidence": {
-                    "quote": "The common data environment manages information through defined states.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "In addition to a workflow state, each revision of an information container is assigned a status. The status of an information container is determined by which workflow state it is in, and the use for which the information within it has been approved.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.1",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e7",
                 "source": "CDE",
-                "target": "Published",
+                "target": "InformationContainer",
                 "relationship": "contains",
                 "label": "contains",
                 "evidence": {
-                    "quote": "Authorized information is made available through the common data environment.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "All information production is undertaken via the common data environment.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10, Note 3 to entry",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e8",
                 "source": "CDE",
-                "target": "Archived",
+                "target": "WorkInProgress",
                 "relationship": "contains",
                 "label": "contains",
                 "evidence": {
-                    "quote": "Archived information remains accessible within the common data environment.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "The common data environment is an operational framework that combines the information production workflow and the enabling technologies.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.1",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e9",
-                "source": "InformationContainer",
+                "source": "CDE",
                 "target": "Shared",
-                "relationship": "shared_as",
-                "label": "shared as",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Information containers are shared to enable coordination between delivery teams.",
-                    "source": "ISO 19650-2",
-                    "type": "inferred_relationship"
+                    "quote": "The information production workflow has five workflow states... SHARED.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.1",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e10",
-                "source": "InformationContainer",
+                "source": "CDE",
                 "target": "Published",
-                "relationship": "authorized_as",
-                "label": "authorized as",
+                "relationship": "contains",
+                "label": "contains",
                 "evidence": {
-                    "quote": "Information containers are authorized for use once approved.",
-                    "source": "ISO 19650-2",
+                    "quote": "The information production workflow has five workflow states... PUBLISHED.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.1",
                     "type": "definition"
                 }
             },
@@ -195,12 +202,12 @@
             {
                 "id": "e11",
                 "source": "CDE",
-                "target": "InformationContainer",
+                "target": "Archived",
                 "relationship": "contains",
                 "label": "contains",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "The information production workflow has five workflow states... ARCHIVED.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 11.3.1",
                     "type": "definition"
                 }
             }
