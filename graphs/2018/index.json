@@ -1,14 +1,14 @@
 ﻿{
     "graphs": [
-        "graphs/draft/information-management-system.json",
-        "graphs/draft/role-process-information-system.json",
-        "graphs/draft/core-system.json",
-        "graphs/draft/information-requirements-hierarchy.json",
-        "graphs/draft/information-model-governance.json",
-        "graphs/draft/role-responsibility.json",
-        "graphs/draft/information-delivery-process.json",
-        "graphs/draft/cde-workflow.json",
-        "graphs/draft/information-model-structure.json",
-        "graphs/draft/information-exchange-milestones.json"
+        "graphs/2018/information-management-system.json",
+        "graphs/2018/role-process-information-system.json",
+        "graphs/2018/core-system.json",
+        "graphs/2018/information-requirements-hierarchy.json",
+        "graphs/2018/information-model-governance.json",
+        "graphs/2018/role-responsibility.json",
+        "graphs/2018/information-delivery-process.json",
+        "graphs/2018/cde-workflow.json",
+        "graphs/2018/information-model-structure.json",
+        "graphs/2018/information-exchange-milestones.json"
     ]
 }

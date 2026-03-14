@@ -1,8 +1,8 @@
 {
     "metadata": {
         "id": "iso19650-role-process-information-system",
-        "name": "ISO 19650 Role–Process–Information Architecture",
-        "description": "Architecture linking roles, information management processes and information structures defined in ISO 19650.",
+        "name": "Role–Process–Information Architecture",
+        "description": "Architecture linking roles, information management processes, the common data environment and information structures defined in ISO 19650.",
         "type": "system-map",
         "standard": "ISO 19650",
         "version": "2018",
@@ -27,7 +27,7 @@
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role",
-                "description": "Organization coordinating delivery teams."
+                "description": "Party responsible for coordinating the information delivery of appointed parties."
             },
 
             {
@@ -40,15 +40,22 @@
             {
                 "id": "InformationManagementFunction",
                 "label": "Information Management Function",
-                "type": "process",
-                "description": "Function responsible for managing information processes."
+                "type": "role",
+                "description": "Role responsible for managing the information management process."
             },
 
             {
                 "id": "InformationProduction",
                 "label": "Information Production",
                 "type": "process",
-                "description": "Creation and coordination of information."
+                "description": "Creation and coordination of information during project delivery."
+            },
+
+            {
+                "id": "InformationVerification",
+                "label": "Information Verification",
+                "type": "process",
+                "description": "Checking and reviewing information before sharing."
             },
 
             {
@@ -59,17 +66,24 @@
             },
 
             {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared environment used to collect, manage and disseminate information containers."
+            },
+
+            {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "Named persistent set of information."
+                "description": "Named persistent set of information stored within a file, system or application."
             },
 
             {
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Collection of information containers."
+                "description": "Collection of structured and unstructured information containers."
             }
 
         ],
@@ -83,9 +97,9 @@
                 "relationship": "appoints",
                 "label": "appoints",
                 "evidence": {
-                    "quote": "The appointing party receives information from a lead appointed party.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "The appointing party appoints a lead appointed party to coordinate information delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "inferred_relationship"
                 }
             },
 
@@ -96,7 +110,7 @@
                 "relationship": "coordinates",
                 "label": "coordinates",
                 "evidence": {
-                    "quote": "Delivery teams consist of lead appointed party and appointed parties.",
+                    "quote": "The lead appointed party coordinates appointed parties within the delivery team.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
@@ -106,8 +120,8 @@
                 "id": "e3",
                 "source": "LeadAppointedParty",
                 "target": "InformationManagementFunction",
-                "relationship": "implements",
-                "label": "implements",
+                "relationship": "assigns",
+                "label": "assigns",
                 "evidence": {
                     "quote": "Individuals shall be appointed to undertake the information management function.",
                     "source": "ISO 19650-2",
@@ -117,12 +131,12 @@
 
             {
                 "id": "e4",
-                "source": "InformationManagementFunction",
+                "source": "AppointedParty",
                 "target": "InformationProduction",
-                "relationship": "governs",
-                "label": "governs",
+                "relationship": "performs",
+                "label": "performs",
                 "evidence": {
-                    "quote": "Information production is managed through defined information management processes.",
+                    "quote": "Appointed parties produce and manage information containers.",
                     "source": "ISO 19650-2",
                     "type": "inferred_relationship"
                 }
@@ -131,11 +145,11 @@
             {
                 "id": "e5",
                 "source": "InformationProduction",
-                "target": "InformationExchange",
-                "relationship": "results_in",
-                "label": "results in",
+                "target": "InformationVerification",
+                "relationship": "followed_by",
+                "label": "followed by",
                 "evidence": {
-                    "quote": "Information is generated and shared during collaborative production.",
+                    "quote": "Information should be checked and reviewed before sharing.",
                     "source": "ISO 19650-2",
                     "type": "definition"
                 }
@@ -143,19 +157,45 @@
 
             {
                 "id": "e6",
-                "source": "InformationExchange",
-                "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
                 "evidence": {
-                    "quote": "Information exchange is the act of satisfying an information requirement.",
+                    "quote": "Verified information is shared through information exchange.",
+                    "source": "ISO 19650-2",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationExchange",
+                "target": "CDE",
+                "relationship": "occurs_in",
+                "label": "occurs in",
+                "evidence": {
+                    "quote": "Information exchange occurs through the common data environment.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
             },
 
             {
-                "id": "e7",
+                "id": "e9",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
