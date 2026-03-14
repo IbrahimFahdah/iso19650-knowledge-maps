@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-information-model-governance",
         "name": "Information Model Governance",
-        "description": "Governance structure controlling information models, roles and processes within the ISO 19650 information management framework.",
+        "description": "Governance structure controlling information models, roles and processes within the ISO 19650 information management framework, highlighting the distinct responsibilities for review, approve, authorize and accept activities.",
         "type": "governance-map",
         "standard": "ISO 19650",
         "version": "Draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "governance", "information-model", "roles", "management" ]
+        "tags": [ "governance", "information-model", "roles", "management", "draft" ]
     },
 
     "graph": {
@@ -20,21 +20,28 @@
                 "id": "AppointingParty",
                 "label": "Appointing Party",
                 "type": "role",
-                "description": "Organization appointing delivery teams and defining information requirements."
+                "description": "Organization appointing delivery teams, defining information requirements, and responsible for reviewing and accepting information models."
             },
 
             {
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role",
-                "description": "Organization responsible for coordinating appointed parties."
+                "description": "Organization responsible for managing information production, coordinating appointed parties, and authorizing information models."
             },
 
             {
                 "id": "AppointedParty",
                 "label": "Appointed Party",
                 "type": "role",
-                "description": "Organization responsible for producing information."
+                "description": "Organization responsible for generating information and approving information containers."
+            },
+
+            {
+                "id": "InformationProductionTeam",
+                "label": "Information Production Team",
+                "type": "role",
+                "description": "Team responsible for producing information, comprising lead appointed party and appointed parties. (DEPRECATED: delivery team)"
             },
 
             {
@@ -56,27 +63,6 @@
                 "label": "Information Production",
                 "type": "process",
                 "description": "Activity of creating information during project delivery."
-            },
-
-            {
-                "id": "InformationVerification",
-                "label": "Information Verification",
-                "type": "process",
-                "description": "Checking information before it is shared or published."
-            },
-
-            {
-                "id": "InformationExchange",
-                "label": "Information Exchange",
-                "type": "process",
-                "description": "Transfer of information containers between stakeholders."
-            },
-
-            {
-                "id": "CDE",
-                "label": "Common Data Environment",
-                "type": "system",
-                "description": "Shared environment used to manage information containers."
             },
 
             {
@@ -105,6 +91,69 @@
                 "label": "Asset Information Model",
                 "type": "information",
                 "description": "Information model used during asset operation."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared environment used to manage information containers."
+            },
+
+            {
+                "id": "InformationProductionRequirements",
+                "label": "Information Production Requirements",
+                "type": "information",
+                "description": "Information requirements relating to an appointment that govern what must be produced."
+            },
+
+            {
+                "id": "InformationProductionStandard",
+                "label": "Information Production Standard",
+                "type": "information",
+                "description": "Set of rules for generating, coordinating and checking information containers."
+            },
+
+            {
+                "id": "InformationProductionMethods",
+                "label": "Information Production Methods and Procedures",
+                "type": "information",
+                "description": "Library of available methods and procedures to support information production."
+            },
+
+            {
+                "id": "InformationChecking",
+                "label": "Information Checking",
+                "type": "process",
+                "description": "Quality assurance check of information containers against the information production standard."
+            },
+
+            {
+                "id": "InformationReviewAndApprove",
+                "label": "Review and Approve (Container)",
+                "type": "process",
+                "description": "Technical review of information container by appointed party and approval for a specified use."
+            },
+
+            {
+                "id": "InformationReviewAndAuthorize",
+                "label": "Review and Authorize (Model)",
+                "type": "process",
+                "description": "Review of information model by lead appointed party and authorization of its approved use."
+            },
+
+            {
+                "id": "InformationReviewAndAccept",
+                "label": "Review and Accept (Model)",
+                "type": "process",
+                "description": "Review of information model by appointing party and acceptance of its approved use."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Transfer of information containers between stakeholders."
             }
 
         ],
@@ -128,30 +177,43 @@
                 "id": "e2",
                 "source": "LeadAppointedParty",
                 "target": "AppointedParty",
-                "relationship": "coordinates",
-                "label": "coordinates",
+                "relationship": "appoints",
+                "label": "appoints",
                 "evidence": {
-                    "quote": "The lead appointed party coordinates the appointed parties during project delivery.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "The lead appointed party appoints the appointed parties necessary to produce the information.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 6.4.3",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "AppointedParty",
-                "target": "InformationProduction",
-                "relationship": "performs",
-                "label": "performs",
+                "source": "LeadAppointedParty",
+                "target": "InformationProductionTeam",
+                "relationship": "leads",
+                "label": "leads",
                 "evidence": {
-                    "quote": "Appointed parties are responsible for producing information to satisfy requirements.",
-                    "source": "ISO 19650-2",
+                    "quote": "An information production team is a lead appointed party and their appointed parties.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.1.7",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e4",
+                "source": "AppointedParty",
+                "target": "InformationProductionTeam",
+                "relationship": "belongs_to",
+                "label": "belongs to",
+                "evidence": {
+                    "quote": "An information production team is a lead appointed party and their appointed parties.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.1.7",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
                 "source": "InformationManager",
                 "target": "InformationManagementProcess",
                 "relationship": "manages",
@@ -164,7 +226,7 @@
             },
 
             {
-                "id": "e5",
+                "id": "e6",
                 "source": "InformationManagementProcess",
                 "target": "InformationProduction",
                 "relationship": "governs",
@@ -177,59 +239,150 @@
             },
 
             {
-                "id": "e6",
-                "source": "InformationProduction",
-                "target": "InformationVerification",
-                "relationship": "followed_by",
-                "label": "followed by",
-                "evidence": {
-                    "quote": "Information should be checked before being shared with other parties.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
-                }
-            },
-
-            {
                 "id": "e7",
-                "source": "InformationVerification",
-                "target": "InformationExchange",
-                "relationship": "enables",
-                "label": "enables",
+                "source": "InformationProduction",
+                "target": "InformationChecking",
+                "relationship": "includes",
+                "label": "includes",
                 "evidence": {
-                    "quote": "Verified information is exchanged between project participants.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "quote": "Information production includes generation, coordination, checking, reviewing, approval, authorization and acceptance.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "InformationExchange",
-                "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
+                "source": "InformationChecking",
+                "target": "InformationReviewAndApprove",
+                "relationship": "followed_by",
+                "label": "followed by",
                 "evidence": {
-                    "quote": "Information exchanges deliver information containers.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "Each appointed party shall undertake a quality assurance check... and then review and approve the information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clauses 5.8.3 and 5.8.4",
+                    "type": "inferred_relationship"
                 }
             },
 
             {
                 "id": "e9",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "contains",
-                "label": "contains",
+                "source": "InformationReviewAndApprove",
+                "target": "InformationReviewAndAuthorize",
+                "relationship": "followed_by",
+                "label": "followed by",
                 "evidence": {
-                    "quote": "The common data environment is the agreed source of information containers.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "The lead appointed party shall review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e10",
+                "source": "InformationReviewAndAuthorize",
+                "target": "InformationReviewAndAccept",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "The appointing party shall undertake a review of the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationReviewAndAccept",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Once accepted, information may be exchanged or aggregated into the asset information model.",
+                    "source": "ISO 19650-2:2026 Draft, Introduction 0.4",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "AppointedParty",
+                "target": "InformationReviewAndApprove",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Each appointed party shall... review and approve information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.4",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e13",
+                "source": "LeadAppointedParty",
+                "target": "InformationReviewAndAuthorize",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party shall review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e14",
+                "source": "AppointingParty",
+                "target": "InformationReviewAndAccept",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The appointing party shall undertake a review of the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e15",
+                "source": "InformationReviewAndApprove",
+                "target": "InformationContainer",
+                "relationship": "approves",
+                "label": "approves",
+                "evidence": {
+                    "quote": "Appointed parties approve information containers for a specified use.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.21",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e16",
+                "source": "InformationReviewAndAuthorize",
+                "target": "InformationModel",
+                "relationship": "authorizes",
+                "label": "authorizes",
+                "evidence": {
+                    "quote": "Lead appointed parties authorize information models.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.22",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e17",
+                "source": "InformationReviewAndAccept",
+                "target": "InformationModel",
+                "relationship": "accepts",
+                "label": "accepts",
+                "evidence": {
+                    "quote": "Appointing parties accept information models.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.23",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e18",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
@@ -242,7 +395,7 @@
             },
 
             {
-                "id": "e11",
+                "id": "e19",
                 "source": "InformationModel",
                 "target": "PIM",
                 "relationship": "type",
@@ -255,7 +408,7 @@
             },
 
             {
-                "id": "e12",
+                "id": "e20",
                 "source": "InformationModel",
                 "target": "AIM",
                 "relationship": "type",
@@ -268,7 +421,7 @@
             },
 
             {
-                "id": "e13",
+                "id": "e21",
                 "source": "PIM",
                 "target": "AIM",
                 "relationship": "transitions_to",
@@ -277,6 +430,110 @@
                     "quote": "Information produced during delivery contributes to the asset information model.",
                     "source": "ISO 19650-1",
                     "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e22",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e23",
+                "source": "CDE",
+                "target": "InformationProduction",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "All information production is undertaken via the common data environment.",
+                    "source": "ISO 19650-1",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e24",
+                "source": "AppointingParty",
+                "target": "InformationProductionRequirements",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information production requirements are defined by the appointing party.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 7.2.4",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e25",
+                "source": "InformationProductionRequirements",
+                "target": "InformationReviewAndApprove",
+                "relationship": "guides",
+                "label": "guides",
+                "evidence": {
+                    "quote": "Appointed parties review information against their information production requirements.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.4",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e26",
+                "source": "InformationProductionRequirements",
+                "target": "InformationReviewAndAuthorize",
+                "relationship": "guides",
+                "label": "guides",
+                "evidence": {
+                    "quote": "Lead appointed parties review information against the information production requirements.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e27",
+                "source": "InformationProductionRequirements",
+                "target": "InformationReviewAndAccept",
+                "relationship": "guides",
+                "label": "guides",
+                "evidence": {
+                    "quote": "Appointing parties review information against the information production requirements.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e28",
+                "source": "InformationProductionStandard",
+                "target": "InformationChecking",
+                "relationship": "guides",
+                "label": "guides",
+                "evidence": {
+                    "quote": "Each appointed party shall check the information container against the information production standard.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.3",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e29",
+                "source": "InformationProductionMethods",
+                "target": "InformationProduction",
+                "relationship": "guides",
+                "label": "guides",
+                "evidence": {
+                    "quote": "Information is produced in accordance with the information production methods and procedures.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.2",
+                    "type": "direct_quote"
                 }
             }
 
