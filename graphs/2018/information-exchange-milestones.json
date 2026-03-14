@@ -2,7 +2,7 @@
     "metadata": {
         "id": "iso19650-information-exchange-milestones",
         "name": "Information Exchange Milestones",
-        "description": "Milestones governing when information must be exchanged to support decisions during project delivery.",
+        "description": "Milestones governing when information must be exchanged to support decisions during project delivery, showing the relationship between requirements, milestones, exchanges, and information models.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "2018",
@@ -20,42 +20,84 @@
                 "id": "InformationRequirement",
                 "label": "Information Requirement",
                 "type": "information",
-                "description": "Specification of information needed to support decision-making."
+                "description": "Specification of what, when, how and for whom information is to be produced."
+            },
+
+            {
+                "id": "ExchangeInformationRequirements",
+                "label": "Exchange Information Requirements (EIR)",
+                "type": "information",
+                "description": "Information requirements defined for an appointment, specifying what must be delivered at information exchanges."
             },
 
             {
                 "id": "InformationExchangeMilestone",
                 "label": "Information Exchange Milestone",
                 "type": "process",
-                "description": "Defined milestone where information must be exchanged to support project decisions."
+                "description": "Scheduled event for a predefined information exchange, typically aligned with the end of project stages."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Delivery of information containers between stakeholders."
+                "description": "Act of satisfying an information requirement through delivery of information containers."
             },
 
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "Unit of information delivered and managed within the common data environment."
+                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
             },
 
             {
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Structured set of information containers supporting project decisions."
+                "description": "Set of structured and unstructured information containers."
+            },
+
+            {
+                "id": "ProjectInformationModel",
+                "label": "Project Information Model (PIM)",
+                "type": "information",
+                "description": "Information model relating to the delivery phase, delivered at exchange milestones."
             },
 
             {
                 "id": "Decision",
                 "label": "Decision",
                 "type": "concept",
-                "description": "Decision made during the lifecycle of the project or asset."
+                "description": "Decision made during the lifecycle of the project or asset at key decision points."
+            },
+
+            {
+                "id": "KeyDecisionPoint",
+                "label": "Key Decision Point",
+                "type": "concept",
+                "description": "Point in time during the life cycle when a decision crucial to the direction or viability of the asset is made."
+            },
+
+            {
+                "id": "ProjectStage",
+                "label": "Project Stage",
+                "type": "concept",
+                "description": "A defined phase of the project, at the end of which key decisions are typically made."
+            },
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "The party receiving information and responsible for defining requirements and accepting information exchanges."
+            },
+
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role",
+                "description": "Party responsible for coordinating the delivery team and authorizing information before delivery."
             }
 
         ],
@@ -65,64 +107,155 @@
             {
                 "id": "e1",
                 "source": "InformationRequirement",
-                "target": "InformationExchangeMilestone",
-                "relationship": "defines",
-                "label": "defines",
+                "target": "ExchangeInformationRequirements",
+                "relationship": "refined_to",
+                "label": "refined to",
                 "evidence": {
-                    "quote": "Information requirements determine the information to be delivered at information exchanges.",
-                    "source": "ISO 19650-1",
+                    "quote": "Exchange information requirements specify the information to be delivered at information exchanges.",
+                    "source": "ISO 19650-1:2018, 5.5",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e2",
-                "source": "InformationExchangeMilestone",
-                "target": "InformationExchange",
-                "relationship": "triggers",
-                "label": "triggers",
+                "source": "ExchangeInformationRequirements",
+                "target": "InformationExchangeMilestone",
+                "relationship": "defines",
+                "label": "defines",
                 "evidence": {
-                    "quote": "Information exchanges occur at defined points in time to support project decision-making.",
-                    "source": "ISO 19650-2",
+                    "quote": "Exchange information requirements specify the information to be delivered at information exchanges.",
+                    "source": "ISO 19650-1:2018, 5.5",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "InformationExchange",
-                "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
+                "source": "ProjectStage",
+                "target": "KeyDecisionPoint",
+                "relationship": "ends_at",
+                "label": "ends at",
                 "evidence": {
-                    "quote": "Information exchanges deliver information containers between parties.",
-                    "source": "ISO 19650-2",
+                    "quote": "Key decision points generally align with project stages.",
+                    "source": "ISO 19650-1:2018, 3.2.14",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e4",
-                "source": "InformationContainer",
-                "target": "InformationModel",
-                "relationship": "forms",
-                "label": "forms",
+                "source": "KeyDecisionPoint",
+                "target": "InformationExchangeMilestone",
+                "relationship": "requires",
+                "label": "requires",
                 "evidence": {
-                    "quote": "Information models are collections of information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "Information is required to support key decisions during the project.",
+                    "source": "ISO 19650-1:2018, 6.3.2",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e5",
+                "source": "InformationExchangeMilestone",
+                "target": "InformationExchange",
+                "relationship": "triggers",
+                "label": "triggers",
+                "evidence": {
+                    "quote": "Information exchanges occur at defined points in time to support project decision-making.",
+                    "source": "ISO 19650-2:2018, 5.7",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchange is the act of satisfying an information requirement.",
+                    "source": "ISO 19650-1:2018, 3.3.7",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.8",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
                 "source": "InformationModel",
+                "target": "ProjectInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "The project information model supports project delivery.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "ProjectInformationModel",
                 "target": "Decision",
                 "relationship": "supports",
                 "label": "supports",
                 "evidence": {
                     "quote": "Information models support decision-making throughout the lifecycle of an asset.",
                     "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "AppointingParty",
+                "target": "ExchangeInformationRequirements",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "The appointing party establishes their exchange information requirements.",
+                    "source": "ISO 19650-2:2018, 5.2.1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "LeadAppointedParty",
+                "target": "InformationExchange",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party submits information for appointing party acceptance.",
+                    "source": "ISO 19650-2:2018, 5.7.1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "AppointingParty",
+                "target": "InformationExchange",
+                "relationship": "accepts",
+                "label": "accepts",
+                "evidence": {
+                    "quote": "The appointing party reviews and accepts the information model.",
+                    "source": "ISO 19650-2:2018, 5.7.4",
                     "type": "definition"
                 }
             }
