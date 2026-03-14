@@ -2,10 +2,10 @@
     "metadata": {
         "id": "iso19650-information-exchange-milestones",
         "name": "Information Exchange Milestones",
-        "description": "Milestones governing when information must be exchanged to support decisions during project delivery.",
+        "description": "Milestones governing when information must be exchanged to support lifecycle decisions.",
         "type": "process-map",
         "standard": "ISO 19650",
-        "version": "2018",
+        "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
@@ -17,24 +17,38 @@
         "nodes": [
 
             {
+                "id": "LifecycleDecision",
+                "label": "Lifecycle Decision",
+                "type": "concept",
+                "description": "Decision taken during the lifecycle of an asset requiring supporting information."
+            },
+
+            {
+                "id": "InformationPurpose",
+                "label": "Information Purpose",
+                "type": "concept",
+                "description": "Reason why information is required to support a lifecycle decision."
+            },
+
+            {
                 "id": "InformationRequirement",
                 "label": "Information Requirement",
                 "type": "information",
-                "description": "Specification of information needed to support decision-making."
+                "description": "Specification of information required to fulfill an information purpose."
             },
 
             {
                 "id": "InformationExchangeMilestone",
                 "label": "Information Exchange Milestone",
                 "type": "process",
-                "description": "Defined milestone where information must be exchanged to support project decisions."
+                "description": "Defined milestone where verified information is exchanged to support decisions."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Delivery of information containers between stakeholders."
+                "description": "Transfer of verified information between stakeholders."
             },
 
             {
@@ -48,14 +62,14 @@
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Structured set of information containers supporting project decisions."
+                "description": "Structured set of information containers supporting lifecycle decisions."
             },
 
             {
-                "id": "Decision",
-                "label": "Decision",
-                "type": "concept",
-                "description": "Decision made during the lifecycle of the project or asset."
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared environment used to manage and exchange information containers."
             }
 
         ],
@@ -64,38 +78,38 @@
 
             {
                 "id": "e1",
-                "source": "InformationRequirement",
-                "target": "InformationExchangeMilestone",
-                "relationship": "defines",
-                "label": "defines",
+                "source": "LifecycleDecision",
+                "target": "InformationPurpose",
+                "relationship": "drives",
+                "label": "drives",
                 "evidence": {
-                    "quote": "Information requirements determine the information to be delivered at information exchanges.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information is required to support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e2",
-                "source": "InformationExchangeMilestone",
-                "target": "InformationExchange",
-                "relationship": "triggers",
-                "label": "triggers",
+                "source": "InformationPurpose",
+                "target": "InformationRequirement",
+                "relationship": "defines",
+                "label": "defines",
                 "evidence": {
-                    "quote": "Information exchanges occur at defined points in time to support project decision-making.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
+                    "quote": "Information is only specified and produced in response to one or more clear information purposes.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "InformationExchange",
-                "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
+                "source": "InformationRequirement",
+                "target": "InformationExchangeMilestone",
+                "relationship": "defines",
+                "label": "defines",
                 "evidence": {
-                    "quote": "Information exchanges deliver information containers between parties.",
+                    "quote": "Information requirements determine the information to be delivered at defined information exchange points.",
                     "source": "ISO 19650-2",
                     "type": "definition"
                 }
@@ -103,6 +117,32 @@
 
             {
                 "id": "e4",
+                "source": "InformationExchangeMilestone",
+                "target": "InformationExchange",
+                "relationship": "triggers",
+                "label": "triggers",
+                "evidence": {
+                    "quote": "Information exchanges occur at defined milestones during project delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver verified information containers between parties.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e6",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
@@ -115,13 +155,26 @@
             },
 
             {
-                "id": "e5",
+                "id": "e7",
                 "source": "InformationModel",
-                "target": "Decision",
+                "target": "LifecycleDecision",
                 "relationship": "supports",
                 "label": "supports",
                 "evidence": {
-                    "quote": "Information models support decision-making throughout the lifecycle of an asset.",
+                    "quote": "Information models support decision-making throughout the lifecycle of assets.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
