@@ -130,7 +130,8 @@ function getNodeColor(type) {
     role: "#16a34a",
     process: "#ea580c",
     information: "#9333ea",
-    system: "#6b7280"
+    system: "#6b7280",
+    state: "#0f172a"
   };
 
   return colorMap[type] || "#0f172a";

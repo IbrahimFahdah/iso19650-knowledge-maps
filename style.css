@@ -311,6 +311,10 @@ body {
   background: #6b7280;
 }
 
+.state-swatch {
+  background: #0f172a;
+}
+
 .selection-type {
   margin-bottom: 16px;
   padding: 10px 12px;
