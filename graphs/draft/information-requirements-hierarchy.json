@@ -31,6 +31,13 @@
             },
 
             {
+                "id": "LifecycleDecision",
+                "label": "Lifecycle Decision",
+                "type": "concept",
+                "description": "Decision taken during the lifecycle of the asset."
+            },
+
+            {
                 "id": "InformationPurpose",
                 "label": "Information Purpose",
                 "type": "concept",
@@ -105,6 +112,19 @@
             {
                 "id": "e3",
                 "source": "InformationPurpose",
+                "target": "LifecycleDecision",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "Information is required to support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650-1",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationPurpose",
                 "target": "OIR",
                 "relationship": "defines",
                 "label": "defines",
@@ -116,7 +136,7 @@
             },
 
             {
-                "id": "e4",
+                "id": "e5",
                 "source": "OIR",
                 "target": "AIR",
                 "relationship": "informs",
@@ -129,7 +149,7 @@
             },
 
             {
-                "id": "e5",
+                "id": "e6",
                 "source": "AIR",
                 "target": "PIR",
                 "relationship": "informs",
@@ -142,7 +162,7 @@
             },
 
             {
-                "id": "e6",
+                "id": "e7",
                 "source": "PIR",
                 "target": "InformationProductionRequirements",
                 "relationship": "refines",
@@ -155,7 +175,7 @@
             },
 
             {
-                "id": "e7",
+                "id": "e8",
                 "source": "InformationProductionRequirements",
                 "target": "InformationProduction",
                 "relationship": "specifies",
