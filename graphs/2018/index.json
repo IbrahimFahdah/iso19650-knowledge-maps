@@ -2,6 +2,7 @@
     "graphs": [
         "graphs/2018/core-system.json",
         "graphs/2018/information-requirements-hierarchy.json",
+        "graphs/2018/information-model-governance.json",
         "graphs/2018/role-responsibility.json",
         "graphs/2018/information-delivery-process.json",
         "graphs/2018/cde-workflow.json",

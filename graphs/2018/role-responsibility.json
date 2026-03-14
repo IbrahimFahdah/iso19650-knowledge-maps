@@ -225,6 +225,32 @@
                     "source": "ISO 19650-1",
                     "type": "inferred_relationship"
                 }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationManager",
+                "target": "AppointingParty",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "Information management roles support the appointing party in implementing the information management process.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "InformationExchange",
+                "target": "InformationUser",
+                "relationship": "delivers_to",
+                "label": "delivers to",
+                "evidence": {
+                    "quote": "Information exchanges provide information to stakeholders to support decisions.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
             }
 
         ]
