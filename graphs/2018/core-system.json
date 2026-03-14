@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-core-system",
         "name": "Core Information System",
-        "description": "Core information management concepts and relationships defined in ISO 19650:2018, including the information standard and lifecycle integration.",
+        "description": "Core information management concepts and relationships defined in ISO 19650:2018.",
         "type": "concept-map",
         "standard": "ISO 19650",
         "version": "2018",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "core", "information-management", "architecture", "standard" ]
+        "tags": [ "core", "information-management", "architecture" ]
     },
 
     "graph": {
@@ -27,91 +27,91 @@
                 "id": "Lifecycle",
                 "label": "Asset Lifecycle",
                 "type": "concept",
-                "description": "Lifecycle stages of an asset including delivery phase and operational phase."
+                "description": "Lifecycle stages of an asset including delivery and operation."
             },
 
             {
                 "id": "Decision",
                 "label": "Decision",
                 "type": "concept",
-                "description": "Decision made during the lifecycle of an asset at key decision points."
+                "description": "Decision made during the lifecycle of an asset."
             },
 
             {
                 "id": "InformationRequirement",
                 "label": "Information Requirement",
                 "type": "information",
-                "description": "Specification of what, when, how and for whom information is to be produced."
-            },
-
-            {
-                "id": "InformationStandard",
-                "label": "Information Standard",
-                "type": "concept",
-                "description": "Specification for structuring and classifying information, including naming conventions, attributes, and formats."
+                "description": "Specification of information needed to support decision-making."
             },
 
             {
                 "id": "LevelOfInformationNeed",
                 "label": "Level of Information Need",
                 "type": "concept",
-                "description": "Framework which defines the extent and granularity of information to prevent delivery of too much information."
+                "description": "Framework defining the minimum amount of information required to satisfy an information requirement."
+            },
+
+            {
+                "id": "InformationStandard",
+                "label": "Information Standard",
+                "type": "concept",
+                "description": "Specification defining how information should be structured, classified and named."
             },
 
             {
                 "id": "InformationProduction",
                 "label": "Information Production",
                 "type": "process",
-                "description": "Activity of creating information during project delivery or asset operation."
+                "description": "Activity of creating information during project delivery."
             },
 
             {
                 "id": "InformationVerification",
                 "label": "Information Verification",
                 "type": "process",
-                "description": "Checking and validating information before exchange, including quality assurance and review."
+                "description": "Checking and validating information before exchange."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Act of satisfying an information requirement through delivery of information containers."
+                "description": "Transfer of information between parties."
             },
 
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
+                "description": "Unit of information managed in the common data environment."
             },
 
             {
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Set of structured and unstructured information containers."
+                "description": "Structured collection of information containers."
             },
 
             {
                 "id": "ProjectInformationModel",
                 "label": "Project Information Model (PIM)",
                 "type": "information",
-                "description": "Information model relating to the delivery phase."
+                "description": "Information model used during project delivery."
             },
 
             {
                 "id": "AssetInformationModel",
                 "label": "Asset Information Model (AIM)",
                 "type": "information",
-                "description": "Information model relating to the operational phase."
+                "description": "Information model used during asset operation."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Agreed source of information for collecting, managing and disseminating information containers through a managed process."
+                "description": "Shared environment used to manage information."
             },
 
             {
@@ -130,7 +130,7 @@
                 "source": "Asset",
                 "target": "Lifecycle",
                 "relationship": "has",
-                "label": "has",
+                "label": "has lifecycle",
                 "evidence": {
                     "quote": "Information management supports the management of information throughout the lifecycle of an asset.",
                     "source": "ISO 19650-1",
@@ -166,6 +166,19 @@
 
             {
                 "id": "e4",
+                "source": "LevelOfInformationNeed",
+                "target": "InformationRequirement",
+                "relationship": "defines_extent",
+                "label": "defines extent",
+                "evidence": {
+                    "quote": "The level of information need should be determined by the minimum amount of information needed to answer each relevant requirement.",
+                    "source": "ISO 19650-1:2018, 11.2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
                 "source": "InformationRequirement",
                 "target": "InformationProduction",
                 "relationship": "drives",
@@ -178,46 +191,7 @@
             },
 
             {
-                "id": "e5",
-                "source": "InformationStandard",
-                "target": "InformationRequirement",
-                "relationship": "specifies",
-                "label": "specifies how",
-                "evidence": {
-                    "quote": "The project's information standard specifies the means of structuring and classifying information.",
-                    "source": "ISO 19650-2:2018, 5.1.4",
-                    "type": "definition"
-                }
-            },
-
-            {
                 "id": "e6",
-                "source": "LevelOfInformationNeed",
-                "target": "InformationRequirement",
-                "relationship": "defines_extent",
-                "label": "defines extent of",
-                "evidence": {
-                    "quote": "Level of information need should be determined by the minimum amount of information needed to answer each relevant requirement.",
-                    "source": "ISO 19650-1:2018, 11.2",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e7",
-                "source": "InformationStandard",
-                "target": "InformationContainer",
-                "relationship": "governs",
-                "label": "governs",
-                "evidence": {
-                    "quote": "Naming of an information container should be according to an agreed naming convention.",
-                    "source": "ISO 19650-1:2018, 3.3.12",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e8",
                 "source": "InformationProducer",
                 "target": "InformationProduction",
                 "relationship": "performs",
@@ -230,7 +204,7 @@
             },
 
             {
-                "id": "e9",
+                "id": "e7",
                 "source": "InformationProduction",
                 "target": "InformationContainer",
                 "relationship": "creates",
@@ -243,7 +217,7 @@
             },
 
             {
-                "id": "e10",
+                "id": "e8",
                 "source": "InformationVerification",
                 "target": "InformationContainer",
                 "relationship": "verifies",
@@ -256,7 +230,7 @@
             },
 
             {
-                "id": "e11",
+                "id": "e9",
                 "source": "InformationVerification",
                 "target": "InformationExchange",
                 "relationship": "enables",
@@ -269,24 +243,11 @@
             },
 
             {
-                "id": "e12",
+                "id": "e10",
                 "source": "InformationExchange",
                 "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
-                "evidence": {
-                    "quote": "Information exchanges deliver information containers between parties.",
-                    "source": "ISO 19650-2",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e13",
-                "source": "InformationExchange",
-                "target": "InformationRequirement",
-                "relationship": "satisfies",
-                "label": "satisfies",
+                "relationship": "transfers",
+                "label": "transfers",
                 "evidence": {
                     "quote": "Information exchange is the act of satisfying an information requirement.",
                     "source": "ISO 19650-1:2018, 3.3.7",
@@ -295,20 +256,20 @@
             },
 
             {
-                "id": "e14",
+                "id": "e11",
                 "source": "InformationContainer",
                 "target": "InformationModel",
                 "relationship": "forms",
                 "label": "forms",
                 "evidence": {
-                    "quote": "Information models are collections of information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "An information model is a set of structured and unstructured information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.8",
                     "type": "definition"
                 }
             },
 
             {
-                "id": "e15",
+                "id": "e12",
                 "source": "InformationModel",
                 "target": "ProjectInformationModel",
                 "relationship": "type",
@@ -321,7 +282,7 @@
             },
 
             {
-                "id": "e16",
+                "id": "e13",
                 "source": "InformationModel",
                 "target": "AssetInformationModel",
                 "relationship": "type",
@@ -329,6 +290,45 @@
                 "evidence": {
                     "quote": "The asset information model supports asset operation.",
                     "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e14",
+                "source": "ProjectInformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "contributes_to",
+                "label": "contributes to",
+                "evidence": {
+                    "quote": "Information developed during project delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e15",
+                "source": "AssetInformationModel",
+                "target": "Decision",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "Information models support decision-making during the lifecycle of assets.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e16",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information for collecting, managing and disseminating each information container.",
+                    "source": "ISO 19650-1:2018, 3.3.15",
                     "type": "definition"
                 }
             },
@@ -348,39 +348,13 @@
 
             {
                 "id": "e18",
-                "source": "CDE",
+                "source": "InformationStandard",
                 "target": "InformationContainer",
-                "relationship": "contains",
-                "label": "contains",
+                "relationship": "governs",
+                "label": "governs",
                 "evidence": {
-                    "quote": "The common data environment is used for collecting, managing and disseminating each information container.",
-                    "source": "ISO 19650-1:2018, 3.3.15",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e19",
-                "source": "AssetInformationModel",
-                "target": "Decision",
-                "relationship": "supports",
-                "label": "supports",
-                "evidence": {
-                    "quote": "Information models support decision-making during the lifecycle of assets.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e20",
-                "source": "ProjectInformationModel",
-                "target": "AssetInformationModel",
-                "relationship": "contributes_to",
-                "label": "contributes to",
-                "evidence": {
-                    "quote": "Information developed during project delivery contributes to the asset information model.",
-                    "source": "ISO 19650-1",
+                    "quote": "The project information standard specifies the means of structuring and classifying information.",
+                    "source": "ISO 19650-2:2018, 5.1.4",
                     "type": "definition"
                 }
             }
