@@ -1,145 +1,171 @@
 {
-  "metadata": {
-    "id": "iso19650-information-model-structure",
-    "name": "Information Model Structure",
-    "description": "Hierarchy of information containers and information models defined in ISO 19650:2018.",
-    "type": "structure-map",
-    "standard": "ISO 19650",
-    "version": "2018",
-    "part": "Part 1",
-    "created": "2026-03-14",
-    "author": "ISO19650 Knowledge Maps",
-    "tags": ["information-model", "PIM", "AIM", "structure"]
-  },
+    "metadata": {
+        "id": "iso19650-information-model-structure",
+        "name": "Information Model Structure",
+        "description": "Hierarchy of information containers and information models defined in ISO 19650:2018.",
+        "type": "structure-map",
+        "standard": "ISO 19650",
+        "version": "2018",
+        "part": "Part 1",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "information-model", "PIM", "AIM", "structure" ]
+    },
 
-  "graph": {
+    "graph": {
 
-    "nodes": [
+        "nodes": [
 
-      {
-        "id": "InformationContainer",
-        "label": "Information Container",
-        "type": "information",
-        "description": "A container of information managed within the common data environment."
-      },
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "A container of information managed within the common data environment."
+            },
 
-      {
-        "id": "InformationModel",
-        "label": "Information Model",
-        "type": "information",
-        "description": "A structured set of information containers."
-      },
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "information",
+                "description": "A structured set of information containers."
+            },
 
-      {
-        "id": "ProjectInformationModel",
-        "label": "Project Information Model (PIM)",
-        "type": "information",
-        "description": "Information model used during project delivery."
-      },
+            {
+                "id": "ProjectInformationModel",
+                "label": "Project Information Model (PIM)",
+                "type": "information",
+                "description": "Information model used during project delivery."
+            },
 
-      {
-        "id": "AssetInformationModel",
-        "label": "Asset Information Model (AIM)",
-        "type": "information",
-        "description": "Information model used during asset operation."
-      },
+            {
+                "id": "AssetInformationModel",
+                "label": "Asset Information Model (AIM)",
+                "type": "information",
+                "description": "Information model used during asset operation."
+            },
 
-      {
-        "id": "InformationExchange",
-        "label": "Information Exchange",
-        "type": "process",
-        "description": "Exchange of information containers between stakeholders."
-      },
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Exchange of information containers between stakeholders."
+            },
 
-      {
-        "id": "Lifecycle",
-        "label": "Asset Lifecycle",
-        "type": "concept",
-        "description": "Lifecycle stages of the asset where information is used."
-      }
+            {
+                "id": "Lifecycle",
+                "label": "Asset Lifecycle",
+                "type": "concept",
+                "description": "Lifecycle stages of the asset where information is used."
+            }
 
-    ],
+        ],
 
-    "edges": [
+        "edges": [
 
-      {
-        "id": "e1",
-        "source": "InformationContainer",
-        "target": "InformationModel",
-        "relationship": "forms",
-        "label": "forms",
-        "evidence": {
-          "quote": "Information models are collections of information containers.",
-          "source": "ISO 19650-1",
-          "type": "definition"
-        }
-      },
+            {
+                "id": "e1",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
 
-      {
-        "id": "e2",
-        "source": "InformationModel",
-        "target": "ProjectInformationModel",
-        "relationship": "type",
-        "label": "type",
-        "evidence": {
-          "quote": "The project information model supports project delivery activities.",
-          "source": "ISO 19650-1",
-          "type": "definition"
-        }
-      },
+            {
+                "id": "e2",
+                "source": "InformationModel",
+                "target": "ProjectInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "The project information model supports project delivery activities.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
 
-      {
-        "id": "e3",
-        "source": "InformationModel",
-        "target": "AssetInformationModel",
-        "relationship": "type",
-        "label": "type",
-        "evidence": {
-          "quote": "The asset information model supports asset management during operation.",
-          "source": "ISO 19650-1",
-          "type": "definition"
-        }
-      },
+            {
+                "id": "e3",
+                "source": "InformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "The asset information model supports asset management during operation.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
 
-      {
-        "id": "e4",
-        "source": "ProjectInformationModel",
-        "target": "AssetInformationModel",
-        "relationship": "transitions_to",
-        "label": "transitions to",
-        "evidence": {
-          "quote": "Information developed during project delivery contributes to the asset information model.",
-          "source": "ISO 19650-1",
-          "type": "inferred_relationship"
-        }
-      },
+            {
+                "id": "e4",
+                "source": "ProjectInformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Information developed during project delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
 
-      {
-        "id": "e5",
-        "source": "InformationExchange",
-        "target": "InformationContainer",
-        "relationship": "delivers",
-        "label": "delivers",
-        "evidence": {
-          "quote": "Information exchanges deliver information containers between parties.",
-          "source": "ISO 19650-2",
-          "type": "definition"
-        }
-      },
+            {
+                "id": "e5",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver information containers between parties.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
 
-      {
-        "id": "e6",
-        "source": "AssetInformationModel",
-        "target": "Lifecycle",
-        "relationship": "supports",
-        "label": "supports",
-        "evidence": {
-          "quote": "The asset information model supports decision-making during the lifecycle of the asset.",
-          "source": "ISO 19650-1",
-          "type": "definition"
-        }
-      }
+            {
+                "id": "e6",
+                "source": "AssetInformationModel",
+                "target": "Lifecycle",
+                "relationship": "supports",
+                "label": "supports",
+                "evidence": {
+                    "quote": "The asset information model supports decision-making during the lifecycle of the asset.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
 
-    ]
-  }
+            {
+                "id": "e7",
+                "source": "InformationContainer",
+                "target": "ProjectInformationModel",
+                "relationship": "forms_part_of",
+                "label": "forms part of",
+                "evidence": {
+                    "quote": "Information containers collectively form the project information model during project delivery.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationContainer",
+                "target": "AssetInformationModel",
+                "relationship": "forms_part_of",
+                "label": "forms part of",
+                "evidence": {
+                    "quote": "Information developed during project delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            }
+
+        ]
+    }
 }
