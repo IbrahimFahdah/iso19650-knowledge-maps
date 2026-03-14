@@ -1,15 +1,15 @@
 {
     "metadata": {
-        "id": "iso19650-cde-workflow-v4",
+        "id": "iso19650-cde-workflow",
         "name": "CDE Workflow and Information Production",
-        "description": "Comprehensive representation of information container states, transitions, coordination processes, roles, and exchanges within the Common Data Environment according to ISO 19650:2026 draft.",
+        "description": "Comprehensive representation of information container states, coordination processes, exchanges, and roles within the Common Data Environment according to ISO 19650:2026 draft.",
         "type": "process-map",
         "standard": "ISO 19650",
-        "version": "2026-draft",
+        "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "workflow", "information-state", "container", "information-production", "information-exchange" ]
+        "tags": [ "CDE", "workflow", "information-state", "container", "information-production" ]
     },
 
     "graph": {
@@ -27,98 +27,98 @@
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "Structured aggregation of multiple information containers forming the project information model or asset information model."
+                "description": "Structured aggregation of multiple information containers forming a project information model or asset information model."
             },
 
             {
                 "id": "InformationPurpose",
                 "label": "Information Purpose",
                 "type": "concept",
-                "description": "Reason why information is produced and used, such as coordination, approval, construction, or asset operation."
+                "description": "Reason why information is produced and used such as coordination, approval, construction, or asset operation."
             },
 
             {
                 "id": "InformationProductionRequirements",
                 "label": "Information Production Requirements",
-                "type": "requirement",
-                "description": "Requirements defining what information must be produced, when it must be delivered, and for what purpose."
+                "type": "information",
+                "description": "Specification defining what information must be produced, when it must be delivered, and for what purpose."
             },
 
             {
                 "id": "WorkInProgress",
                 "label": "WORK IN PROGRESS",
                 "type": "state",
-                "description": "State where information is being developed by its authoring appointed party and is not visible to other parties. This is the only state where information can be generated or amended."
+                "description": "State where information is being developed by its authoring appointed party and is not visible or accessible to other parties."
             },
 
             {
                 "id": "Shared",
                 "label": "SHARED",
                 "type": "state",
-                "description": "State where information is shared with other parties within the information production team for coordination and collaborative development."
+                "description": "State where information is shared with other parties for coordination and collaborative development."
             },
 
             {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state",
-                "description": "State where information has been authorized by the lead appointed party and accepted by the appointing party for use."
+                "description": "State where information has been authorized and accepted for use."
             },
 
             {
                 "id": "Archived",
                 "label": "ARCHIVED",
                 "type": "state",
-                "description": "State where superseded information containers are retained for audit, historical reference, or legal purposes."
+                "description": "State where superseded information containers are retained for audit and historical reference."
             },
 
             {
                 "id": "CheckReviewApprove",
                 "label": "Check / Review / Approve",
                 "type": "process",
-                "description": "Process where the appointed party verifies the information container against the information production standard before sharing."
+                "description": "Process where the appointed party verifies information containers before sharing."
             },
 
             {
                 "id": "CoordinationReview",
                 "label": "Coordination Review",
                 "type": "process",
-                "description": "Process where appointed parties coordinate shared information containers to resolve inconsistencies and ensure alignment."
+                "description": "Process where appointed parties coordinate shared information containers to resolve issues and inconsistencies."
             },
 
             {
                 "id": "InformationExchange",
                 "label": "Information Exchange",
                 "type": "process",
-                "description": "Planned event where an information model is delivered to satisfy defined information production requirements."
+                "description": "Planned event where an information model is delivered to satisfy information production requirements."
             },
 
             {
                 "id": "ReviewAuthorize",
                 "label": "Review / Authorize",
                 "type": "process",
-                "description": "Process where the lead appointed party reviews the information model against information production requirements and authorizes it for submission."
+                "description": "Process where the lead appointed party reviews the information model against requirements and authorizes it."
             },
 
             {
                 "id": "ReviewAccept",
                 "label": "Review / Accept",
                 "type": "process",
-                "description": "Process where the appointing party reviews the submitted information model and accepts it for use."
+                "description": "Process where the appointing party reviews and accepts the submitted information model."
             },
 
             {
                 "id": "StatusCode",
                 "label": "Status Code",
                 "type": "information",
-                "description": "Property signifying the permitted use of an information container’s content based on its workflow state and approved purpose."
+                "description": "Property signifying the permitted use of an information container based on its workflow state and purpose."
             },
 
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system",
-                "description": "Operational framework combining the information production workflow and enabling technologies to facilitate collaborative information production."
+                "description": "Operational framework combining the information production workflow and enabling technologies."
             },
 
             {
@@ -132,14 +132,14 @@
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role",
-                "description": "Party responsible for managing information production and authorizing information models."
+                "description": "Party responsible for coordinating information production and authorizing information models."
             },
 
             {
                 "id": "AppointingParty",
                 "label": "Appointing Party",
                 "type": "role",
-                "description": "Party accountable for defining information requirements and accepting delivered information."
+                "description": "Party accountable for defining information requirements and accepting information deliverables."
             }
 
         ],
@@ -153,7 +153,7 @@
                 "relationship": "aggregated_into",
                 "label": "aggregated into",
                 "evidence": {
-                    "quote": "Information models are composed of multiple information containers.",
+                    "quote": "Information models consist of structured collections of information containers.",
                     "source": "ISO 19650 Concept",
                     "type": "definition"
                 }
@@ -164,7 +164,12 @@
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
                 "relationship": "created_in",
-                "label": "created in"
+                "label": "created in",
+                "evidence": {
+                    "quote": "Information containers start the information production workflow in the WORK IN PROGRESS state.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -172,7 +177,12 @@
                 "source": "AppointedParty",
                 "target": "WorkInProgress",
                 "relationship": "develops_in",
-                "label": "develops in"
+                "label": "develops in",
+                "evidence": {
+                    "quote": "Information within containers is generated and amended by the appointed party while in the WORK IN PROGRESS state.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -180,7 +190,12 @@
                 "source": "WorkInProgress",
                 "target": "CheckReviewApprove",
                 "relationship": "submitted_for",
-                "label": "submitted for"
+                "label": "submitted for",
+                "evidence": {
+                    "quote": "Before information is shared it shall be checked, reviewed and approved.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "direct_quote"
+                }
             },
 
             {
@@ -188,7 +203,12 @@
                 "source": "CheckReviewApprove",
                 "target": "Shared",
                 "relationship": "transitions_to",
-                "label": "transitions to"
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Following checking and approval the information container is shared with other parties.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -196,7 +216,12 @@
                 "source": "Shared",
                 "target": "CoordinationReview",
                 "relationship": "undergoes",
-                "label": "undergoes"
+                "label": "undergoes",
+                "evidence": {
+                    "quote": "Shared information supports coordination between appointed parties.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -204,7 +229,12 @@
                 "source": "CoordinationReview",
                 "target": "WorkInProgress",
                 "relationship": "returns_to",
-                "label": "returns to"
+                "label": "returns to",
+                "evidence": {
+                    "quote": "Information containers may be returned to work in progress if amendments are required.",
+                    "source": "ISO 19650 Concept",
+                    "type": "inferred_relationship"
+                }
             },
 
             {
@@ -212,7 +242,12 @@
                 "source": "Shared",
                 "target": "InformationExchange",
                 "relationship": "prepared_for",
-                "label": "prepared for"
+                "label": "prepared for",
+                "evidence": {
+                    "quote": "Information exchanges occur when information models are delivered to satisfy defined requirements.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -220,7 +255,12 @@
                 "source": "InformationExchange",
                 "target": "ReviewAuthorize",
                 "relationship": "initiates",
-                "label": "initiates"
+                "label": "initiates",
+                "evidence": {
+                    "quote": "Before submitting information models to the appointing party the lead appointed party undertakes review and authorization.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -228,7 +268,12 @@
                 "source": "LeadAppointedParty",
                 "target": "ReviewAuthorize",
                 "relationship": "performs",
-                "label": "performs"
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party coordinates and authorizes the information model prior to submission.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -236,7 +281,12 @@
                 "source": "ReviewAuthorize",
                 "target": "ReviewAccept",
                 "relationship": "submitted_to",
-                "label": "submitted to"
+                "label": "submitted to",
+                "evidence": {
+                    "quote": "Authorized information models are submitted to the appointing party for review and acceptance.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -244,7 +294,12 @@
                 "source": "AppointingParty",
                 "target": "ReviewAccept",
                 "relationship": "performs",
-                "label": "performs"
+                "label": "performs",
+                "evidence": {
+                    "quote": "The appointing party reviews the submitted information model and determines acceptance.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -252,7 +307,12 @@
                 "source": "ReviewAccept",
                 "target": "Published",
                 "relationship": "transitions_to",
-                "label": "transitions to"
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Accepted information containers transition to the PUBLISHED state.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -260,7 +320,12 @@
                 "source": "ReviewAccept",
                 "target": "Shared",
                 "relationship": "returns_to_if_rejected",
-                "label": "returns to"
+                "label": "returns to",
+                "evidence": {
+                    "quote": "If the information model is rejected it shall be amended and resubmitted.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "direct_quote"
+                }
             },
 
             {
@@ -268,7 +333,12 @@
                 "source": "Published",
                 "target": "Archived",
                 "relationship": "superseded_as",
-                "label": "superseded as"
+                "label": "superseded as",
+                "evidence": {
+                    "quote": "Superseded information containers are retained in the ARCHIVED state.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -276,7 +346,12 @@
                 "source": "InformationContainer",
                 "target": "StatusCode",
                 "relationship": "assigned",
-                "label": "assigned"
+                "label": "assigned",
+                "evidence": {
+                    "quote": "Each revision of an information container is assigned a status indicating permitted use.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "direct_quote"
+                }
             },
 
             {
@@ -284,7 +359,12 @@
                 "source": "InformationPurpose",
                 "target": "StatusCode",
                 "relationship": "determines",
-                "label": "determines"
+                "label": "determines",
+                "evidence": {
+                    "quote": "Status codes reflect the purpose for which information is approved.",
+                    "source": "ISO 19650 Concept",
+                    "type": "inferred_relationship"
+                }
             },
 
             {
@@ -292,7 +372,12 @@
                 "source": "InformationProductionRequirements",
                 "target": "ReviewAuthorize",
                 "relationship": "evaluated_against",
-                "label": "evaluated against"
+                "label": "evaluated against",
+                "evidence": {
+                    "quote": "Information models are evaluated against defined information requirements before authorization.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -300,7 +385,12 @@
                 "source": "InformationProductionRequirements",
                 "target": "ReviewAccept",
                 "relationship": "evaluated_against",
-                "label": "evaluated against"
+                "label": "evaluated against",
+                "evidence": {
+                    "quote": "The appointing party reviews submitted information against defined requirements.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "definition"
+                }
             },
 
             {
@@ -308,7 +398,12 @@
                 "source": "CDE",
                 "target": "WorkInProgress",
                 "relationship": "contains_state",
-                "label": "contains"
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment manages information containers through defined workflow states.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
             },
 
             {
@@ -316,7 +411,12 @@
                 "source": "CDE",
                 "target": "Shared",
                 "relationship": "contains_state",
-                "label": "contains"
+                "label": "contains",
+                "evidence": {
+                    "quote": "The CDE facilitates collaborative information production between parties.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
             },
 
             {
@@ -324,7 +424,12 @@
                 "source": "CDE",
                 "target": "Published",
                 "relationship": "contains_state",
-                "label": "contains"
+                "label": "contains",
+                "evidence": {
+                    "quote": "Authorized information containers are made available through the common data environment.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
             },
 
             {
@@ -332,7 +437,12 @@
                 "source": "CDE",
                 "target": "Archived",
                 "relationship": "contains_state",
-                "label": "contains"
+                "label": "contains",
+                "evidence": {
+                    "quote": "The CDE maintains an archive of superseded information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
             }
 
         ]
