@@ -31,6 +31,13 @@
             },
 
             {
+                "id": "InformationPurpose",
+                "label": "Information Purpose",
+                "type": "concept",
+                "description": "Reason why information is required to support decisions."
+            },
+
+            {
                 "id": "OIR",
                 "label": "Organizational Information Requirements",
                 "type": "information",
@@ -85,18 +92,31 @@
             {
                 "id": "e2",
                 "source": "OrganizationalObjectives",
-                "target": "OIR",
+                "target": "InformationPurpose",
                 "relationship": "drives",
                 "label": "drives",
                 "evidence": {
-                    "quote": "Organizational information requirements define the information needed to support organizational objectives.",
-                    "source": "ISO 19650-1",
-                    "type": "definition"
+                    "quote": "Information should be specified and produced in response to defined information purposes.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e3",
+                "source": "InformationPurpose",
+                "target": "OIR",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Information purposes lead to the identification of organizational information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e4",
                 "source": "OIR",
                 "target": "AIR",
                 "relationship": "informs",
@@ -109,7 +129,7 @@
             },
 
             {
-                "id": "e4",
+                "id": "e5",
                 "source": "AIR",
                 "target": "PIR",
                 "relationship": "informs",
@@ -122,7 +142,7 @@
             },
 
             {
-                "id": "e5",
+                "id": "e6",
                 "source": "PIR",
                 "target": "EIR",
                 "relationship": "refines",
@@ -135,7 +155,7 @@
             },
 
             {
-                "id": "e6",
+                "id": "e7",
                 "source": "EIR",
                 "target": "InformationProduction",
                 "relationship": "specifies",

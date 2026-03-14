@@ -1,0 +1,285 @@
+{
+    "metadata": {
+        "id": "iso19650-information-model-governance",
+        "name": "Information Model Governance",
+        "description": "Governance structure controlling information models, roles and processes within the ISO 19650 information management framework.",
+        "type": "governance-map",
+        "standard": "ISO 19650",
+        "version": "Draft",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "governance", "information-model", "roles", "management" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "Organization appointing delivery teams and defining information requirements."
+            },
+
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role",
+                "description": "Organization responsible for coordinating appointed parties."
+            },
+
+            {
+                "id": "AppointedParty",
+                "label": "Appointed Party",
+                "type": "role",
+                "description": "Organization responsible for producing information."
+            },
+
+            {
+                "id": "InformationManager",
+                "label": "Information Manager",
+                "type": "role",
+                "description": "Role responsible for managing the information management process."
+            },
+
+            {
+                "id": "InformationManagementProcess",
+                "label": "Information Management Process",
+                "type": "process",
+                "description": "Process governing how information is produced, verified and exchanged."
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
+                "type": "process",
+                "description": "Activity of creating information during project delivery."
+            },
+
+            {
+                "id": "InformationVerification",
+                "label": "Information Verification",
+                "type": "process",
+                "description": "Checking information before it is shared or published."
+            },
+
+            {
+                "id": "InformationExchange",
+                "label": "Information Exchange",
+                "type": "process",
+                "description": "Transfer of information containers between stakeholders."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Shared environment used to manage information containers."
+            },
+
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Unit of information managed within the common data environment."
+            },
+
+            {
+                "id": "InformationModel",
+                "label": "Information Model",
+                "type": "information",
+                "description": "Structured collection of information containers."
+            },
+
+            {
+                "id": "PIM",
+                "label": "Project Information Model",
+                "type": "information",
+                "description": "Information model used during project delivery."
+            },
+
+            {
+                "id": "AIM",
+                "label": "Asset Information Model",
+                "type": "information",
+                "description": "Information model used during asset operation."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "AppointingParty",
+                "target": "LeadAppointedParty",
+                "relationship": "appoints",
+                "label": "appoints",
+                "evidence": {
+                    "quote": "The appointing party appoints the lead appointed party responsible for coordinating delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "LeadAppointedParty",
+                "target": "AppointedParty",
+                "relationship": "coordinates",
+                "label": "coordinates",
+                "evidence": {
+                    "quote": "The lead appointed party coordinates the appointed parties during project delivery.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "AppointedParty",
+                "target": "InformationProduction",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Appointed parties are responsible for producing information to satisfy requirements.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "InformationManager",
+                "target": "InformationManagementProcess",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "Information management roles oversee the information management process.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "InformationManagementProcess",
+                "target": "InformationProduction",
+                "relationship": "governs",
+                "label": "governs",
+                "evidence": {
+                    "quote": "Information production is undertaken in accordance with the information management process.",
+                    "source": "ISO 19650 Draft",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "InformationProduction",
+                "target": "InformationVerification",
+                "relationship": "followed_by",
+                "label": "followed by",
+                "evidence": {
+                    "quote": "Information should be checked before being shared with other parties.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationVerification",
+                "target": "InformationExchange",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "Verified information is exchanged between project participants.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e8",
+                "source": "InformationExchange",
+                "target": "InformationContainer",
+                "relationship": "delivers",
+                "label": "delivers",
+                "evidence": {
+                    "quote": "Information exchanges deliver information containers.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
+                "evidence": {
+                    "quote": "Information models are collections of information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "InformationModel",
+                "target": "PIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Project information models support delivery activities.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "InformationModel",
+                "target": "AIM",
+                "relationship": "type",
+                "label": "type",
+                "evidence": {
+                    "quote": "Asset information models support asset management during operation.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e13",
+                "source": "PIM",
+                "target": "AIM",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Information produced during delivery contributes to the asset information model.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            }
+
+        ]
+    }
+}
