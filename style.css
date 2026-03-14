@@ -97,6 +97,35 @@ body {
   padding: 20px;
 }
 
+.field-group {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field-label {
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.field-select {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
+.field-select:focus {
+  outline: 2px solid rgba(29, 78, 216, 0.2);
+  border-color: rgba(29, 78, 216, 0.35);
+}
+
 .viewer-panel {
   min-height: 640px;
   display: flex;
@@ -138,6 +167,10 @@ body {
   margin-bottom: 16px;
 }
 
+.compact-heading {
+  margin-top: 8px;
+}
+
 .secondary-button {
   border: 0;
   border-radius: 999px;
@@ -177,43 +210,6 @@ body {
 .details-list dd {
   margin: 0;
   line-height: 1.5;
-}
-
-.graph-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.graph-list button {
-  width: 100%;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 14px;
-  padding: 12px 14px;
-  background: #fff;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.graph-list button:hover,
-.graph-list button:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(29, 78, 216, 0.35);
-  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.12);
-  outline: none;
-}
-
-.graph-list strong {
-  display: block;
-  margin-bottom: 4px;
-}
-
-.graph-list span {
-  color: var(--muted);
-  font-size: 0.92rem;
 }
 
 .selection-type {

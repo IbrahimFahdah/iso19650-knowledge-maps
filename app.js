@@ -1,18 +1,31 @@
-const DEFAULT_GRAPH_PATH = "graphs/iso19650-core-system.json";
-
-const availableGraphs = [
+const STANDARD_OPTIONS = [
   {
-    label: "ISO 19650 Core System",
-    path: DEFAULT_GRAPH_PATH,
-    description: "Core concepts, roles, processes, systems, and information flows."
+    id: "2018",
+    label: "ISO 19650 (2018)",
+    graphFiles: [
+      "graphs/2018/core-system.json",
+      "graphs/2018/requirements-hierarchy.json"
+    ]
+  },
+  {
+    id: "draft",
+    label: "ISO 19650 (Draft)",
+    graphFiles: [
+      "graphs/draft/core-system.json",
+      "graphs/draft/requirements-hierarchy.json"
+    ]
   }
 ];
 
+const DEFAULT_STANDARD_ID = "draft";
+
+const standardSelectEl = document.getElementById("standardSelect");
+const graphSelectEl = document.getElementById("graphSelect");
 const graphNameEl = document.getElementById("graphName");
 const graphDescriptionEl = document.getElementById("graphDescription");
 const graphVersionEl = document.getElementById("graphVersion");
+const graphStandardEl = document.getElementById("graphStandard");
 const graphTagsEl = document.getElementById("graphTags");
-const graphListEl = document.getElementById("graphList");
 const graphStatusEl = document.getElementById("graphStatus");
 const selectionTypeEl = document.getElementById("selectionType");
 const detailsListEl = document.getElementById("detailsList");
@@ -20,6 +33,9 @@ const reloadDefaultBtn = document.getElementById("reloadDefaultBtn");
 
 let cy;
 let dragDepth = 0;
+let activeStandardId = DEFAULT_STANDARD_ID;
+let activeGraphFile = "";
+const metadataCache = new Map();
 
 function setStatus(message, isError = false) {
   graphStatusEl.textContent = message;
@@ -41,10 +57,11 @@ function validateGraphPayload(payload) {
   }
 }
 
-function renderMetadata(metadata) {
+function renderMetadata(metadata = {}) {
   graphNameEl.textContent = metadata.name || "Untitled Graph";
   graphDescriptionEl.textContent = metadata.description || "-";
   graphVersionEl.textContent = metadata.version || "-";
+  graphStandardEl.textContent = metadata.standard || "-";
   graphTagsEl.textContent = Array.isArray(metadata.tags) && metadata.tags.length > 0
     ? metadata.tags.join(", ")
     : "-";
@@ -124,7 +141,7 @@ function initializeCytoscape(elements) {
           "target-arrow-color": "#94a3b8",
           "target-arrow-shape": "triangle",
           "curve-style": "bezier",
-          label: "data(relationship)",
+          label: "data(label)",
           "font-size": 10,
           color: "#475569",
           "text-background-color": "#ffffff",
@@ -205,7 +222,7 @@ function toCytoscapeElements(graph) {
       source: edge.source,
       target: edge.target,
       relationship: edge.relationship,
-      label: edge.label,
+      label: edge.label || edge.relationship,
       evidenceQuote: edge.evidence?.quote || edge.evidenceQuote,
       sourceReference: edge.evidence?.source || edge.sourceReference,
       evidenceType: edge.evidence?.type || edge.evidenceType
@@ -215,42 +232,95 @@ function toCytoscapeElements(graph) {
   return [...nodes, ...edges];
 }
 
-async function loadGraphFromUrl(path) {
-  setStatus(`Loading ${path}...`);
-
-  const response = await fetch(path);
+async function fetchGraphJson(file) {
+  const response = await fetch(file);
   if (!response.ok) {
-    throw new Error(`Unable to load graph file: ${path}`);
+    throw new Error(`Unable to load graph file: ${file}`);
   }
 
-  const payload = await response.json();
-  return loadGraphData(payload, path);
+  return response.json();
 }
 
-function loadGraphData(payload, sourceLabel = "custom file") {
+async function fetchGraphMetadata(file) {
+  if (metadataCache.has(file)) {
+    return metadataCache.get(file);
+  }
+
+  const payload = await fetchGraphJson(file);
   validateGraphPayload(payload);
-  renderMetadata(payload.metadata);
-  initializeCytoscape(toCytoscapeElements(payload.graph));
+
+  const entry = {
+    file,
+    metadata: payload.metadata
+  };
+
+  metadataCache.set(file, entry);
+  return entry;
+}
+
+function loadStandards() {
+  standardSelectEl.innerHTML = "";
+
+  STANDARD_OPTIONS.forEach(standard => {
+    const option = document.createElement("option");
+    option.value = standard.id;
+    option.textContent = standard.label;
+    standardSelectEl.appendChild(option);
+  });
+
+  standardSelectEl.value = DEFAULT_STANDARD_ID;
+}
+
+async function loadGraphList(standardId) {
+  activeStandardId = standardId;
+  graphSelectEl.innerHTML = "";
+
+  const standard = STANDARD_OPTIONS.find(item => item.id === standardId);
+  if (!standard) {
+    throw new Error(`Unknown standard: ${standardId}`);
+  }
+
+  setStatus(`Loading graphs for ${standard.label}...`);
+
+  const entries = await Promise.all(standard.graphFiles.map(fetchGraphMetadata));
+
+  entries.forEach(entry => {
+    const option = document.createElement("option");
+    option.value = entry.file;
+    option.textContent = entry.metadata.name || entry.file;
+    graphSelectEl.appendChild(option);
+  });
+
+  if (entries.length === 0) {
+    activeGraphFile = "";
+    renderMetadata();
+    resetDetails();
+    setStatus(`No graphs available for ${standard.label}`, true);
+    return;
+  }
+
+  graphSelectEl.value = entries[0].file;
+  activeGraphFile = entries[0].file;
+  await loadGraphFromFile(activeGraphFile);
+}
+
+function renderGraph(graphData) {
+  initializeCytoscape(toCytoscapeElements(graphData));
   resetDetails();
+}
+
+function loadGraph(graphData, sourceLabel = "custom file") {
+  validateGraphPayload(graphData);
+  renderMetadata(graphData.metadata);
+  renderGraph(graphData.graph);
   setStatus(`Loaded ${sourceLabel}`);
 }
 
-function renderGraphList() {
-  graphListEl.innerHTML = "";
-
-  availableGraphs.forEach(graphFile => {
-    const item = document.createElement("li");
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.innerHTML = `<strong>${graphFile.label}</strong><span>${graphFile.description}</span>`;
-    button.addEventListener("click", () => {
-      loadGraphFromUrl(graphFile.path).catch(handleLoadError);
-    });
-
-    item.appendChild(button);
-    graphListEl.appendChild(item);
-  });
+async function loadGraphFromFile(file) {
+  activeGraphFile = file;
+  setStatus(`Loading ${file}...`);
+  const payload = await fetchGraphJson(file);
+  loadGraph(payload, file);
 }
 
 function handleLoadError(error) {
@@ -295,7 +365,7 @@ function setupDragAndDrop() {
     try {
       const text = await file.text();
       const payload = JSON.parse(text);
-      loadGraphData(payload, file.name);
+      loadGraph(payload, file.name);
     } catch (error) {
       handleLoadError(error);
     }
@@ -303,13 +373,36 @@ function setupDragAndDrop() {
 }
 
 function setupActions() {
+  standardSelectEl.addEventListener("change", async event => {
+    try {
+      await loadGraphList(event.target.value);
+    } catch (error) {
+      handleLoadError(error);
+    }
+  });
+
+  graphSelectEl.addEventListener("change", async event => {
+    try {
+      await loadGraphFromFile(event.target.value);
+    } catch (error) {
+      handleLoadError(error);
+    }
+  });
+
   reloadDefaultBtn.addEventListener("click", () => {
-    loadGraphFromUrl(DEFAULT_GRAPH_PATH).catch(handleLoadError);
+    const file = activeGraphFile;
+
+    if (!file) {
+      loadGraphList(activeStandardId).catch(handleLoadError);
+      return;
+    }
+
+    loadGraphFromFile(file).catch(handleLoadError);
   });
 }
 
 async function bootstrap() {
-  renderGraphList();
+  loadStandards();
   setupDragAndDrop();
   setupActions();
 
@@ -319,7 +412,7 @@ async function bootstrap() {
   }
 
   try {
-    await loadGraphFromUrl(DEFAULT_GRAPH_PATH);
+    await loadGraphList(DEFAULT_STANDARD_ID);
   } catch (error) {
     handleLoadError(error);
   }

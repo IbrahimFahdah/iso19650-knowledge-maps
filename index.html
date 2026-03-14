@@ -20,7 +20,20 @@
     <main class="app-layout">
       <aside class="sidebar">
         <section class="panel">
-          <h2>Graph Details</h2>
+          <div class="field-group">
+            <label for="standardSelect" class="field-label">Standard Version</label>
+            <select id="standardSelect" class="field-select"></select>
+          </div>
+
+          <div class="field-group">
+            <label for="graphSelect" class="field-label">Knowledge Map</label>
+            <select id="graphSelect" class="field-select"></select>
+          </div>
+
+          <div class="panel-heading compact-heading">
+            <h2>Graph Details</h2>
+            <button type="button" id="reloadDefaultBtn" class="secondary-button">Reload</button>
+          </div>
           <dl class="metadata-list">
             <div>
               <dt>Name</dt>
@@ -35,18 +48,14 @@
               <dd id="graphVersion">-</dd>
             </div>
             <div>
+              <dt>Standard</dt>
+              <dd id="graphStandard">-</dd>
+            </div>
+            <div>
               <dt>Tags</dt>
               <dd id="graphTags">-</dd>
             </div>
           </dl>
-        </section>
-
-        <section class="panel">
-          <div class="panel-heading">
-            <h2>Available Graphs</h2>
-            <button type="button" id="reloadDefaultBtn" class="secondary-button">Reload Default</button>
-          </div>
-          <ul class="graph-list" id="graphList"></ul>
         </section>
       </aside>
 

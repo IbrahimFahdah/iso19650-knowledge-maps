@@ -1,0 +1,152 @@
+{
+    "metadata": {
+        "id": "iso19650-information-requirement-hierarchy",
+        "name": "Information Requirement Hierarchy",
+        "description": "Hierarchy of information requirements defined in ISO 19650 showing how organizational objectives translate into project information exchanges.",
+        "type": "hierarchy-map",
+        "standard": "ISO 19650",
+        "version": "Draft",
+        "part": "Part 1",
+        "created": "2026-03-14",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "requirements", "hierarchy", "OIR", "AIR", "PIR", "EIR" ]
+    },
+
+    "graph": {
+
+        "nodes": [
+
+            {
+                "id": "Organization",
+                "label": "Organization",
+                "type": "role",
+                "description": "Organization responsible for defining objectives and information requirements."
+            },
+
+            {
+                "id": "OrganizationalObjectives",
+                "label": "Organizational Objectives",
+                "type": "concept",
+                "description": "Strategic objectives of the organization."
+            },
+
+            {
+                "id": "OIR",
+                "label": "Organizational Information Requirements",
+                "type": "information",
+                "description": "Information required to support organizational objectives."
+            },
+
+            {
+                "id": "AIR",
+                "label": "Asset Information Requirements",
+                "type": "information",
+                "description": "Information required to support asset management decisions."
+            },
+
+            {
+                "id": "PIR",
+                "label": "Project Information Requirements",
+                "type": "information",
+                "description": "Information required to support project delivery decisions."
+            },
+
+            {
+                "id": "EIR",
+                "label": "Exchange Information Requirements",
+                "type": "information",
+                "description": "Information required at defined information exchange points."
+            },
+
+            {
+                "id": "InformationProduction",
+                "label": "Information Production",
+                "type": "process",
+                "description": "Activity of producing information required for project delivery."
+            }
+
+        ],
+
+        "edges": [
+
+            {
+                "id": "e1",
+                "source": "Organization",
+                "target": "OrganizationalObjectives",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "Organizational objectives drive the identification of the information needed by the organization.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "OrganizationalObjectives",
+                "target": "OIR",
+                "relationship": "drives",
+                "label": "drives",
+                "evidence": {
+                    "quote": "Organizational information requirements define the information needed to support organizational objectives.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "OIR",
+                "target": "AIR",
+                "relationship": "informs",
+                "label": "informs",
+                "evidence": {
+                    "quote": "Asset information requirements are derived from organizational information requirements.",
+                    "source": "ISO 19650-1",
+                    "type": "inferred_relationship"
+                }
+            },
+
+            {
+                "id": "e4",
+                "source": "AIR",
+                "target": "PIR",
+                "relationship": "informs",
+                "label": "informs",
+                "evidence": {
+                    "quote": "Project information requirements define the information needed to support project delivery decisions.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e5",
+                "source": "PIR",
+                "target": "EIR",
+                "relationship": "refines",
+                "label": "refines",
+                "evidence": {
+                    "quote": "Exchange information requirements specify the information required at exchange points.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e6",
+                "source": "EIR",
+                "target": "InformationProduction",
+                "relationship": "specifies",
+                "label": "specifies",
+                "evidence": {
+                    "quote": "Exchange information requirements define the information to be produced and delivered.",
+                    "source": "ISO 19650-2",
+                    "type": "definition"
+                }
+            }
+
+        ]
+    }
+}
