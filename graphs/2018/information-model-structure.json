@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-information-model-structure",
         "name": "Information Model Structure",
-        "description": "Hierarchy of information containers and information models defined in ISO 19650:2018.",
+        "description": "Hierarchy of information containers and information models defined in ISO 19650:2018, showing how containers form models and the relationship between PIM and AIM.",
         "type": "structure-map",
         "standard": "ISO 19650",
         "version": "2018",
         "part": "Part 1",
         "created": "2026-03-14",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "information-model", "PIM", "AIM", "structure" ]
+        "tags": [ "information-model", "PIM", "AIM", "structure", "hierarchy", "container" ]
     },
 
     "graph": {
@@ -20,42 +20,70 @@
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information",
-                "description": "A container of information managed within the common data environment."
+                "description": "Named persistent set of information retrievable from within a file, system or application storage hierarchy."
             },
 
             {
                 "id": "InformationModel",
                 "label": "Information Model",
                 "type": "information",
-                "description": "A structured set of information containers."
+                "description": "Set of structured and unstructured information containers."
+            },
+
+            {
+                "id": "FederatedInformationModel",
+                "label": "Federated Information Model",
+                "type": "information",
+                "description": "Composite information model created from separate information containers originating from different task teams."
             },
 
             {
                 "id": "ProjectInformationModel",
                 "label": "Project Information Model (PIM)",
                 "type": "information",
-                "description": "Information model used during project delivery."
+                "description": "Information model relating to the delivery phase."
             },
 
             {
                 "id": "AssetInformationModel",
                 "label": "Asset Information Model (AIM)",
                 "type": "information",
-                "description": "Information model used during asset operation."
+                "description": "Information model relating to the operational phase."
             },
 
             {
-                "id": "InformationExchange",
-                "label": "Information Exchange",
-                "type": "process",
-                "description": "Exchange of information containers between stakeholders."
+                "id": "TaskTeam",
+                "label": "Task Team",
+                "type": "role",
+                "description": "Individuals assembled to perform a specific task responsible for producing information containers."
             },
 
             {
-                "id": "Lifecycle",
-                "label": "Asset Lifecycle",
+                "id": "DeliveryTeam",
+                "label": "Delivery Team",
+                "type": "role",
+                "description": "Lead appointed party and appointed parties responsible for producing project information."
+            },
+
+            {
+                "id": "FederationStrategy",
+                "label": "Federation Strategy",
                 "type": "concept",
-                "description": "Lifecycle stages of the asset where information is used."
+                "description": "Approach describing how the information model is divided into sets of information containers allowing task teams to work simultaneously."
+            },
+
+            {
+                "id": "InformationContainerBreakdownStructure",
+                "label": "Information Container Breakdown Structure",
+                "type": "concept",
+                "description": "Structure defining how information containers relate to each other during detailed planning."
+            },
+
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Agreed source of information for collecting, managing and disseminating each information container."
             }
 
         ],
@@ -64,105 +92,157 @@
 
             {
                 "id": "e1",
-                "source": "InformationContainer",
-                "target": "InformationModel",
-                "relationship": "forms",
-                "label": "forms",
+                "source": "TaskTeam",
+                "target": "InformationContainer",
+                "relationship": "produces",
+                "label": "produces",
                 "evidence": {
-                    "quote": "Information models are collections of information containers.",
-                    "source": "ISO 19650-1",
+                    "quote": "Information containers are produced by task teams.",
+                    "source": "ISO 19650-1:2018, 10.4",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e2",
-                "source": "InformationModel",
-                "target": "ProjectInformationModel",
-                "relationship": "type",
-                "label": "type",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
+                "label": "forms",
                 "evidence": {
-                    "quote": "The project information model supports project delivery activities.",
-                    "source": "ISO 19650-1",
+                    "quote": "An information model is a set of structured and unstructured information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.8",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e3",
-                "source": "InformationModel",
-                "target": "AssetInformationModel",
-                "relationship": "type",
-                "label": "type",
+                "source": "InformationContainer",
+                "target": "FederatedInformationModel",
+                "relationship": "federated_into",
+                "label": "federated into",
                 "evidence": {
-                    "quote": "The asset information model supports asset management during operation.",
-                    "source": "ISO 19650-1",
+                    "quote": "Federation is the creation of a composite information model from separate information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.11",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e4",
-                "source": "ProjectInformationModel",
-                "target": "AssetInformationModel",
-                "relationship": "transitions_to",
-                "label": "transitions to",
+                "source": "FederatedInformationModel",
+                "target": "InformationModel",
+                "relationship": "type",
+                "label": "type",
                 "evidence": {
-                    "quote": "Information developed during project delivery contributes to the asset information model.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "A federated information model is a composite information model created from separate information containers.",
+                    "source": "ISO 19650-1:2018, 3.3.11",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e5",
-                "source": "InformationExchange",
-                "target": "InformationContainer",
-                "relationship": "delivers",
-                "label": "delivers",
+                "source": "InformationModel",
+                "target": "ProjectInformationModel",
+                "relationship": "type",
+                "label": "type",
                 "evidence": {
-                    "quote": "Information exchanges deliver information containers between parties.",
-                    "source": "ISO 19650-2",
+                    "quote": "Project information model relates to the delivery phase.",
+                    "source": "ISO 19650-1:2018, 3.3.10",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e6",
-                "source": "AssetInformationModel",
-                "target": "Lifecycle",
-                "relationship": "supports",
-                "label": "supports",
+                "source": "InformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "type",
+                "label": "type",
                 "evidence": {
-                    "quote": "The asset information model supports decision-making during the lifecycle of the asset.",
-                    "source": "ISO 19650-1",
+                    "quote": "Asset information model relates to the operational phase.",
+                    "source": "ISO 19650-1:2018, 3.3.9",
                     "type": "definition"
                 }
             },
 
             {
                 "id": "e7",
-                "source": "InformationContainer",
-                "target": "ProjectInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
+                "source": "ProjectInformationModel",
+                "target": "AssetInformationModel",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "Information containers collectively form the project information model during project delivery.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "Information containers required for asset management should be moved from the PIM to the AIM.",
+                    "source": "ISO 19650-1:2018, 12.1",
+                    "type": "definition"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "InformationContainer",
-                "target": "AssetInformationModel",
-                "relationship": "forms_part_of",
-                "label": "forms part of",
+                "source": "FederationStrategy",
+                "target": "InformationContainerBreakdownStructure",
+                "relationship": "develops",
+                "label": "develops",
                 "evidence": {
-                    "quote": "Information developed during project delivery contributes to the asset information model.",
-                    "source": "ISO 19650-1",
-                    "type": "inferred_relationship"
+                    "quote": "The federation strategy should be developed into one or more information container breakdown structures.",
+                    "source": "ISO 19650-1:2018, 10.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e9",
+                "source": "InformationContainerBreakdownStructure",
+                "target": "InformationContainer",
+                "relationship": "allocates",
+                "label": "allocates",
+                "evidence": {
+                    "quote": "Each task team should be allocated one or more information containers.",
+                    "source": "ISO 19650-1:2018, 10.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "DeliveryTeam",
+                "target": "FederationStrategy",
+                "relationship": "defines",
+                "label": "defines",
+                "evidence": {
+                    "quote": "The federation strategy should explain how the information model is divided into information containers.",
+                    "source": "ISO 19650-1:2018, 10.4",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "contains",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment is the agreed source of information for collecting, managing and disseminating each information container.",
+                    "source": "ISO 19650-1:2018, 3.3.15",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "CDE",
+                "target": "FederatedInformationModel",
+                "relationship": "enables",
+                "label": "enables",
+                "evidence": {
+                    "quote": "The CDE solution and workflow enable the development of a federated information model.",
+                    "source": "ISO 19650-1:2018, 11.1",
+                    "type": "definition"
                 }
             }
 
