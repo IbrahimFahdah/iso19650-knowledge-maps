@@ -2,92 +2,131 @@
     "metadata": {
         "id": "iso19650-cde-state-model-draft",
         "name": "CDE State Model",
-        "description": "Lifecycle states of information containers according to the ISO 19650 draft revision introducing the Submitted state.",
+        "description": "Lifecycle states of information containers including the Submitted state introduced in the ISO 19650 draft revision.",
         "type": "state-map",
         "standard": "ISO 19650",
         "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-15",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "states", "workflow", "information-container" ]
+        "tags": [ "CDE", "states", "workflow" ]
     },
+
     "graph": {
+
         "nodes": [
+
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
-                "type": "information",
-                "description": "Named persistent set of information retrievable from a file, system or storage hierarchy."
+                "type": "information"
             },
+
             {
                 "id": "WorkInProgress",
                 "label": "WORK IN PROGRESS",
                 "type": "state"
             },
+
             {
                 "id": "Shared",
                 "label": "SHARED",
                 "type": "state"
             },
+
             {
                 "id": "Submitted",
                 "label": "SUBMITTED",
-                "type": "state",
-                "description": "Information formally submitted to the appointing party for acceptance."
+                "type": "state"
             },
+
             {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state"
             },
+
             {
                 "id": "Archived",
                 "label": "ARCHIVED",
                 "type": "state"
             },
+
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
                 "type": "system"
             }
+
         ],
+
         "edges": [
+
             {
                 "id": "e1",
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
-                "relationship": "created_in"
+                "relationship": "created_in",
+                "label": "created in",
+                "evidence": {
+                    "quote": "Information containers begin development before coordination and exchange.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e2",
                 "source": "WorkInProgress",
                 "target": "Shared",
-                "relationship": "shared_as"
+                "relationship": "shared_as",
+                "label": "shared as",
+                "evidence": {
+                    "quote": "Information is shared for coordination between delivery teams.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e3",
                 "source": "Shared",
                 "target": "Submitted",
-                "relationship": "submitted_as"
+                "relationship": "submitted_as",
+                "label": "submitted as",
+                "evidence": {
+                    "quote": "The information production workflow includes a submitted state between shared and published.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e4",
                 "source": "Submitted",
                 "target": "Published",
-                "relationship": "accepted_as"
+                "relationship": "accepted_as",
+                "label": "accepted as",
+                "evidence": {
+                    "quote": "Submitted information is reviewed and accepted before becoming published.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e5",
                 "source": "Published",
                 "target": "Archived",
-                "relationship": "superseded_as"
-            },
-            {
-                "id": "e6",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "manages"
+                "relationship": "superseded_as",
+                "label": "superseded as",
+                "evidence": {
+                    "quote": "Superseded information is retained as archived information.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             }
+
         ]
     }
 }

@@ -2,90 +2,143 @@
     "metadata": {
         "id": "iso19650-information-exchange-workflow-2018",
         "name": "Information Exchange Workflow",
-        "description": "Information delivery and acceptance process according to ISO 19650:2018.",
+        "description": "Process describing authorization, submission and acceptance of information models according to ISO 19650:2018.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "2018",
         "part": "Part 2",
         "created": "2026-03-15",
-        "author": "ISO19650 Knowledge Maps",
-        "tags": [ "information-exchange", "workflow", "delivery" ]
+        "author": "ISO19650 Knowledge Maps"
     },
+
     "graph": {
+
         "nodes": [
+
             {
                 "id": "Shared",
                 "label": "SHARED",
                 "type": "state"
             },
+
             {
                 "id": "ReviewAuthorize",
                 "label": "Review / Authorize",
                 "type": "process"
             },
+
             {
                 "id": "SubmitInformation",
                 "label": "Submit Information",
                 "type": "process"
             },
+
             {
                 "id": "ReviewAccept",
                 "label": "Review / Accept",
                 "type": "process"
             },
+
             {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state"
             },
+
             {
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role"
             },
+
             {
                 "id": "AppointingParty",
                 "label": "Appointing Party",
                 "type": "role"
             }
+
         ],
+
         "edges": [
+
             {
                 "id": "e1",
                 "source": "Shared",
                 "target": "ReviewAuthorize",
-                "relationship": "evaluated_in"
+                "relationship": "evaluated_in",
+                "label": "evaluated in",
+                "evidence": {
+                    "quote": "Information models are reviewed before delivery to the appointing party.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e2",
                 "source": "LeadAppointedParty",
                 "target": "ReviewAuthorize",
-                "relationship": "performs"
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party coordinates and authorizes the information model.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e3",
                 "source": "ReviewAuthorize",
                 "target": "SubmitInformation",
-                "relationship": "authorizes"
+                "relationship": "authorizes",
+                "label": "authorizes",
+                "evidence": {
+                    "quote": "Authorized information models are submitted to the appointing party.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e4",
                 "source": "SubmitInformation",
                 "target": "ReviewAccept",
-                "relationship": "submitted_to"
+                "relationship": "submitted_to",
+                "label": "submitted to",
+                "evidence": {
+                    "quote": "Information models are submitted for acceptance by the appointing party.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e5",
                 "source": "AppointingParty",
                 "target": "ReviewAccept",
-                "relationship": "performs"
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The appointing party reviews and accepts delivered information.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e6",
                 "source": "ReviewAccept",
                 "target": "Published",
-                "relationship": "transitions_to"
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Accepted information containers become published information.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             }
+
         ]
     }
 }

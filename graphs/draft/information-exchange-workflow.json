@@ -2,7 +2,7 @@
     "metadata": {
         "id": "iso19650-information-exchange-workflow-draft",
         "name": "Information Exchange Workflow",
-        "description": "Information exchange workflow reflecting the draft ISO 19650 revision including the Submitted workflow state.",
+        "description": "Information exchange workflow reflecting the ISO 19650 draft including the Submitted state.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "draft",
@@ -11,81 +11,135 @@
         "author": "ISO19650 Knowledge Maps",
         "tags": [ "information-exchange", "workflow", "delivery" ]
     },
+
     "graph": {
+
         "nodes": [
+
             {
                 "id": "Shared",
                 "label": "SHARED",
                 "type": "state"
             },
+
             {
                 "id": "ReviewAuthorize",
                 "label": "Review / Authorize",
                 "type": "process"
             },
+
             {
                 "id": "Submitted",
                 "label": "SUBMITTED",
                 "type": "state"
             },
+
             {
                 "id": "ReviewAccept",
                 "label": "Review / Accept",
                 "type": "process"
             },
+
             {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state"
             },
+
             {
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
                 "type": "role"
             },
+
             {
                 "id": "AppointingParty",
                 "label": "Appointing Party",
                 "type": "role"
             }
+
         ],
+
         "edges": [
+
             {
                 "id": "e1",
                 "source": "Shared",
                 "target": "ReviewAuthorize",
-                "relationship": "evaluated_in"
+                "relationship": "evaluated_in",
+                "label": "evaluated in",
+                "evidence": {
+                    "quote": "Shared information is reviewed and authorized before submission.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e2",
                 "source": "LeadAppointedParty",
                 "target": "ReviewAuthorize",
-                "relationship": "performs"
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The lead appointed party authorizes information prior to submission.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e3",
                 "source": "ReviewAuthorize",
                 "target": "Submitted",
-                "relationship": "transitions_to"
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Authorized information is submitted to the appointing party.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e4",
                 "source": "Submitted",
                 "target": "ReviewAccept",
-                "relationship": "reviewed_by"
+                "relationship": "reviewed_by",
+                "label": "reviewed by",
+                "evidence": {
+                    "quote": "Submitted information is reviewed and accepted by the appointing party.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e5",
                 "source": "AppointingParty",
                 "target": "ReviewAccept",
-                "relationship": "performs"
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "The appointing party determines acceptance of submitted information.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e6",
                 "source": "ReviewAccept",
                 "target": "Published",
-                "relationship": "transitions_to"
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Accepted information becomes published information.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
             }
+
         ]
     }
 }

@@ -9,83 +9,118 @@
         "part": "Part 1 / Part 2",
         "created": "2026-03-15",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "states", "workflow", "information-container" ]
+        "tags": [ "CDE", "states", "information-container" ]
     },
+
     "graph": {
+
         "nodes": [
+
             {
                 "id": "InformationContainer",
                 "label": "Information Container",
-                "type": "information",
-                "description": "Named persistent set of information retrievable from a file, system or storage hierarchy."
+                "type": "information"
             },
+
             {
                 "id": "WorkInProgress",
                 "label": "WORK IN PROGRESS",
-                "type": "state",
-                "description": "Information being developed by its authoring team and not visible to other parties."
+                "type": "state"
             },
+
             {
                 "id": "Shared",
                 "label": "SHARED",
-                "type": "state",
-                "description": "Information shared with other delivery teams for coordination and review."
+                "type": "state"
             },
+
             {
                 "id": "Published",
                 "label": "PUBLISHED",
-                "type": "state",
-                "description": "Information authorised and accepted for use."
+                "type": "state"
             },
+
             {
                 "id": "Archived",
                 "label": "ARCHIVED",
-                "type": "state",
-                "description": "Superseded information retained for record and audit."
+                "type": "state"
             },
+
             {
                 "id": "CDE",
                 "label": "Common Data Environment",
-                "type": "system",
-                "description": "Operational framework managing information containers and workflow."
+                "type": "system"
             }
+
         ],
+
         "edges": [
+
             {
                 "id": "e1",
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
                 "relationship": "created_in",
-                "label": "created in"
+                "label": "created in",
+                "evidence": {
+                    "quote": "Information containers are developed by appointed parties before being shared.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e2",
                 "source": "WorkInProgress",
                 "target": "Shared",
                 "relationship": "shared_as",
-                "label": "shared as"
+                "label": "shared as",
+                "evidence": {
+                    "quote": "Information is shared to enable coordination between appointed parties.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e3",
                 "source": "Shared",
                 "target": "Published",
                 "relationship": "accepted_as",
-                "label": "accepted as"
+                "label": "accepted as",
+                "evidence": {
+                    "quote": "Accepted information containers become published information.",
+                    "source": "ISO 19650-2:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e4",
                 "source": "Published",
                 "target": "Archived",
                 "relationship": "superseded_as",
-                "label": "superseded as"
+                "label": "superseded as",
+                "evidence": {
+                    "quote": "Superseded information containers are retained in the archive.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
             },
+
             {
                 "id": "e5",
                 "source": "CDE",
                 "target": "InformationContainer",
                 "relationship": "manages",
-                "label": "manages"
+                "label": "manages",
+                "evidence": {
+                    "quote": "A common data environment provides the framework for managing information.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
             }
+
         ]
     }
 }
