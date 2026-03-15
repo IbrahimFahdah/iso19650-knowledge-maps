@@ -1,15 +1,15 @@
 {
     "metadata": {
-        "id": "iso19650-core-system-faithful",
-        "name": "Core Information System",
-        "description": "Faithful conceptual representation of the ISO 19650 information management system derived from ISO/DIS 19650-1 and ISO/DIS 19650-2.",
+        "id": "iso19650-core-system-complete",
+        "name": "ISO 19650 Information Management System",
+        "description": "Conceptual representation of the ISO 19650 information management system derived from ISO/DIS 19650-1 and ISO/DIS 19650-2.",
         "type": "concept-map",
         "standard": "ISO 19650",
         "version": "Draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-15",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "core", "concepts", "information-management", "knowledge-graph" ]
+        "tags": [ "information-management", "knowledge-graph", "iso19650" ]
     },
 
     "graph": {
@@ -18,166 +18,138 @@
 
             {
                 "id": "Asset",
-                "label": "Asset",
                 "type": "concept"
             },
             {
                 "id": "AssetLifecycle",
-                "label": "Asset Lifecycle",
                 "type": "concept"
             },
             {
                 "id": "Decision",
-                "label": "Decision",
+                "type": "concept"
+            },
+            {
+                "id": "TriggerEvent",
+                "type": "concept"
+            },
+            {
+                "id": "Project",
                 "type": "concept"
             },
 
             {
                 "id": "InformationPurpose",
-                "label": "Information Purpose",
                 "type": "concept"
             },
             {
                 "id": "InformationRequirement",
-                "label": "Information Requirement",
                 "type": "information"
             },
             {
                 "id": "InformationConstraint",
-                "label": "Information Constraint",
+                "type": "information"
+            },
+            {
+                "id": "LevelOfInformationNeed",
                 "type": "information"
             },
             {
                 "id": "InformationProductionRequirements",
-                "label": "Information Production Requirements",
                 "type": "information"
             },
 
             {
                 "id": "OIR",
-                "label": "Organizational Information Requirements",
                 "type": "information"
             },
             {
                 "id": "AIR",
-                "label": "Asset Information Requirements",
                 "type": "information"
             },
             {
                 "id": "PIR",
-                "label": "Project Information Requirements",
                 "type": "information"
             },
 
             {
                 "id": "InformationContainer",
-                "label": "Information Container",
                 "type": "information"
             },
             {
                 "id": "InformationModel",
-                "label": "Information Model",
                 "type": "information"
             },
             {
                 "id": "PIM",
-                "label": "Project Information Model",
                 "type": "information"
             },
             {
                 "id": "AIM",
-                "label": "Asset Information Model",
                 "type": "information"
             },
 
             {
+                "id": "InformationManagementProcess",
+                "type": "process"
+            },
+            {
                 "id": "InformationProduction",
-                "label": "Information Production",
                 "type": "process"
             },
             {
                 "id": "InformationVerification",
-                "label": "Information Verification",
                 "type": "process"
             },
             {
                 "id": "InformationExchange",
-                "label": "Information Exchange",
                 "type": "process"
             },
             {
                 "id": "InformationUse",
-                "label": "Information Use",
                 "type": "process"
             },
+
             {
-                "id": "InformationManagementProcess",
-                "label": "Information Management Process",
-                "type": "process"
+                "id": "InformationDeliveryMilestone",
+                "type": "concept"
+            },
+            {
+                "id": "Appointment",
+                "type": "concept"
             },
 
             {
                 "id": "CDE",
-                "label": "Common Data Environment",
+                "type": "system"
+            },
+            {
+                "id": "CDEState",
+                "type": "concept"
+            },
+            {
+                "id": "EnablingTechnology",
                 "type": "system"
             },
 
             {
-                "id": "InformationProductionStandard",
-                "label": "Information Production Standard",
-                "type": "information"
-            },
-            {
-                "id": "InformationProductionMethods",
-                "label": "Information Production Methods and Procedures",
-                "type": "information"
-            },
-            {
-                "id": "InformationProductionSchedule",
-                "label": "Information Production Schedule",
-                "type": "information"
-            },
-
-            {
                 "id": "InformationProductionTeam",
-                "label": "Information Production Team",
-                "type": "role"
-            },
-            {
-                "id": "InformationManager",
-                "label": "Information Manager",
                 "type": "role"
             },
             {
                 "id": "InformationUser",
-                "label": "Information User",
                 "type": "role"
             },
             {
                 "id": "AppointingParty",
-                "label": "Appointing Party",
                 "type": "role"
             },
             {
                 "id": "LeadAppointedParty",
-                "label": "Lead Appointed Party",
                 "type": "role"
             },
             {
                 "id": "AppointedParty",
-                "label": "Appointed Party",
                 "type": "role"
-            },
-
-            {
-                "id": "TriggerEvent",
-                "label": "Trigger Event",
-                "type": "concept"
-            },
-            {
-                "id": "Project",
-                "label": "Project",
-                "type": "concept"
             }
 
         ],
@@ -189,10 +161,9 @@
                 "source": "Asset",
                 "target": "AssetLifecycle",
                 "relationship": "has",
-                "label": "has lifecycle",
                 "evidence": {
-                    "quote": "Information management should be aligned with the life cycle of the asset(s) being managed by the appointing party.",
-                    "source": "ISO 19650-1 Draft Clause 6.2",
+                    "quote": "Information management should be aligned with the life cycle of the asset.",
+                    "source": "ISO 19650-1 Draft",
                     "type": "direct_quote"
                 }
             },
@@ -202,9 +173,8 @@
                 "source": "AssetLifecycle",
                 "target": "Decision",
                 "relationship": "requires",
-                "label": "requires decision",
                 "evidence": {
-                    "quote": "Information is needed for decision-making during all parts of the asset life cycle.",
+                    "quote": "Information is needed for decision-making during the asset life cycle.",
                     "source": "ISO 19650-1 Draft",
                     "type": "direct_quote"
                 }
@@ -215,11 +185,10 @@
                 "source": "Decision",
                 "target": "InformationPurpose",
                 "relationship": "defines",
-                "label": "defines purpose",
                 "evidence": {
                     "quote": "Information purposes describe why information is needed.",
                     "source": "ISO 19650-1 Draft",
-                    "type": "inferred_relationship"
+                    "type": "direct_quote"
                 }
             },
 
@@ -228,9 +197,8 @@
                 "source": "InformationPurpose",
                 "target": "InformationRequirement",
                 "relationship": "generates",
-                "label": "generates",
                 "evidence": {
-                    "quote": "Information requirements are generated from information purposes.",
+                    "quote": "Information requirements are derived from information purposes.",
                     "source": "ISO 19650-1 Draft",
                     "type": "direct_quote"
                 }
@@ -239,22 +207,8 @@
             {
                 "id": "e5",
                 "source": "InformationRequirement",
-                "target": "InformationProductionRequirements",
-                "relationship": "refined_into",
-                "label": "refined into",
-                "evidence": {
-                    "quote": "Information production requirements derive from information requirements.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e6",
-                "source": "InformationRequirement",
                 "target": "InformationConstraint",
                 "relationship": "bounded_by",
-                "label": "bounded by",
                 "evidence": {
                     "quote": "Information requirements and information constraints.",
                     "source": "ISO 19650-1 Draft",
@@ -263,50 +217,70 @@
             },
 
             {
-                "id": "e7",
-                "source": "InformationContainer",
-                "target": "InformationModel",
-                "relationship": "forms",
-                "label": "forms",
+                "id": "e6",
+                "source": "InformationRequirement",
+                "target": "LevelOfInformationNeed",
+                "relationship": "specifies",
                 "evidence": {
-                    "quote": "An information model is a set of structured information containers.",
+                    "quote": "Information requirements define the level of information need.",
                     "source": "ISO 19650-1 Draft",
-                    "type": "definition"
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e7",
+                "source": "InformationRequirement",
+                "target": "InformationProductionRequirements",
+                "relationship": "refined_into",
+                "evidence": {
+                    "quote": "Information production requirements derive from information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e8",
-                "source": "InformationModel",
-                "target": "PIM",
-                "relationship": "type",
-                "label": "type",
+                "source": "InformationContainer",
+                "target": "InformationModel",
+                "relationship": "forms",
                 "evidence": {
-                    "quote": "Project information models are used during delivery.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "quote": "An information model is a set of structured information containers.",
+                    "source": "ISO 19650-1 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e9",
                 "source": "InformationModel",
-                "target": "AIM",
+                "target": "PIM",
                 "relationship": "type",
-                "label": "type",
                 "evidence": {
-                    "quote": "An asset information model is the current representation of an asset.",
-                    "source": "ISO 19650-1 Draft",
-                    "type": "definition"
+                    "quote": "Project information models are produced during delivery.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e10",
+                "source": "InformationModel",
+                "target": "AIM",
+                "relationship": "type",
+                "evidence": {
+                    "quote": "The asset information model represents the asset.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e11",
                 "source": "PIM",
                 "target": "AIM",
                 "relationship": "contributes_to",
-                "label": "contributes to",
                 "evidence": {
                     "quote": "Aggregation of information to the asset information model should occur once information has been accepted by the appointing party.",
                     "source": "ISO 19650-1 Draft",
@@ -315,24 +289,34 @@
             },
 
             {
-                "id": "e11",
-                "source": "InformationProductionTeam",
+                "id": "e12",
+                "source": "InformationManagementProcess",
                 "target": "InformationProduction",
-                "relationship": "performs",
-                "label": "performs",
+                "relationship": "includes",
                 "evidence": {
-                    "quote": "Information production teams undertake information production activities.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "quote": "Information production is part of the information management process.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e12",
+                "id": "e13",
+                "source": "InformationProductionTeam",
+                "target": "InformationProduction",
+                "relationship": "performs",
+                "evidence": {
+                    "quote": "Information production teams undertake information production activities.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e14",
                 "source": "InformationProduction",
                 "target": "InformationContainer",
                 "relationship": "produces",
-                "label": "produces",
                 "evidence": {
                     "quote": "Information production includes generation of information containers.",
                     "source": "ISO 19650-2 Draft",
@@ -341,11 +325,10 @@
             },
 
             {
-                "id": "e13",
+                "id": "e15",
                 "source": "InformationProduction",
                 "target": "InformationVerification",
                 "relationship": "includes",
-                "label": "includes verification",
                 "evidence": {
                     "quote": "Information production includes coordination, checking, review and approval.",
                     "source": "ISO 19650-2 Draft",
@@ -354,52 +337,24 @@
             },
 
             {
-                "id": "e14",
+                "id": "e16",
                 "source": "InformationVerification",
                 "target": "InformationExchange",
                 "relationship": "precedes",
-                "label": "precedes exchange",
                 "evidence": {
                     "quote": "Information is reviewed and authorized before exchange.",
                     "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e15",
-                "source": "InformationContainer",
-                "target": "InformationExchange",
-                "relationship": "exchanged_via",
-                "label": "exchanged via",
-                "evidence": {
-                    "quote": "Information containers are exchanged between parties.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e16",
-                "source": "InformationModel",
-                "target": "InformationUse",
-                "relationship": "used_for",
-                "label": "used for",
-                "evidence": {
-                    "quote": "Information models are used to support decisions.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e17",
-                "source": "InformationUse",
-                "target": "Decision",
-                "relationship": "supports",
-                "label": "supports",
+                "source": "InformationContainer",
+                "target": "InformationExchange",
+                "relationship": "exchanged_via",
                 "evidence": {
-                    "quote": "Information supports decision-making.",
+                    "quote": "Information containers are exchanged between parties.",
                     "source": "ISO 19650 Draft",
                     "type": "direct_quote"
                 }
@@ -407,27 +362,25 @@
 
             {
                 "id": "e18",
-                "source": "CDE",
-                "target": "InformationProduction",
-                "relationship": "enables",
-                "label": "enables workflow",
+                "source": "InformationModel",
+                "target": "InformationUse",
+                "relationship": "used_for",
                 "evidence": {
-                    "quote": "Information production workflow is a key element of the common data environment.",
-                    "source": "ISO 19650-2 Draft",
+                    "quote": "Information models support decision-making.",
+                    "source": "ISO 19650 Draft",
                     "type": "direct_quote"
                 }
             },
 
             {
                 "id": "e19",
-                "source": "CDE",
-                "target": "InformationExchange",
-                "relationship": "facilitates",
-                "label": "facilitates",
+                "source": "InformationUse",
+                "target": "Decision",
+                "relationship": "supports",
                 "evidence": {
-                    "quote": "The common data environment supports collaborative production and exchange of information.",
+                    "quote": "Information supports decisions.",
                     "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "type": "direct_quote"
                 }
             },
 
@@ -436,7 +389,6 @@
                 "source": "TriggerEvent",
                 "target": "Project",
                 "relationship": "initiates",
-                "label": "initiates",
                 "evidence": {
                     "quote": "The remaining steps are initiated by a trigger event – the result of which is a project.",
                     "source": "ISO 19650-2 Draft",
@@ -449,11 +401,118 @@
                 "source": "Project",
                 "target": "InformationProduction",
                 "relationship": "requires",
-                "label": "requires production",
                 "evidence": {
                     "quote": "Projects require the production of information models.",
                     "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e22",
+                "source": "AppointingParty",
+                "target": "InformationRequirement",
+                "relationship": "defines",
+                "evidence": {
+                    "quote": "The appointing party establishes information requirements.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e23",
+                "source": "AppointingParty",
+                "target": "Appointment",
+                "relationship": "creates",
+                "evidence": {
+                    "quote": "Appointments are created by the appointing party.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e24",
+                "source": "Appointment",
+                "target": "LeadAppointedParty",
+                "relationship": "appoints",
+                "evidence": {
+                    "quote": "Lead appointed parties are appointed through appointments.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e25",
+                "source": "LeadAppointedParty",
+                "target": "AppointedParty",
+                "relationship": "coordinates",
+                "evidence": {
+                    "quote": "Lead appointed parties coordinate appointed parties.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e26",
+                "source": "InformationDeliveryMilestone",
+                "target": "InformationExchange",
+                "relationship": "triggers",
+                "evidence": {
+                    "quote": "Information exchanges occur at defined milestones.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e27",
+                "source": "CDE",
+                "target": "InformationProduction",
+                "relationship": "enables",
+                "evidence": {
+                    "quote": "Information production workflow is supported by the common data environment.",
+                    "source": "ISO 19650-2 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e28",
+                "source": "CDE",
+                "target": "InformationExchange",
+                "relationship": "facilitates",
+                "evidence": {
+                    "quote": "The CDE enables collaborative information exchange.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e29",
+                "source": "CDE",
+                "target": "CDEState",
+                "relationship": "manages",
+                "evidence": {
+                    "quote": "Information containers transition through workflow states within the CDE.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e30",
+                "source": "EnablingTechnology",
+                "target": "CDE",
+                "relationship": "supports",
+                "evidence": {
+                    "quote": "Information production workflows are enabled by technologies integrated within the CDE.",
+                    "source": "ISO 19650 Draft",
+                    "type": "direct_quote"
                 }
             }
 
