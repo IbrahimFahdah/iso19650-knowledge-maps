@@ -2,14 +2,14 @@
     "metadata": {
         "id": "iso19650-cde-state-model-draft",
         "name": "CDE State Model",
-        "description": "Lifecycle states of information containers including the Submitted state introduced in the ISO 19650 draft revision.",
+        "description": "Lifecycle states of information containers within the Common Data Environment according to the ISO 19650 draft revision.",
         "type": "state-map",
         "standard": "ISO 19650",
         "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-15",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "CDE", "states", "workflow" ]
+        "tags": [ "CDE", "states", "workflow", "information-container" ]
     },
 
     "graph": {
@@ -17,9 +17,17 @@
         "nodes": [
 
             {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Operational framework and technology used to manage information containers."
+            },
+
+            {
                 "id": "InformationContainer",
                 "label": "Information Container",
-                "type": "information"
+                "type": "information",
+                "description": "Named persistent set of information retrievable from a file, system or storage hierarchy."
             },
 
             {
@@ -27,35 +35,25 @@
                 "label": "WORK IN PROGRESS",
                 "type": "state"
             },
-
             {
                 "id": "Shared",
                 "label": "SHARED",
                 "type": "state"
             },
-
             {
                 "id": "Submitted",
                 "label": "SUBMITTED",
                 "type": "state"
             },
-
             {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state"
             },
-
             {
                 "id": "Archived",
                 "label": "ARCHIVED",
                 "type": "state"
-            },
-
-            {
-                "id": "CDE",
-                "label": "Common Data Environment",
-                "type": "system"
             }
 
         ],
@@ -64,10 +62,23 @@
 
             {
                 "id": "e1",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "A common data environment provides the framework for managing information.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e2",
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
-                "relationship": "created_in",
-                "label": "created in",
+                "relationship": "initial_state",
+                "label": "initial state",
                 "evidence": {
                     "quote": "Information containers begin development before coordination and exchange.",
                     "source": "ISO 19650 Draft",
@@ -76,11 +87,11 @@
             },
 
             {
-                "id": "e2",
+                "id": "e3",
                 "source": "WorkInProgress",
                 "target": "Shared",
-                "relationship": "shared_as",
-                "label": "shared as",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "Information is shared for coordination between delivery teams.",
                     "source": "ISO 19650 Draft",
@@ -89,11 +100,11 @@
             },
 
             {
-                "id": "e3",
+                "id": "e4",
                 "source": "Shared",
                 "target": "Submitted",
-                "relationship": "submitted_as",
-                "label": "submitted as",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "The information production workflow includes a submitted state between shared and published.",
                     "source": "ISO 19650 Draft",
@@ -102,11 +113,11 @@
             },
 
             {
-                "id": "e4",
+                "id": "e5",
                 "source": "Submitted",
                 "target": "Published",
-                "relationship": "accepted_as",
-                "label": "accepted as",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "Submitted information is reviewed and accepted before becoming published.",
                     "source": "ISO 19650 Draft",
@@ -115,7 +126,7 @@
             },
 
             {
-                "id": "e5",
+                "id": "e6",
                 "source": "Published",
                 "target": "Archived",
                 "relationship": "superseded_as",
@@ -123,18 +134,6 @@
                 "evidence": {
                     "quote": "Superseded information is retained as archived information.",
                     "source": "ISO 19650 Draft",
-                    "type": "definition"
-                }
-            },
-            {
-                "id": "e6",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "manages",
-                "label": "manages",
-                "evidence": {
-                    "quote": "A common data environment provides the framework for managing information.",
-                    "source": "ISO 19650-1",
                     "type": "definition"
                 }
             }
