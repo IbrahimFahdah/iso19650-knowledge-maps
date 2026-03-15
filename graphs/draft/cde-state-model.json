@@ -125,6 +125,18 @@
                     "source": "ISO 19650 Draft",
                     "type": "definition"
                 }
+            },
+            {
+                "id": "e6",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "A common data environment provides the framework for managing information.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
             }
 
         ]
