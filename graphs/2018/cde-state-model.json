@@ -17,6 +17,12 @@
         "nodes": [
 
             {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system"
+            },
+
+            {
                 "id": "InformationContainer",
                 "label": "Information Container",
                 "type": "information"
@@ -44,12 +50,6 @@
                 "id": "Archived",
                 "label": "ARCHIVED",
                 "type": "state"
-            },
-
-            {
-                "id": "CDE",
-                "label": "Common Data Environment",
-                "type": "system"
             }
 
         ],
@@ -58,10 +58,23 @@
 
             {
                 "id": "e1",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "manages",
+                "label": "manages",
+                "evidence": {
+                    "quote": "A common data environment provides the framework for managing information.",
+                    "source": "ISO 19650-1:2018",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e2",
                 "source": "InformationContainer",
                 "target": "WorkInProgress",
-                "relationship": "created_in",
-                "label": "created in",
+                "relationship": "initial_state",
+                "label": "initial state",
                 "evidence": {
                     "quote": "Information containers are developed by appointed parties before being shared.",
                     "source": "ISO 19650-1:2018",
@@ -70,11 +83,11 @@
             },
 
             {
-                "id": "e2",
+                "id": "e3",
                 "source": "WorkInProgress",
                 "target": "Shared",
-                "relationship": "shared_as",
-                "label": "shared as",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "Information is shared to enable coordination between appointed parties.",
                     "source": "ISO 19650-2:2018",
@@ -83,11 +96,11 @@
             },
 
             {
-                "id": "e3",
+                "id": "e4",
                 "source": "Shared",
                 "target": "Published",
-                "relationship": "accepted_as",
-                "label": "accepted as",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
                     "quote": "Accepted information containers become published information.",
                     "source": "ISO 19650-2:2018",
@@ -96,26 +109,13 @@
             },
 
             {
-                "id": "e4",
+                "id": "e5",
                 "source": "Published",
                 "target": "Archived",
                 "relationship": "superseded_as",
                 "label": "superseded as",
                 "evidence": {
                     "quote": "Superseded information containers are retained in the archive.",
-                    "source": "ISO 19650-1:2018",
-                    "type": "definition"
-                }
-            },
-
-            {
-                "id": "e5",
-                "source": "CDE",
-                "target": "InformationContainer",
-                "relationship": "manages",
-                "label": "manages",
-                "evidence": {
-                    "quote": "A common data environment provides the framework for managing information.",
                     "source": "ISO 19650-1:2018",
                     "type": "definition"
                 }
