@@ -32,9 +32,12 @@ let dragDepth = 0;
 let activeStandardId = DEFAULT_STANDARD_ID;
 let activeGraphFile = "";
 let suppressViewStateSave = false;
-const metadataCache = new Map();
-const manifestCache = new Map();
 const STORAGE_PREFIX = "iso19650:view:";
+
+function buildNoCacheUrl(file) {
+  const separator = file.includes("?") ? "&" : "?";
+  return `${file}${separator}_=${Date.now()}`;
+}
 
 function getGraphStorageKey() {
   if (!activeGraphFile) {
@@ -366,7 +369,7 @@ function toCytoscapeElements(graph, savedState = null) {
 }
 
 async function fetchGraphJson(file) {
-  const response = await fetch(file);
+  const response = await fetch(buildNoCacheUrl(file), { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`Unable to load graph file: ${file}`);
   }
@@ -375,28 +378,17 @@ async function fetchGraphJson(file) {
 }
 
 async function fetchGraphMetadata(file) {
-  if (metadataCache.has(file)) {
-    return metadataCache.get(file);
-  }
-
   const payload = await fetchGraphJson(file);
   validateGraphPayload(payload);
 
-  const entry = {
+  return {
     file,
     metadata: payload.metadata
   };
-
-  metadataCache.set(file, entry);
-  return entry;
 }
 
 async function fetchManifest(manifestFile) {
-  if (manifestCache.has(manifestFile)) {
-    return manifestCache.get(manifestFile);
-  }
-
-  const response = await fetch(manifestFile);
+  const response = await fetch(buildNoCacheUrl(manifestFile), { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`Unable to load graph manifest: ${manifestFile}`);
   }
@@ -406,7 +398,6 @@ async function fetchManifest(manifestFile) {
     throw new Error(`Graph manifest must contain a 'graphs' array: ${manifestFile}`);
   }
 
-  manifestCache.set(manifestFile, manifest);
   return manifest;
 }
 
