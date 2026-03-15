@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "id": "iso19650-cde-state-model-2018",
+        "name": "CDE State Model",
+        "description": "Lifecycle states of information containers within the Common Data Environment according to ISO 19650:2018.",
+        "type": "state-map",
+        "standard": "ISO 19650",
+        "version": "2018",
+        "part": "Part 1 / Part 2",
+        "created": "2026-03-15",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "CDE", "states", "workflow", "information-container" ]
+    },
+    "graph": {
+        "nodes": [
+            {
+                "id": "InformationContainer",
+                "label": "Information Container",
+                "type": "information",
+                "description": "Named persistent set of information retrievable from a file, system or storage hierarchy."
+            },
+            {
+                "id": "WorkInProgress",
+                "label": "WORK IN PROGRESS",
+                "type": "state",
+                "description": "Information being developed by its authoring team and not visible to other parties."
+            },
+            {
+                "id": "Shared",
+                "label": "SHARED",
+                "type": "state",
+                "description": "Information shared with other delivery teams for coordination and review."
+            },
+            {
+                "id": "Published",
+                "label": "PUBLISHED",
+                "type": "state",
+                "description": "Information authorised and accepted for use."
+            },
+            {
+                "id": "Archived",
+                "label": "ARCHIVED",
+                "type": "state",
+                "description": "Superseded information retained for record and audit."
+            },
+            {
+                "id": "CDE",
+                "label": "Common Data Environment",
+                "type": "system",
+                "description": "Operational framework managing information containers and workflow."
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1",
+                "source": "InformationContainer",
+                "target": "WorkInProgress",
+                "relationship": "created_in",
+                "label": "created in"
+            },
+            {
+                "id": "e2",
+                "source": "WorkInProgress",
+                "target": "Shared",
+                "relationship": "shared_as",
+                "label": "shared as"
+            },
+            {
+                "id": "e3",
+                "source": "Shared",
+                "target": "Published",
+                "relationship": "accepted_as",
+                "label": "accepted as"
+            },
+            {
+                "id": "e4",
+                "source": "Published",
+                "target": "Archived",
+                "relationship": "superseded_as",
+                "label": "superseded as"
+            },
+            {
+                "id": "e5",
+                "source": "CDE",
+                "target": "InformationContainer",
+                "relationship": "manages",
+                "label": "manages"
+            }
+        ]
+    }
+}

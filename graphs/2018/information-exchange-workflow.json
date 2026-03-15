@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "id": "iso19650-information-exchange-workflow-2018",
+        "name": "Information Exchange Workflow",
+        "description": "Information delivery and acceptance process according to ISO 19650:2018.",
+        "type": "process-map",
+        "standard": "ISO 19650",
+        "version": "2018",
+        "part": "Part 2",
+        "created": "2026-03-15",
+        "author": "ISO19650 Knowledge Maps",
+        "tags": [ "information-exchange", "workflow", "delivery" ]
+    },
+    "graph": {
+        "nodes": [
+            {
+                "id": "Shared",
+                "label": "SHARED",
+                "type": "state"
+            },
+            {
+                "id": "ReviewAuthorize",
+                "label": "Review / Authorize",
+                "type": "process"
+            },
+            {
+                "id": "SubmitInformation",
+                "label": "Submit Information",
+                "type": "process"
+            },
+            {
+                "id": "ReviewAccept",
+                "label": "Review / Accept",
+                "type": "process"
+            },
+            {
+                "id": "Published",
+                "label": "PUBLISHED",
+                "type": "state"
+            },
+            {
+                "id": "LeadAppointedParty",
+                "label": "Lead Appointed Party",
+                "type": "role"
+            },
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1",
+                "source": "Shared",
+                "target": "ReviewAuthorize",
+                "relationship": "evaluated_in"
+            },
+            {
+                "id": "e2",
+                "source": "LeadAppointedParty",
+                "target": "ReviewAuthorize",
+                "relationship": "performs"
+            },
+            {
+                "id": "e3",
+                "source": "ReviewAuthorize",
+                "target": "SubmitInformation",
+                "relationship": "authorizes"
+            },
+            {
+                "id": "e4",
+                "source": "SubmitInformation",
+                "target": "ReviewAccept",
+                "relationship": "submitted_to"
+            },
+            {
+                "id": "e5",
+                "source": "AppointingParty",
+                "target": "ReviewAccept",
+                "relationship": "performs"
+            },
+            {
+                "id": "e6",
+                "source": "ReviewAccept",
+                "target": "Published",
+                "relationship": "transitions_to"
+            }
+        ]
+    }
+}

@@ -9,6 +9,8 @@
         "graphs/2018/information-delivery-process.json",
         "graphs/2018/cde-workflow.json",
         "graphs/2018/information-model-structure.json",
-        "graphs/2018/information-exchange-milestones.json"
+        "graphs/2018/information-exchange-milestones.json",
+        "graphs/2018/cde-state-model.json",
+        "graphs/2018/information-exchange-workflow.json"
     ]
 }

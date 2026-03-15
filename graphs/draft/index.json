@@ -9,6 +9,8 @@
         "graphs/draft/information-delivery-process.json",
         "graphs/draft/cde-workflow.json",
         "graphs/draft/information-model-structure.json",
-        "graphs/draft/information-production-milestones.json"
+        "graphs/draft/information-production-milestones.json",
+        "graphs/draft/cde-state-model.json",
+        "graphs/draft/information-exchange-workflow.json"
     ]
 }
