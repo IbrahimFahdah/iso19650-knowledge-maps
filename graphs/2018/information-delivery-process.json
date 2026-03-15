@@ -66,34 +66,6 @@
             },
 
             {
-                "id": "InformationModelDelivery",
-                "label": "Information Model Delivery",
-                "type": "process",
-                "description": "Delivery of the project information model at exchange milestones."
-            },
-
-            {
-                "id": "ProjectCloseout",
-                "label": "Project Closeout",
-                "type": "process",
-                "description": "Completion of delivery and transition of information to asset management."
-            },
-
-            {
-                "id": "ProjectStage",
-                "label": "Project Stage",
-                "type": "concept",
-                "description": "Defined phase of the project lifecycle."
-            },
-
-            {
-                "id": "KeyDecisionPoint",
-                "label": "Key Decision Point",
-                "type": "concept",
-                "description": "Point in time where key project decisions are made."
-            },
-
-            {
                 "id": "ExchangeInformationRequirements",
                 "label": "Exchange Information Requirements (EIR)",
                 "type": "information",
