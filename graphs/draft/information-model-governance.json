@@ -120,27 +120,7 @@
                 "label": "Common Data Environment",
                 "type": "system",
                 "description": "Shared environment used to manage information containers."
-            },
-
-            {
-                "id": "InformationProductionRequirements",
-                "label": "Information Production Requirements",
-                "type": "information",
-                "description": "Information requirements relating to an appointment that govern what must be produced."
-            },
-            {
-                "id": "InformationProductionStandard",
-                "label": "Information Production Standard",
-                "type": "information",
-                "description": "Set of rules for generating, coordinating and checking information containers."
-            },
-            {
-                "id": "InformationProductionMethods",
-                "label": "Information Production Methods and Procedures",
-                "type": "information",
-                "description": "Library of available methods and procedures to support information production."
             }
-
         ],
 
         "edges": [
