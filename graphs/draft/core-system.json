@@ -79,31 +79,6 @@
                 "type": "role",
                 "description": "Team responsible for producing information."
             },
-            {
-                "id": "InformationManager",
-                "label": "Information Manager",
-                "type": "role",
-                "description": "Role responsible for managing the information process."
-            },
-
-            {
-                "id": "AppointingParty",
-                "label": "Appointing Party",
-                "type": "role",
-                "description": "Organization appointing teams and defining requirements."
-            },
-            {
-                "id": "LeadAppointedParty",
-                "label": "Lead Appointed Party",
-                "type": "role",
-                "description": "Organization responsible for managing information production."
-            },
-            {
-                "id": "AppointedParty",
-                "label": "Appointed Party",
-                "type": "role",
-                "description": "Organization responsible for generating information."
-            },
 
             {
                 "id": "InformationContainer",
@@ -175,26 +150,6 @@
                 "label": "Information User",
                 "type": "role",
                 "description": "Person or organization using information."
-            },
-
-            {
-                "id": "InformationProductionSchedule",
-                "label": "Information Production Schedule",
-                "type": "information",
-                "description": "Details of information containers to be produced during an appointment."
-            },
-
-            {
-                "id": "InformationProductionStandard",
-                "label": "Information Production Standard",
-                "type": "information",
-                "description": "Rules for generating and checking information containers."
-            },
-            {
-                "id": "InformationProductionMethods",
-                "label": "Information Production Methods and Procedures",
-                "type": "information",
-                "description": "Library of available methods and procedures."
             },
 
             {
