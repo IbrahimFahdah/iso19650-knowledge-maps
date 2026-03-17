@@ -8,6 +8,7 @@
         "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
+        "updated": "2026-03-17",
         "author": "ISO19650 Knowledge Maps",
         "tags": [ "CDE", "workflow", "information-state", "container", "information-production" ]
     },
@@ -59,10 +60,17 @@
             },
 
             {
+                "id": "Submitted",
+                "label": "SUBMITTED",
+                "type": "state",
+                "description": "State where information has been authorized by the lead appointed party and submitted to the appointing party for acceptance."
+            },
+
+            {
                 "id": "Published",
                 "label": "PUBLISHED",
                 "type": "state",
-                "description": "State where information has been authorized and accepted for use."
+                "description": "State where information has been accepted by the appointing party and is authorized for use."
             },
 
             {
@@ -279,12 +287,25 @@
             {
                 "id": "e11",
                 "source": "ReviewAuthorize",
-                "target": "ReviewAccept",
-                "relationship": "submitted_to",
-                "label": "submitted to",
+                "target": "Submitted",
+                "relationship": "transitions_to",
+                "label": "transitions to",
                 "evidence": {
-                    "quote": "Authorized information models are submitted to the appointing party for review and acceptance.",
-                    "source": "ISO 19650-2 Draft",
+                    "quote": "Authorized information is submitted to the appointing party.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e11a",
+                "source": "Submitted",
+                "target": "ReviewAccept",
+                "relationship": "reviewed_by",
+                "label": "reviewed by",
+                "evidence": {
+                    "quote": "Submitted information is reviewed and accepted by the appointing party.",
+                    "source": "ISO 19650 Draft",
                     "type": "definition"
                 }
             },
@@ -296,9 +317,9 @@
                 "relationship": "performs",
                 "label": "performs",
                 "evidence": {
-                    "quote": "The appointing party reviews the submitted information model and determines acceptance.",
-                    "source": "ISO 19650-2 Draft",
-                    "type": "definition"
+                    "quote": "The appointing party shall undertake a review of the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
                 }
             },
 
@@ -440,6 +461,19 @@
                 "label": "contains",
                 "evidence": {
                     "quote": "The CDE maintains an archive of superseded information containers.",
+                    "source": "ISO 19650-1",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e24",
+                "source": "CDE",
+                "target": "Submitted",
+                "relationship": "contains_state",
+                "label": "contains",
+                "evidence": {
+                    "quote": "The common data environment manages information containers through defined workflow states.",
                     "source": "ISO 19650-1",
                     "type": "definition"
                 }
