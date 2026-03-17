@@ -70,6 +70,13 @@
                 "label": "Common Data Environment",
                 "type": "system",
                 "description": "Shared information environment used to manage information containers."
+            },
+
+            {
+                "id": "AppointingParty",
+                "label": "Appointing Party",
+                "type": "role",
+                "description": "Organization responsible for accepting information models and authorizing their aggregation into the asset information model."
             }
 
         ],
@@ -190,6 +197,19 @@
                     "quote": "The common data environment is the agreed source of information containers.",
                     "source": "ISO 19650-1",
                     "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "AppointingParty",
+                "target": "AssetInformationModel",
+                "relationship": "accepts",
+                "label": "accepts",
+                "evidence": {
+                    "quote": "Aggregation of information to the asset information model(s) should occur once that information has been accepted by the appointing party.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 12.2.2",
+                    "type": "direct_quote"
                 }
             }
 

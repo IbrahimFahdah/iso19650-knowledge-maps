@@ -2,14 +2,15 @@
     "metadata": {
         "id": "iso19650-information-exchange-workflow-draft",
         "name": "Information Exchange Workflow",
-        "description": "Information exchange workflow reflecting the ISO 19650 draft including the Submitted state.",
+        "description": "Full information exchange workflow reflecting the ISO 19650 draft, covering all CDE states from Work in Progress through to Published and Archived, including the appointed party check and review gate, lead appointed party authorization, appointing party acceptance, and rejection return paths.",
         "type": "process-map",
         "standard": "ISO 19650",
         "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-15",
+        "updated": "2026-03-17",
         "author": "ISO19650 Knowledge Maps",
-        "tags": [ "information-exchange", "workflow", "delivery" ]
+        "tags": [ "information-exchange", "workflow", "delivery", "CDE", "states" ]
     },
 
     "graph": {
@@ -17,45 +18,80 @@
         "nodes": [
 
             {
+                "id": "WorkInProgress",
+                "label": "WORK IN PROGRESS",
+                "type": "state",
+                "description": "State where information is being developed by the authoring appointed party and is not accessible to other parties."
+            },
+
+            {
+                "id": "CheckReviewApprove",
+                "label": "Check / Review / Approve",
+                "type": "process",
+                "description": "Quality assurance check and technical review performed by the appointed party before information is shared."
+            },
+
+            {
                 "id": "Shared",
                 "label": "SHARED",
-                "type": "state"
+                "type": "state",
+                "description": "State where information is shared with other parties for coordination and collaborative development."
             },
 
             {
                 "id": "ReviewAuthorize",
                 "label": "Review / Authorize",
-                "type": "process"
+                "type": "process",
+                "description": "Review of the information model by the lead appointed party and authorization of its approved use prior to submission."
             },
 
             {
                 "id": "Submitted",
                 "label": "SUBMITTED",
-                "type": "state"
+                "type": "state",
+                "description": "State where information has been authorized by the lead appointed party and submitted to the appointing party for acceptance."
             },
 
             {
                 "id": "ReviewAccept",
                 "label": "Review / Accept",
-                "type": "process"
+                "type": "process",
+                "description": "Review of the submitted information model by the appointing party and acceptance of its approved use."
             },
 
             {
                 "id": "Published",
                 "label": "PUBLISHED",
-                "type": "state"
+                "type": "state",
+                "description": "State where information has been accepted by the appointing party and is authorized for use."
+            },
+
+            {
+                "id": "Archived",
+                "label": "ARCHIVED",
+                "type": "state",
+                "description": "State where superseded published information is retained for audit and historical reference."
+            },
+
+            {
+                "id": "AppointedParty",
+                "label": "Appointed Party",
+                "type": "role",
+                "description": "Organization responsible for generating information containers and performing quality assurance checks and approval."
             },
 
             {
                 "id": "LeadAppointedParty",
                 "label": "Lead Appointed Party",
-                "type": "role"
+                "type": "role",
+                "description": "Organization responsible for coordinating information production and authorizing information models prior to submission."
             },
 
             {
                 "id": "AppointingParty",
                 "label": "Appointing Party",
-                "type": "role"
+                "type": "role",
+                "description": "Organization responsible for reviewing and accepting submitted information models."
             }
 
         ],
@@ -64,6 +100,45 @@
 
             {
                 "id": "e1",
+                "source": "WorkInProgress",
+                "target": "CheckReviewApprove",
+                "relationship": "submitted_for",
+                "label": "submitted for",
+                "evidence": {
+                    "quote": "Before information is shared it shall be checked, reviewed and approved.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e2",
+                "source": "AppointedParty",
+                "target": "CheckReviewApprove",
+                "relationship": "performs",
+                "label": "performs",
+                "evidence": {
+                    "quote": "Each appointed party shall undertake a quality assurance check and then review and approve the information container.",
+                    "source": "ISO 19650-2:2026 Draft, Clauses 5.8.3 and 5.8.4",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e3",
+                "source": "CheckReviewApprove",
+                "target": "Shared",
+                "relationship": "transitions_to",
+                "label": "transitions to",
+                "evidence": {
+                    "quote": "Following checking and approval the information container is shared with other parties.",
+                    "source": "ISO 19650-1:2026 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e4",
                 "source": "Shared",
                 "target": "ReviewAuthorize",
                 "relationship": "evaluated_in",
@@ -76,20 +151,20 @@
             },
 
             {
-                "id": "e2",
+                "id": "e5",
                 "source": "LeadAppointedParty",
                 "target": "ReviewAuthorize",
                 "relationship": "performs",
                 "label": "performs",
                 "evidence": {
-                    "quote": "The lead appointed party authorizes information prior to submission.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "quote": "The lead appointed party shall review and authorize the information model.",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.7",
+                    "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e3",
+                "id": "e6",
                 "source": "ReviewAuthorize",
                 "target": "Submitted",
                 "relationship": "transitions_to",
@@ -102,7 +177,7 @@
             },
 
             {
-                "id": "e4",
+                "id": "e7",
                 "source": "Submitted",
                 "target": "ReviewAccept",
                 "relationship": "reviewed_by",
@@ -115,26 +190,65 @@
             },
 
             {
-                "id": "e5",
+                "id": "e8",
                 "source": "AppointingParty",
                 "target": "ReviewAccept",
                 "relationship": "performs",
                 "label": "performs",
                 "evidence": {
-                    "quote": "The appointing party determines acceptance of submitted information.",
-                    "source": "ISO 19650 Draft",
-                    "type": "definition"
+                    "quote": "The appointing party shall undertake a review of the information model and accept the information container(s).",
+                    "source": "ISO 19650-2:2026 Draft, Clause 5.8.8",
+                    "type": "direct_quote"
                 }
             },
 
             {
-                "id": "e6",
+                "id": "e9",
                 "source": "ReviewAccept",
                 "target": "Published",
                 "relationship": "transitions_to",
                 "label": "transitions to",
                 "evidence": {
                     "quote": "Accepted information becomes published information.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e10",
+                "source": "ReviewAccept",
+                "target": "Shared",
+                "relationship": "returns_to_if_rejected",
+                "label": "returns to if rejected",
+                "evidence": {
+                    "quote": "If the information model is rejected it shall be amended and resubmitted.",
+                    "source": "ISO 19650-2:2026 Draft",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
+                "id": "e11",
+                "source": "CheckReviewApprove",
+                "target": "WorkInProgress",
+                "relationship": "returns_to_if_rejected",
+                "label": "returns to if rejected",
+                "evidence": {
+                    "quote": "Information containers may be returned to work in progress if amendments are required following checking or review.",
+                    "source": "ISO 19650 Draft",
+                    "type": "definition"
+                }
+            },
+
+            {
+                "id": "e12",
+                "source": "Published",
+                "target": "Archived",
+                "relationship": "superseded_as",
+                "label": "superseded as",
+                "evidence": {
+                    "quote": "Superseded information is retained as archived information.",
                     "source": "ISO 19650 Draft",
                     "type": "definition"
                 }
