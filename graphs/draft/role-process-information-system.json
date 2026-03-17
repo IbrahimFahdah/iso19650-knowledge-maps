@@ -8,6 +8,7 @@
         "version": "draft",
         "part": "Part 1 / Part 2",
         "created": "2026-03-14",
+        "updated": "2026-03-17",
         "author": "ISO19650 Knowledge Maps",
         "tags": [ "architecture", "roles", "process", "information", "governance", "draft" ]
     },
@@ -90,7 +91,7 @@
                 "id": "InformationVerification",
                 "label": "Information Verification",
                 "type": "process",
-                "description": "Combined checking and review activities ensuring information quality before exchange."
+                "description": "Sub-process of information production encompassing the checking, reviewing and approval activities that ensure information quality prior to exchange, as listed in Clause 3.2.10."
             },
 
             {
@@ -205,6 +206,19 @@
             },
 
             {
+                "id": "e5a",
+                "source": "InformationProduction",
+                "target": "InformationVerification",
+                "relationship": "includes",
+                "label": "includes",
+                "evidence": {
+                    "quote": "Information production includes generation, coordination, checking, reviewing, approval, authorization and acceptance.",
+                    "source": "ISO 19650-1:2026 Draft, Clause 3.2.10",
+                    "type": "direct_quote"
+                }
+            },
+
+            {
                 "id": "e6",
                 "source": "InformationChecking",
                 "target": "InformationReviewAndApprove",
@@ -244,19 +258,6 @@
             },
 
             {
-                "id": "e9",
-                "source": "InformationReviewAndAccept",
-                "target": "InformationVerification",
-                "relationship": "precedes",
-                "label": "precedes",
-                "evidence": {
-                    "quote": "Information is verified before being exchanged between parties.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
                 "id": "e10",
                 "source": "InformationVerification",
                 "target": "InformationExchange",
@@ -266,32 +267,6 @@
                     "quote": "Verified information may be exchanged between stakeholders.",
                     "source": "ISO 19650 Draft",
                     "type": "definition"
-                }
-            },
-
-            {
-                "id": "e11",
-                "source": "InformationVerification",
-                "target": "InformationChecking",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Verification activities include checking and reviewing information prior to exchange.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
-                }
-            },
-
-            {
-                "id": "e12",
-                "source": "InformationVerification",
-                "target": "InformationReviewAndApprove",
-                "relationship": "includes",
-                "label": "includes",
-                "evidence": {
-                    "quote": "Verification includes review and approval activities performed prior to exchange.",
-                    "source": "ISO 19650 Draft",
-                    "type": "inferred_relationship"
                 }
             },
 
